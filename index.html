@@ -387,6 +387,14 @@
             method="POST"
             accept-charset="UTF-8"
           >
+            <!-- Honeypot (bots fill this, humans don't) -->
+          <input
+            type="text"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+            class="hidden"
+            />
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label
