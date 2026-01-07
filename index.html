@@ -118,6 +118,43 @@
               <span class="material-icons dark:hidden">dark_mode</span>
               <span class="material-icons hidden dark:block text-yellow-300">light_mode</span>
             </button>
+
+<!-- Language switch -->
+<div class="flex items-center gap-1 rounded-full border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/60 backdrop-blur px-1 py-1">
+  <a
+    id="lang-en"
+    href="https://kapsdevelopment.com/"
+    class="px-3 py-1.5 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 hover:text-primary"
+  >EN</a>
+
+  <a
+    id="lang-no"
+    href="https://kapsdevelopment.no/"
+    class="px-3 py-1.5 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 hover:text-primary"
+  >NO</a>
+</div>
+
+<script>
+  (function () {
+    const host = location.hostname.toLowerCase();
+    const isNo = host.endsWith(".no");
+
+    const en = document.getElementById("lang-en");
+    const no = document.getElementById("lang-no");
+
+    // Keep anchor (#contact etc.) when switching domains
+    const hash = location.hash || "";
+    en.href = "https://kapsdevelopment.com/" + hash;
+    no.href = "https://kapsdevelopment.no/" + hash;
+
+    // Highlight active
+    const active = "bg-primary text-white hover:text-white";
+    if (isNo) no.className += " " + active;
+    else en.className += " " + active;
+  })();
+</script>
+
+
           </div>
 
           <!-- Mobile buttons -->
@@ -152,14 +189,42 @@
               >Services</a
             >
             <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="#about">About Us</a>
-            <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="#portfolio"
+            <!-- <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="#portfolio"
               >Portfolio</a
-            >
+            > -->
             <a
               class="inline-flex mt-2 bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg"
               href="#contact"
               >Contact</a
             >
+<div class="flex gap-2 px-3 pt-4">
+  <a id="lang-en-m" href="https://kapsdevelopment.com/" class="flex-1 text-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200">
+    EN
+  </a>
+  <a id="lang-no-m" href="https://kapsdevelopment.no/" class="flex-1 text-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200">
+    NO
+  </a>
+</div>
+
+<script>
+  (function () {
+    const host = location.hostname.toLowerCase();
+    const isNo = host.endsWith(".no");
+    const hash = location.hash || "";
+
+    const en = document.getElementById("lang-en-m");
+    const no = document.getElementById("lang-no-m");
+
+    en.href = "https://kapsdevelopment.com/" + hash;
+    no.href = "https://kapsdevelopment.no/" + hash;
+
+    const active = "bg-primary text-white border-transparent";
+    if (isNo) no.className += " " + active;
+    else en.className += " " + active;
+  })();
+</script>
+
+
           </div>
         </div>
       </div>
@@ -497,9 +562,10 @@
               <li>
                 <a class="text-gray-400 hover:text-white transition-colors" href="#about">About Us</a>
               </li>
+              <!--
               <li>
                 <a class="text-gray-400 hover:text-white transition-colors" href="#portfolio">Portfolio</a>
-              </li>
+              </li> -->
             </ul>
           </div>
 
