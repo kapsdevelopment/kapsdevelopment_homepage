@@ -24,3 +24,15 @@ section {
 .text-shadow {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+/* Image overlay used on sections with background photos */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.65); /* light mode overlay */
+  backdrop-filter: blur(2px);
+}
+
+/* Dark mode overlay */
+.dark .bg-overlay {
+  background: rgba(17, 24, 39, 0.75); /* approx gray-900 */
+}
