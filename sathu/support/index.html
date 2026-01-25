@@ -1,584 +1,516 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sathu App Support</title>
-  <meta name="description" content="Support, FAQ, and contact information for the Sathu App." />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sathu App Support</title>
+    <meta name="description" content="Support, FAQ, and contact information for the Sathu App." />
 
-  <style>
-    :root{
-      --bg: #221C10;
-      --panel: #18140B;
-      --card: #2C2517;
-      --divider: #393328;
-      --accent: #ECA413;
-      --text: #FFFFFF;
-      --muted: #B9B09D;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius-xl: 28px;
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --maxw: 1040px;
-    }
+    <style>
+        :root{
+          --bg: #221C10;
+          --panel: #18140B;
+          --card: #2C2517;
+          --divider: #393328;
+          --accent: #ECA413;
+          --text: #FFFFFF;
+          --muted: #B9B09D;
+          --shadow: 0 10px 30px rgba(0,0,0,.35);
+          --radius-xl: 28px;
+          --radius-lg: 20px;
+          --radius-md: 14px;
+          --maxw: 1040px;
+        }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(236,164,19,.14), transparent 55%),
-                  radial-gradient(900px 500px at 90% 10%, rgba(236,164,19,.10), transparent 60%),
-                  var(--bg);
-      letter-spacing: .2px;
-    }
+        *{ box-sizing:border-box; }
+        html,body{ height:100%; }
+        body{
+          margin:0;
+          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+          color: var(--text);
+          background: radial-gradient(1200px 600px at 20% 0%, rgba(236,164,19,.14), transparent 55%),
+                      radial-gradient(900px 500px at 90% 10%, rgba(236,164,19,.10), transparent 60%),
+                      var(--bg);
+          letter-spacing: .2px;
+        }
 
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 26px 18px 60px; }
+        a{ color:inherit; text-decoration:none; }
+        .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 26px 18px 60px; }
 
-    /* Top nav */
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,.06);
-      background: rgba(24,20,11,.7);
-      backdrop-filter: blur(8px);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 14px;
-      z-index: 10;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 220px;
-    }
-    .logo{
-      width:38px; height:38px; border-radius: 12px;
-      background: linear-gradient(180deg, rgba(236,164,19,.95), rgba(236,164,19,.65));
-      display:grid; place-items:center;
-      box-shadow: 0 8px 20px rgba(236,164,19,.18);
-      color:#000; font-weight:900;
-    }
-    .brand h1{
-      font-size: 15px; margin:0; line-height:1.1;
-      letter-spacing:.6px;
-    }
-    .brand p{
-      margin:0; font-size: 12px; color: var(--muted);
-    }
-    .navlinks{
-      display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end;
-    }
-    .pill{
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(44,37,23,.55);
-      color: var(--muted);
-      font-size: 13px;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      white-space: nowrap;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(236,164,19,.35);
-      background: rgba(44,37,23,.8);
-      color: #fff;
-    }
-    .pill.primary{
-      border-color: rgba(236,164,19,.45);
-      background: rgba(236,164,19,.12);
-      color: #fff;
-    }
+        /* Top nav */
+        .nav{
+          display:flex; align-items:center; justify-content:space-between;
+          gap:14px;
+          padding: 14px 16px;
+          border: 1px solid rgba(255,255,255,.06);
+          background: rgba(24,20,11,.7);
+          backdrop-filter: blur(8px);
+          border-radius: var(--radius-xl);
+          box-shadow: var(--shadow);
+          position: sticky;
+          top: 14px;
+          z-index: 10;
+        }
+        .brand{
+          display:flex; align-items:center; gap:12px;
+          min-width: 220px;
+        }
+        .logo{
+          width:38px; height:38px; border-radius: 12px;
+          background: linear-gradient(180deg, rgba(236,164,19,.95), rgba(236,164,19,.65));
+          display:grid; place-items:center;
+          box-shadow: 0 8px 20px rgba(236,164,19,.18);
+          color:#000; font-weight:900;
+        }
+        .brand h1{
+          font-size: 15px; margin:0; line-height:1.1;
+          letter-spacing:.6px;
+        }
+        .brand p{
+          margin:0; font-size: 12px; color: var(--muted);
+        }
+        .navlinks{
+          display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end;
+        }
+        .pill{
+          padding: 9px 12px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.08);
+          background: rgba(44,37,23,.55);
+          color: var(--muted);
+          font-size: 13px;
+          transition: transform .12s ease, border-color .12s ease, background .12s ease;
+          white-space: nowrap;
+        }
+        .pill:hover{
+          transform: translateY(-1px);
+          border-color: rgba(236,164,19,.35);
+          background: rgba(44,37,23,.8);
+          color: #fff;
+        }
+        .pill.primary{
+          border-color: rgba(236,164,19,.45);
+          background: rgba(236,164,19,.12);
+          color: #fff;
+        }
 
-    /* Hero */
-    .hero{
-      margin-top: 18px;
-      padding: 34px 22px;
-      border-radius: var(--radius-xl);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.08)),
-        linear-gradient(90deg, rgba(236,164,19,.16), transparent 55%),
-        var(--panel);
-      border: 1px solid rgba(255,255,255,.06);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .hero:after{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(500px 220px at 20% 30%, rgba(236,164,19,.18), transparent 60%);
-      pointer-events:none;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 18px;
-      align-items: start;
-      position:relative;
-      z-index:1;
-    }
-    .hero h2{
-      margin:0 0 10px;
-      font-size: 34px;
-      line-height: 1.05;
-      letter-spacing: .3px;
-    }
-    .hero p{
-      margin: 0 0 16px;
-      color: var(--muted);
-      max-width: 62ch;
-      line-height: 1.6;
-    }
-    .cta-row{ display:flex; gap:10px; flex-wrap:wrap; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(44,37,23,.65);
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-    }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(236,164,19,.35); }
-    .btn.accent{
-      background: rgba(236,164,19,.14);
-      border-color: rgba(236,164,19,.55);
-    }
-    .btn .dot{
-      width: 10px; height:10px; border-radius: 99px;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(236,164,19,.14);
-    }
+        /* Hero */
+        .hero{
+          margin-top: 18px;
+          padding: 34px 22px;
+          border-radius: var(--radius-xl);
+          background:
+            linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.08)),
+            linear-gradient(90deg, rgba(236,164,19,.16), transparent 55%),
+            var(--panel);
+          border: 1px solid rgba(255,255,255,.06);
+          box-shadow: var(--shadow);
+          overflow:hidden;
+          position:relative;
+        }
+        .hero:after{
+          content:"";
+          position:absolute; inset:-2px;
+          background: radial-gradient(500px 220px at 20% 30%, rgba(236,164,19,.18), transparent 60%);
+          pointer-events:none;
+        }
+        .hero-grid{
+          display:grid;
+          grid-template-columns: 1.1fr .9fr;
+          gap: 18px;
+          align-items: start;
+          position:relative;
+          z-index:1;
+        }
+        .hero h2{
+          margin:0 0 10px;
+          font-size: 34px;
+          line-height: 1.05;
+          letter-spacing: .3px;
+        }
+        .hero p{
+          margin: 0 0 16px;
+          color: var(--muted);
+          max-width: 62ch;
+          line-height: 1.6;
+        }
+        .cta-row{ display:flex; gap:10px; flex-wrap:wrap; }
+        .btn{
+          display:inline-flex; align-items:center; justify-content:center;
+          gap:10px;
+          padding: 12px 14px;
+          border-radius: 14px;
+          border: 1px solid rgba(255,255,255,.10);
+          background: rgba(44,37,23,.65);
+          color: #fff;
+          font-weight: 700;
+          font-size: 14px;
+          transition: transform .12s ease, border-color .12s ease, background .12s ease;
+        }
+        .btn:hover{ transform: translateY(-1px); border-color: rgba(236,164,19,.35); }
+        .btn.accent{
+          background: rgba(236,164,19,.14);
+          border-color: rgba(236,164,19,.55);
+        }
+        .btn .dot{
+          width: 10px; height:10px; border-radius: 99px;
+          background: var(--accent);
+          box-shadow: 0 0 0 4px rgba(236,164,19,.14);
+        }
 
-    /* Phone mock */
-    .phonewrap{ display:flex; justify-content:flex-end; }
-    .phone{
-      width: 320px;
-      aspect-ratio: 9 / 19.5;
-      border-radius: 42px;
-      padding: 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 20px 60px rgba(0,0,0,.55);
-      transform: rotate(-8deg);
-      position: relative;
-    }
-    .screen{
-      height: 100%;
-      border-radius: 32px;
-      overflow: hidden;
-      background: rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.10);
-      position:relative;
-      cursor: pointer;
-    }
-    .notch{
-      position:absolute;
-      top:10px;
-      left:50%;
-      transform:translateX(-50%);
-      width: 44%;
-      height: 18px;
-      border-radius: 0 0 14px 14px;
-      background: rgba(0,0,0,.55);
-      border: 1px solid rgba(255,255,255,.08);
-      z-index: 2;
-    }
+        /* Phone mock */
+        .phonewrap{ display:flex; justify-content:flex-end; }
+        .phone{
+          width: clamp(240px, 26vw, 240px);
+          aspect-ratio: 9 / 19.5;
+          border-radius: 42px;
+          padding: 14px;
+          background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+          border: 1px solid rgba(255,255,255,.12);
+          box-shadow: 0 20px 60px rgba(0,0,0,.55);
+          transform: rotate(8deg) translateX(-82px);
+          position: relative;
+        }
+        .screen{
+          height: 100%;
+          border-radius: 32px;
+          overflow: hidden;
+          background: rgba(0,0,0,.35);
+          border: 1px solid rgba(255,255,255,.10);
+          position:relative;
+          cursor: pointer;
+        }
+        .notch{
+          position:absolute;
+          top:10px;
+          left:50%;
+          transform:translateX(-50%);
+          width: 44%;
+          height: 18px;
+          border-radius: 0 0 14px 14px;
+          background: rgba(0,0,0,.55);
+          border: 1px solid rgba(255,255,255,.08);
+          z-index: 2;
+        }
 
-    /* Screenshot slider (2 images) */
-    .screens{
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-    .screens img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      opacity:0;
-      transition: opacity .6s ease;
-      transform: scale(1.02);
-    }
-    .screens img.active{ opacity:1; }
+        /* Screenshot slider */
+        .screens{
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+        .screens img{
+          position:absolute;
+          inset:0;
+          width:100%;
+          height:100%;
+          object-fit: cover;
+          display:block;
+          opacity:0;
+          transition: opacity .6s ease;
+          transform: scale(1.02);
+        }
+        .screens img.active{ opacity:1; }
 
-    /* Sections */
-    .grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .card{
-      border-radius: var(--radius-xl);
-      background: rgba(24,20,11,.85);
-      border: 1px solid rgba(255,255,255,.06);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .card .head{
-      padding: 16px 18px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      display:flex; align-items:center; justify-content:space-between; gap: 12px;
-      background: rgba(24,20,11,.55);
-    }
-    .card .head h3{ margin:0; font-size: 16px; }
-    .badge{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(236,164,19,.10);
-      border: 1px solid rgba(236,164,19,.35);
-      color:#fff;
-      font-size: 12px;
-      white-space: nowrap;
-    }
-    .badge .mini{ width:7px;height:7px;border-radius:99px;background:var(--accent); }
+        /* Sections */
+        .grid{
+          margin-top: 18px;
+          display:grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+        .card{
+          border-radius: var(--radius-xl);
+          background: rgba(24,20,11,.85);
+          border: 1px solid rgba(255,255,255,.06);
+          box-shadow: var(--shadow);
+          overflow:hidden;
+        }
+        .card .head{
+          padding: 16px 18px;
+          border-bottom: 1px solid rgba(255,255,255,.06);
+          display:flex; align-items:center; justify-content:space-between; gap: 12px;
+          background: rgba(24,20,11,.55);
+        }
+        .card .head h3{ margin:0; font-size: 16px; }
+        .badge{
+          display:inline-flex; align-items:center; gap:8px;
+          padding: 7px 10px;
+          border-radius: 999px;
+          background: rgba(236,164,19,.10);
+          border: 1px solid rgba(236,164,19,.35);
+          color:#fff;
+          font-size: 12px;
+          white-space: nowrap;
+        }
+        .badge .mini{ width:7px;height:7px;border-radius:99px;background:var(--accent); }
 
-    .card .body{ padding: 16px 18px; color: var(--muted); line-height: 1.6; }
-    .card .body a{ color: #fff; text-decoration: underline; text-decoration-color: rgba(236,164,19,.55); }
+        .card .body{ padding: 16px 18px; color: var(--muted); line-height: 1.6; }
+        .card .body a{ color: #fff; text-decoration: underline; text-decoration-color: rgba(236,164,19,.55); }
 
-    details{
-      border-radius: 14px;
-      background: rgba(44,37,23,.55);
-      border: 1px solid rgba(255,255,255,.06);
-      padding: 10px 12px;
-      margin: 10px 0;
-    }
-    summary{
-      cursor:pointer;
-      font-weight: 700;
-      color: #fff;
-      list-style:none;
-    }
-    summary::-webkit-details-marker{ display:none; }
-    details p{ margin: 10px 0 0; }
+        details{
+          border-radius: 14px;
+          background: rgba(44,37,23,.55);
+          border: 1px solid rgba(255,255,255,.06);
+          padding: 10px 12px;
+          margin: 10px 0;
+        }
+        summary{
+          cursor:pointer;
+          font-weight: 700;
+          color: #fff;
+          list-style:none;
+        }
+        summary::-webkit-details-marker{ display:none; }
+        details p{ margin: 10px 0 0; }
 
-    /* Form styling (matches site) */
-    form{ margin-top: 6px; }
-    .formgrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .field{ display:flex; flex-direction:column; gap: 6px; }
-    label{
-      font-size: 13px;
-      color: #fff;
-      font-weight: 700;
-    }
-    input, select, textarea{
-      width: 100%;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(44,37,23,.55);
-      color: #fff;
-      outline: none;
-      box-shadow: 0 0 0 0 rgba(236,164,19,.0);
-      transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
-      font-size: 14px;
-    }
-    textarea{ resize: vertical; min-height: 120px; }
-    input::placeholder, textarea::placeholder{ color: rgba(185,176,157,.85); }
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(236,164,19,.55);
-      box-shadow: 0 0 0 4px rgba(236,164,19,.14);
-      background: rgba(44,37,23,.68);
-    }
-    .formhint{
-      font-size: 12px;
-      color: var(--muted);
-      margin: 10px 0 0;
-      line-height: 1.5;
-    }
-    .submitrow{ margin-top: 12px; display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
-    .btn.full{ width: 100%; }
-    .btn.small{ padding: 10px 12px; border-radius: 12px; font-size: 13px; }
+        /* Form styling */
+        form{ margin-top: 6px; }
+        .formgrid{
+          display:grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .field{ display:flex; flex-direction:column; gap: 6px; }
+        label{
+          font-size: 13px;
+          color: #fff;
+          font-weight: 700;
+        }
+        input, select, textarea{
+          width: 100%;
+          padding: 12px 12px;
+          border-radius: 14px;
+          border: 1px solid rgba(255,255,255,.10);
+          background: rgba(44,37,23,.55);
+          color: #fff;
+          outline: none;
+          transition: border-color .12s ease, box-shadow .12s ease, background .12s ease;
+          font-size: 14px;
+        }
+        textarea{ resize: vertical; min-height: 120px; }
+        input::placeholder, textarea::placeholder{ color: rgba(185,176,157,.85); }
+        input:focus, select:focus, textarea:focus{
+          border-color: rgba(236,164,19,.55);
+          box-shadow: 0 0 0 4px rgba(236,164,19,.14);
+          background: rgba(44,37,23,.68);
+        }
+        .formhint{
+          font-size: 12px;
+          color: var(--muted);
+          margin: 10px 0 0;
+          line-height: 1.5;
+        }
+        .submitrow{ margin-top: 12px; display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
+        .btn.full{ width: 100%; }
 
-    /* Footer */
-    footer{
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: var(--radius-xl);
-      background: rgba(24,20,11,.65);
-      border: 1px solid rgba(255,255,255,.06);
-      color: var(--muted);
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items:center;
-      justify-content: space-between;
-    }
-    footer small{ color: var(--muted); }
-    .footlinks{ display:flex; gap: 10px; flex-wrap:wrap; justify-content:flex-end; }
-    .footlinks a{ color: #fff; opacity: .9; }
-    .footlinks a:hover{ opacity: 1; text-decoration: underline; text-decoration-color: rgba(236,164,19,.55); }
+        /* Footer */
+        footer{
+          margin-top: 18px;
+          padding: 18px;
+          border-radius: var(--radius-xl);
+          background: rgba(24,20,11,.65);
+          border: 1px solid rgba(255,255,255,.06);
+          color: var(--muted);
+          display:flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items:center;
+          justify-content: space-between;
+        }
+        footer small{ color: var(--muted); }
+        .footlinks{ display:flex; gap: 10px; flex-wrap:wrap; justify-content:flex-end; }
+        .footlinks a{ color: #fff; opacity: .9; }
+        .footlinks a:hover{ opacity: 1; text-decoration: underline; text-decoration-color: rgba(236,164,19,.55); }
 
-    /* Responsive */
-    @media (max-width: 860px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr; }
-      .brand{ min-width: unset; }
-      .phonewrap{ justify-content:flex-start; }
-      .phone{ transform: rotate(-4deg); width: 280px; }
-      .formgrid{ grid-template-columns: 1fr; }
-    }
-  </style>
+        @media (max-width: 860px){
+          .hero-grid{ grid-template-columns: 1fr; }
+          .grid{ grid-template-columns: 1fr; }
+          .brand{ min-width: unset; }
+          .phonewrap{ justify-content:flex-start; }
+          .phone{ transform: rotate(4deg); width: 280px; }
+          .formgrid{ grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="wrap">
+<div class="wrap">
     <header class="nav">
-      <div class="brand">
-        <div class="logo">T</div>
-        <div>
-          <h1>Sathu App Support</h1>
-          <p>Help, FAQ, and contact</p>
+        <div class="brand">
+            <div class="logo">T</div>
+            <div>
+                <h1>Sathu App Support</h1>
+                <p>Help, FAQ, and contact</p>
+            </div>
         </div>
-      </div>
 
-      <nav class="navlinks" aria-label="Support navigation">
-        <a class="pill" href="#faq">FAQ</a>
-        <a class="pill" href="#contact">Contact</a>
-        <a class="pill" href="#privacy">Privacy</a>
-        <a class="pill primary" href="#status">About</a>
-      </nav>
+        <nav class="navlinks" aria-label="Support navigation">
+            <a class="pill" href="#faq">FAQ</a>
+            <a class="pill" href="#contact">Contact</a>
+
+            <!-- Dedicated pages -->
+            <a class="pill" href="https://kapsdevelopment.com/sathu/privacy/">Privacy</a>
+            <a class="pill" href="https://kapsdevelopment.com/sathu/terms/">Terms</a>
+
+            <a class="pill primary" href="#status">About</a>
+        </nav>
     </header>
 
     <section class="hero" id="status">
-      <div class="hero-grid">
-        <div>
-          <h2>Thai temples + daily Buddhist wisdom</h2>
-          <p>
-            Explore temples across Thailand, learn the basics of Buddhism, and receive calm daily reflections.
-            This page contains support, FAQs, and important app information.
-          </p>
-          <div class="cta-row">
-            <a class="btn accent" href="#contact"><span class="dot"></span> Contact support</a>
-            <a class="btn" href="#faq"><span class="dot"></span> Read FAQ</a>
-          </div>
-          <p class="formhint" style="margin-top:14px;">
-            Tip: tap the phone preview to switch screenshots.
-          </p>
-        </div>
-
-        <div class="phonewrap" aria-label="App preview">
-          <div class="phone">
-            <div class="screen" aria-label="Sathu App screenshots (tap to switch)">
-              <div class="notch"></div>
-              <div class="screens">
-                <img
-                  src="app-screenshot-1.jpg"
-                  alt="Sathu App screenshot 1"
-                  class="active"
-                />
-                <img
-                  src="app-screenshot-2.jpg"
-                  alt="Sathu App screenshot 2"
-                />
-              </div>
+        <div class="hero-grid">
+            <div>
+                <h2>Thai temples + daily Buddhist wisdom</h2>
+                <p>
+                    Explore temples across Thailand, learn the basics of Buddhism, and receive calm daily reflections.
+                    This page contains support and FAQs.
+                </p>
+                <p class="formhint" style="margin-top:14px;">
+                    Tip: tap the phone preview to switch screenshots.
+                </p>
             </div>
-          </div>
-        </div>
 
-      </div>
+            <div class="phonewrap" aria-label="App preview">
+                <div class="phone">
+                    <div class="screen" aria-label="Sathu App screenshots (tap to switch)">
+                        <div class="notch"></div>
+                        <div class="screens">
+                            <img src="/assets/images/sathu_app_screenshot_1.jpeg" alt="Sathu App screenshot 1" />
+                            <img src="/assets/images/sathu_app_screenshot_2.jpeg" alt="Sathu App screenshot 2" />
+                            <img src="/assets/images/sathu_app_screenshot_3.jpeg" alt="Sathu App screenshot 3" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <section class="grid">
-      <article class="card" id="faq">
-        <div class="head">
-          <h3>FAQ</h3>
-          <span class="badge"><span class="mini"></span> Quick answers</span>
-        </div>
-        <div class="body">
-          <details>
-            <summary>Why is some information marked as AI-generated?</summary>
-            <p>
-              If temple descriptions and opening hours where impossible to find, information might have been generated using AI.
-              If you spot errors, please report them so we can improve the dataset.
-            </p>
-          </details>
-
-          <details>
-            <summary>Why are temple names sometimes very long or cut off?</summary>
-            <p>
-              Temple names can be long in Thai. We optimize readability, but some truncation may occur in lists.
-              The detail page shows the full context.
-            </p>
-          </details>
-
-          <details>
-            <summary>Where do images come from?</summary>
-            <p>
-              Images are sourced from public datasets and uploaded into storage for the app.
-              Credits and licenses may appear in the app when available.
-            </p>
-          </details>
-
-          <details>
-            <summary>Can I request changes or add a temple?</summary>
-            <p>
-              Yes — easiest way is to take a picture with the app. That way we get the location of the temple also. But please, feel free to send details (name, location link, and what to change) through the contact form on this page as well. 
-              We can’t guarantee updates, but we collect requests for later releases.
-            </p>
-          </details>
-        </div>
-      </article>
-
-      <article class="card" id="contact">
-        <div class="head">
-          <h3>Contact</h3>
-          <span class="badge"><span class="mini"></span> Form</span>
-        </div>
-        <div class="body">
-          <p style="margin:0 0 10px;">
-            Use the form below to contact support. Please include as many details as possible.
-          </p>
-
-          <form
-            action="https://formcarry.com/s/arQi40sZeJz"
-            method="POST"
-            accept-charset="UTF-8"
-          >
-            <!-- Honeypot (bots fill this, humans don't) -->
-            <input
-              type="text"
-              name="company"
-              tabindex="-1"
-              autocomplete="off"
-              style="display:none"
-            />
-
-            <div class="formgrid">
-              <div class="field">
-                <label for="name">Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-
-              <div class="field">
-                <label for="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
+        <article class="card" id="faq">
+            <div class="head">
+                <h3>FAQ</h3>
             </div>
+            <div class="body">
+                <details>
+                    <summary>Why is some information marked as AI-generated?</summary>
+                    <p>
+                        Some temple descriptions and opening hours are generated using AI if no other reliable sources are found.
+                        If you spot errors, please report them so we can improve the dataset.
+                    </p>
+                </details>
 
-            <div class="field" style="margin-top:12px;">
-              <label for="subject">Subject</label>
-              <select id="subject" name="subject" required>
-                <option>Bug report</option>
-                <option>Incorrect temple info</option>
-                <option>Feature request</option>
-                <option>Billing / subscription</option>
-                <option>General question</option>
-              </select>
+                <details>
+                    <summary>Why are temple names sometimes very long or cut off?</summary>
+                    <p>
+                        Temple names can be long in Thai. We optimize readability, but some truncation may occur in lists.
+                        The detail page shows the full context.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Where do images come from?</summary>
+                    <p>
+                        Images are sourced from public datasets and uploaded into storage for the app.
+                        Credits and licenses may appear in the app when available.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>Can I request changes or add a temple?</summary>
+                    <p>
+                        Yes — we encourage you to visit the temple and take a photo. Or send details manually through our contact form.
+                        We can’t guarantee updates, but we collect requests for later releases.
+                    </p>
+                </details>
             </div>
+        </article>
 
-            <div class="field" style="margin-top:12px;">
-              <label for="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="Tell us what happened, what you expected, and include temple name + device/OS if relevant."
-                required
-              ></textarea>
+        <article class="card" id="contact">
+            <div class="head">
+                <h3>Contact</h3>
             </div>
+            <div class="body">
+                <p style="margin:0 0 10px;">
+                    Use the form below to contact support. Please include as many details as possible.
+                </p>
 
-            <!-- Optional extra fields (uncomment if you want)
-            <div class="formgrid" style="margin-top:12px;">
-              <div class="field">
-                <label for="device">Device model</label>
-                <input id="device" name="device" type="text" placeholder="e.g. iPhone 14 / Pixel 8" />
-              </div>
-              <div class="field">
-                <label for="os">OS version</label>
-                <input id="os" name="os" type="text" placeholder="e.g. iOS 17.2 / Android 14" />
-              </div>
+                <div id="form-status" style="display:none; margin: 0 0 10px; padding: 12px 12px; border-radius: 14px;
+                  border: 1px solid rgba(255,255,255,.10); background: rgba(44,37,23,.55); color: #fff;">
+                </div>
+
+                <!-- Hidden iframe to prevent leaving the page after POST -->
+                <iframe id="formcarry_iframe" name="formcarry_hidden_iframe" style="display:none;"></iframe>
+
+                <form
+                        action="https://formcarry.com/s/arQi40sZeJz"
+                        method="POST"
+                        accept-charset="UTF-8"
+                        target="formcarry_hidden_iframe"
+                >
+                    <!-- Honeypot (bots fill this, humans don't) -->
+                    <input type="text" name="company" tabindex="-1" autocomplete="off" style="display:none" />
+
+                    <!-- Dynamic return URL (Formcarry) -->
+                    <input type="hidden" name="_next" id="nextField" value="" />
+
+                    <div class="formgrid">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your name" required />
+                        </div>
+
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+                        </div>
+                    </div>
+
+                    <div class="field" style="margin-top:12px;">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option>Bug report</option>
+                            <option>Feature request</option>
+                            <option>General question</option>
+                        </select>
+                    </div>
+
+                    <div class="field" style="margin-top:12px;">
+                        <label for="message">Message</label>
+                        <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                placeholder="Tell us what happened, what you expected, and include temple name + device/OS if relevant."
+                                required
+                        ></textarea>
+                    </div>
+
+                    <div class="submitrow">
+                        <button class="btn accent full" type="submit"> Send message </button>
+                    </div>
+
+                    <p class="formhint">
+                        Please avoid sharing sensitive personal info. If you are reporting a bug,
+                        include info about where in the app you where, screenshot, device model, and OS version.
+                    </p>
+                </form>
             </div>
-            -->
-
-            <div class="submitrow">
-              <button class="btn accent full" type="submit">
-                <span class="dot"></span> Send message
-              </button>
-            </div>
-
-            <p class="formhint">
-              Please avoid sharing sensitive personal info. If you are reporting a bug,
-              include temple name, screenshot, device model, and OS version.
-            </p>
-          </form>
-        </div>
-      </article>
-
-      <article class="card" id="privacy">
-        <div class="head">
-          <h3>Privacy</h3>
-          <span class="badge"><span class="mini"></span> Required</span>
-        </div>
-        <div class="body">
-          <p>
-            This app may request location permission to sort temples by proximity.
-            Location is used to compute nearby results and may not be stored long-term.
-          </p>
-          <p>
-            Replace this section with your final privacy policy text before launch.
-            (Both Apple and Google typically expect an accessible privacy policy URL.)
-          </p>
-        </div>
-      </article>
-
-      <article class="card" id="terms">
-        <div class="head">
-          <h3>Terms</h3>
-          <span class="badge"><span class="mini"></span> Optional</span>
-        </div>
-        <div class="body">
-          <p>
-            Content is provided “as is” for informational purposes.
-            Always verify opening hours and location details before visiting.
-          </p>
-          <p>
-            You can expand this later with a full Terms of Service page if you need it.
-          </p>
-        </div>
-      </article>
+        </article>
     </section>
 
     <footer>
-      <small>© <span id="year"></span> Sathu App • Support</small>
-      <div class="footlinks">
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#terms">Terms</a>
-      </div>
+        <small>© <span id="year"></span> Sathu App • Support</small>
+        <small>
+            Developed by
+            <a href="https://kapsdevelopment.com" target="_blank" rel="noopener">
+                Kapsdevelopment
+            </a>
+        </small>
     </footer>
-  </div>
+</div>
 
-  <script>
+<script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Screenshot rotator (auto + tap)
@@ -597,6 +529,84 @@
     if(screen){
       screen.addEventListener("click", nextShot);
     }
-  </script>
+
+    // Show success message if redirected back with ?sent=1
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("sent") === "1") {
+        const box = document.getElementById("form-status");
+        if (box) {
+          box.style.display = "block";
+          box.style.borderColor = "rgba(236,164,19,.45)";
+          box.style.background = "rgba(236,164,19,.10)";
+          box.textContent = "✅ Thanks — your message was sent. We’ll get back to you.";
+        }
+
+        // Remove ?sent=1 so refresh won't keep showing it
+        const url = new URL(window.location.href);
+        url.searchParams.delete("sent");
+        window.history.replaceState({}, "", url.toString());
+      }
+    })();
+
+    // Set _next dynamically to current page (works on any host)
+    (function () {
+      const next = window.location.origin + window.location.pathname + "?sent=1#contact";
+      const el = document.getElementById("nextField");
+      if (el) el.value = next;
+    })();
+
+    // Reliable "did the POST complete?" signaling using the iframe load event
+    (function () {
+      const form = document.querySelector('#contact form');
+      const iframe = document.getElementById('formcarry_iframe');
+      const statusBox = document.getElementById('form-status');
+
+      if (!form || !iframe || !statusBox) return;
+
+      let pending = false;
+      let timer = null;
+
+      function show(msg, kind){
+        statusBox.style.display = "block";
+        if (kind === "ok") {
+          statusBox.style.borderColor = "rgba(236,164,19,.45)";
+          statusBox.style.background = "rgba(236,164,19,.10)";
+          statusBox.textContent = "✅ " + msg;
+        } else if (kind === "sending") {
+          statusBox.style.borderColor = "rgba(255,255,255,.14)";
+          statusBox.style.background = "rgba(44,37,23,.55)";
+          statusBox.textContent = "⏳ " + msg;
+        } else {
+          statusBox.style.borderColor = "rgba(255,120,120,.35)";
+          statusBox.style.background = "rgba(255,120,120,.08)";
+          statusBox.textContent = "⚠️ " + msg;
+        }
+      }
+
+      form.addEventListener('submit', function () {
+        pending = true;
+        show("Sending…", "sending");
+
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(function () {
+          if (!pending) return;
+          pending = false;
+          show("Couldn’t reach the form service (often blocked by adblock/privacy settings). Please try disabling blockers for this page and try again.", "err");
+        }, 8000);
+      });
+
+      iframe.addEventListener('load', function () {
+        if (!pending) return;
+        pending = false;
+        if (timer) clearTimeout(timer);
+
+        show("Thanks — your message was sent. We’ll get back to you.", "ok");
+
+        // Reset after the POST has been sent
+        setTimeout(function () { form.reset(); }, 50);
+      });
+    })();
+</script>
 </body>
 </html>
