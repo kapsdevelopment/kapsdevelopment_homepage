@@ -95,13 +95,7 @@
               href="#about"
               >About Us</a
             >
-            <!--
-            <a
-              class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
-              href="#portfolio"
-              >Portfolio</a
-            >
--->
+
             <a
               class="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               href="#contact"
@@ -119,42 +113,44 @@
               <span class="material-icons hidden dark:block text-yellow-300">light_mode</span>
             </button>
 
-<!-- Language switch -->
-<div class="flex items-center gap-1 rounded-full border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/60 backdrop-blur px-1 py-1">
-  <a
-    id="lang-en"
-    href="https://kapsdevelopment.com/"
-    class="px-3 py-1.5 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 hover:text-primary"
-  >EN</a>
+            <!-- Language switch -->
+            <div
+              class="flex items-center gap-1 rounded-full border border-gray-200/60 dark:border-gray-700/60 bg-white/60 dark:bg-gray-800/60 backdrop-blur px-1 py-1"
+            >
+              <a
+                id="lang-en"
+                href="https://kapsdevelopment.com/"
+                class="px-3 py-1.5 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 hover:text-primary"
+                >EN</a
+              >
 
-  <a
-    id="lang-no"
-    href="https://kapsdevelopment.no/"
-    class="px-3 py-1.5 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 hover:text-primary"
-  >NO</a>
-</div>
+              <a
+                id="lang-no"
+                href="https://kapsdevelopment.no/"
+                class="px-3 py-1.5 text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 hover:text-primary"
+                >NO</a
+              >
+            </div>
 
-<script>
-  (function () {
-    const host = location.hostname.toLowerCase();
-    const isNo = host.endsWith(".no");
+            <script>
+              (function () {
+                const host = location.hostname.toLowerCase();
+                const isNo = host.endsWith(".no");
 
-    const en = document.getElementById("lang-en");
-    const no = document.getElementById("lang-no");
+                const en = document.getElementById("lang-en");
+                const no = document.getElementById("lang-no");
 
-    // Keep anchor (#contact etc.) when switching domains
-    const hash = location.hash || "";
-    en.href = "https://kapsdevelopment.com/" + hash;
-    no.href = "https://kapsdevelopment.no/" + hash;
+                // Keep anchor (#contact etc.) when switching domains
+                const hash = location.hash || "";
+                en.href = "https://kapsdevelopment.com/" + hash;
+                no.href = "https://kapsdevelopment.no/" + hash;
 
-    // Highlight active
-    const active = "bg-primary text-white hover:text-white";
-    if (isNo) no.className += " " + active;
-    else en.className += " " + active;
-  })();
-</script>
-
-
+                // Highlight active
+                const active = "bg-primary text-white hover:text-white";
+                if (isNo) no.className += " " + active;
+                else en.className += " " + active;
+              })();
+            </script>
           </div>
 
           <!-- Mobile buttons -->
@@ -189,42 +185,47 @@
               >Services</a
             >
             <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="#about">About Us</a>
-            <!-- <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="#portfolio"
-              >Portfolio</a
-            > -->
+
             <a
               class="inline-flex mt-2 bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg"
               href="#contact"
               >Contact</a
             >
-<div class="flex gap-2 px-3 pt-4">
-  <a id="lang-en-m" href="https://kapsdevelopment.com/" class="flex-1 text-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200">
-    EN
-  </a>
-  <a id="lang-no-m" href="https://kapsdevelopment.no/" class="flex-1 text-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200">
-    NO
-  </a>
-</div>
 
-<script>
-  (function () {
-    const host = location.hostname.toLowerCase();
-    const isNo = host.endsWith(".no");
-    const hash = location.hash || "";
+            <div class="flex gap-2 px-3 pt-4">
+              <a
+                id="lang-en-m"
+                href="https://kapsdevelopment.com/"
+                class="flex-1 text-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200"
+              >
+                EN
+              </a>
+              <a
+                id="lang-no-m"
+                href="https://kapsdevelopment.no/"
+                class="flex-1 text-center px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200"
+              >
+                NO
+              </a>
+            </div>
 
-    const en = document.getElementById("lang-en-m");
-    const no = document.getElementById("lang-no-m");
+            <script>
+              (function () {
+                const host = location.hostname.toLowerCase();
+                const isNo = host.endsWith(".no");
+                const hash = location.hash || "";
 
-    en.href = "https://kapsdevelopment.com/" + hash;
-    no.href = "https://kapsdevelopment.no/" + hash;
+                const en = document.getElementById("lang-en-m");
+                const no = document.getElementById("lang-no-m");
 
-    const active = "bg-primary text-white border-transparent";
-    if (isNo) no.className += " " + active;
-    else en.className += " " + active;
-  })();
-</script>
+                en.href = "https://kapsdevelopment.com/" + hash;
+                no.href = "https://kapsdevelopment.no/" + hash;
 
-
+                const active = "bg-primary text-white border-transparent";
+                if (isNo) no.className += " " + active;
+                else en.className += " " + active;
+              })();
+            </script>
           </div>
         </div>
       </div>
@@ -271,122 +272,250 @@
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES / APPS SHOWCASE -->
     <section
       class="relative py-24 w-full flex items-center justify-center overflow-hidden bg-background-light dark:bg-background-dark"
       id="services"
     >
       <div class="absolute inset-0 z-0">
         <img alt="Fall" class="w-full h-full object-cover" src="assets/images/fall.webp" />
-      <div class="bg-overlay"></div>
+        <div class="bg-overlay"></div>
       </div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-base text-primary font-semibold tracking-wide uppercase">What We Do</h2>
+          <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Selected work</h2>
           <p
             class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl font-display"
           >
-            Comprehensive advice and strategic innovation
+            Apps shipped end-to-end
           </p>
           <p class="mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300 mx-auto">
-            From helping getting digital transformation done in the public sector, to building a mobile application, we
-            can deliver.
+            A few examples of products and experiences we’ve designed, built, and maintained.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div
-            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2"
+          <!-- App card 1: Sathu -->
+          <article
+            data-href="https://kapsdevelopment.com/sathu/support/"
+            class="app-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2"
           >
-            <div
-              class="w-14 h-14 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary transition-colors"
-            >
-              <!-- ✅ altitude works because we loaded Material Symbols -->
-              <span class="material-symbols-outlined text-primary text-3xl group-hover:text-white transition-colors"
-                >altitude</span
-              >
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Digital transformation</h3>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Actually succeeding in digital transformation. Public or private sector.
-            </p>
-          </div>
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <!-- Text -->
+              <div class="min-w-0">
 
-          <div
-            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2"
-          >
-            <div
-              class="w-14 h-14 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-600 transition-colors"
-            >
-              <span class="material-icons text-purple-600 dark:text-purple-300 text-3xl group-hover:text-white transition-colors"
-                >smartphone</span
-              >
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Mobile Apps</h3>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Mobile applications can help reach a new customer base, or be great tools in public sector for employees.
-            </p>
-          </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Sathu</h3>
 
-          <div
-            class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2"
-          >
-            <div
-              class="w-14 h-14 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-green-600 transition-colors"
-            >
-              <span class="material-icons text-green-600 dark:text-green-300 text-3xl group-hover:text-white transition-colors"
-                >analytics</span
-              >
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Explore temples, learn about Thai culture, and get calm daily reflections.
+                </p>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="https://apps.apple.com/us/app/sathu/id6757160902"
+                  target="_blank"
+                  rel="noopener"
+                  class="js-stop inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                >
+                  <span class="material-icons text-base">apple</span>
+                  App Store
+                </a>
+<!--
+                <a
+                  href="https://play.google.com/store"
+                  target="_blank"
+                  rel="noopener"
+                  class="js-stop inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                >
+                  <span class="material-icons text-base">android</span>
+                  Google Play
+                </a>-->
+              </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="phonewrap shrink-0" aria-label="Sathu app preview">
+                <div class="phone">
+                  <div class="screen js-phone" aria-label="Sathu screenshots (tap to switch)">
+                    <div class="notch"></div>
+                    <div class="screens">
+                      <img class="active" src="assets/images/sathu_app_screenshot_1.jpeg" alt="Sathu screenshot 1" />
+                      <img src="assets/images/sathu_app_screenshot_2.jpeg" alt="Sathu screenshot 2" />
+                      <img src="assets/images/sathu_app_screenshot_3.jpeg" alt="Sathu screenshot 3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Scaling &amp; Innovation</h3>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Artificial intelligence, data science and innovations needs scaling in order to give you a competitive advantage.
-            </p>
-          </div>
+          </article>
+
+        <!-- App card 2 -->
+          <!--<article
+            data-href="/app2/"
+            class="app-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2"
+          >
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">App</span>
+                  <span class="text-xs font-semibold text-primary">•</span>
+                  <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">Status</span>
+                </div>
+
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">App name #2</h3>
+
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  One-liner about the outcome. What it helps users achieve.
+                </p>
+
+                <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                  Tip: tap the phone preview to switch screenshots.
+                </p>
+              </div>
+
+              <div class="phonewrap shrink-0" aria-label="App 2 preview">
+                <div class="phone">
+                  <div class="screen js-phone" aria-label="App 2 screenshots (tap to switch)">
+                    <div class="notch"></div>
+                    <div class="screens">
+                      <img class="active" src="assets/images/app2_1.jpg" alt="App 2 screenshot 1" />
+                      <img src="assets/images/app2_2.jpg" alt="App 2 screenshot 2" />
+                      <img src="assets/images/app2_3.jpg" alt="App 2 screenshot 3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>-->
+
+          <!-- App card 3 -->
+          <!--<article
+            data-href="/app3/"
+            class="app-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2"
+          >
+            <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">App</span>
+                  <span class="text-xs font-semibold text-primary">•</span>
+                  <span class="text-xs font-semibold text-gray-500 dark:text-gray-400">Status</span>
+                </div>
+
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">App name #3</h3>
+
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Short description of what you’re building and why it matters.
+                </p>
+
+                <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                  Tip: tap the phone preview to switch screenshots.
+                </p>
+              </div>
+
+              <div class="phonewrap shrink-0" aria-label="App 3 preview">
+                <div class="phone">
+                  <div class="screen js-phone" aria-label="App 3 screenshots (tap to switch)">
+                    <div class="notch"></div>
+                    <div class="screens">
+                      <img class="active" src="assets/images/app3_1.jpg" alt="App 3 screenshot 1" />
+                      <img src="assets/images/app3_2.jpg" alt="App 3 screenshot 2" />
+                      <img src="assets/images/app3_3.jpg" alt="App 3 screenshot 3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>-->
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT / HOW WE WORK -->
     <section class="relative min-h-[85vh] py-24 w-full flex items-center overflow-hidden" id="about">
       <div class="absolute inset-0 z-0">
-        <img
-          alt="Winter"
-          class="w-full h-full object-cover"
-          src="assets/images/winter.webp"
-        />
+        <img alt="Winter" class="w-full h-full object-cover" src="assets/images/winter.webp" />
         <div class="absolute inset-0 bg-orange-900/40 dark:bg-black/60 mix-blend-multiply"></div>
       </div>
 
       <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
+        <div
+          class="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+        >
+          <!-- Left: How we work -->
           <div class="md:w-1/2 p-10 md:p-14 flex flex-col justify-center">
-            <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white mb-6">Long and vast experience with leadership and digitalization.</h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-              Just as the seasons change, technology evolves. At Kapsdevelopment, we pride ourselves on giving specialized advice for each problem situation, or developing tailor made solutions for you.
+            <!-- Small label -->
+            <h2 class="text-base text-primary font-semibold tracking-wide uppercase mb-3">How we work</h2>
+
+            <!-- Big headline -->
+            <p class="text-3xl font-display font-bold text-gray-900 dark:text-white mb-6">
+              Comprehensive advice and strategic innovation — grounded in real delivery.
             </p>
+
             <p class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              We believe in sustainable advice, transparent communication, and building long-term partnerships that weather any storm.
+              Just as the seasons change, technology evolves. At Kapsdevelopment, we pride ourselves on giving specialized advice for each problem situation, or developing tailor made solutions for you.
+
+              From helping getting digital transformation done in the public sector, to building a mobile application, we
+              can deliver. We combine pragmatic guidance with hands-on execution — tailored to your context.
             </p>
-            <!--  DETTE KAN DU LEGGE TIL SENERE NÅR DU HAR MER Å VISE TIL
-            <div class="flex items-center gap-4">
-              <div class="text-center">
-                <span class="block text-3xl font-bold text-primary">50+</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">Projects</span>
+
+            <!-- Icon + text rows -->
+            <div class="space-y-4">
+              <!-- Row 1 -->
+              <div
+                class="flex items-start gap-4 rounded-xl border border-gray-200/70 dark:border-gray-700/70 bg-white/60 dark:bg-gray-800/50 p-4 hover:shadow-lg transition-all"
+              >
+                <div class="shrink-0 w-11 h-11 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                  <span class="material-symbols-outlined text-primary text-2xl">altitude</span>
+                </div>
+
+                <div class="min-w-0">
+                  <h3 class="font-semibold text-gray-900 dark:text-white leading-tight">Transformation</h3>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Actually succeeding in digital transformation. Public or private sector.
+                  </p>
+                </div>
               </div>
-              <div class="w-px h-10 bg-gray-300 dark:bg-gray-700"></div>
-              <div class="text-center">
-                <span class="block text-3xl font-bold text-primary">15+</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">Experts</span>
+
+              <!-- Row 2 -->
+              <div
+                class="flex items-start gap-4 rounded-xl border border-gray-200/70 dark:border-gray-700/70 bg-white/60 dark:bg-gray-800/50 p-4 hover:shadow-lg transition-all"
+              >
+                <div class="shrink-0 w-11 h-11 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center">
+                  <span class="material-icons text-purple-600 dark:text-purple-300 text-2xl">smartphone</span>
+                </div>
+
+                <div class="min-w-0">
+                  <h3 class="font-semibold text-gray-900 dark:text-white leading-tight">Apps &amp; Web</h3>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Mobile applications and websites that ship — and keep working in production.
+                  </p>
+                </div>
               </div>
-              <div class="w-px h-10 bg-gray-300 dark:bg-gray-700"></div>
-              <div class="text-center">
-                <span class="block text-3xl font-bold text-primary">98%</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">Satisfaction</span>
+
+              <!-- Row 3 -->
+              <div
+                class="flex items-start gap-4 rounded-xl border border-gray-200/70 dark:border-gray-700/70 bg-white/60 dark:bg-gray-800/50 p-4 hover:shadow-lg transition-all"
+              >
+                <div class="shrink-0 w-11 h-11 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
+                  <span class="material-icons text-green-600 dark:text-green-300 text-2xl">analytics</span>
+                </div>
+
+                <div class="min-w-0">
+                  <h3 class="font-semibold text-gray-900 dark:text-white leading-tight">Scaling</h3>
+                  <p class="mt-1 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    AI, data science and innovation — scaled to create competitive advantage.
+                  </p>
+                </div>
               </div>
-            </div> -->
-          </div> 
+            </div>
+
+            <p class="text-gray-600 dark:text-gray-300 mt-8 leading-relaxed">
+              We believe in sustainable advice, transparent communication, and building long-term partnerships.
+            </p>
+          </div>
+
+          <!-- Right: image -->
           <div class="md:w-1/2 bg-gray-100 dark:bg-gray-800 relative min-h-[300px]">
             <img
               alt="Team collaborating in office"
@@ -399,74 +528,30 @@
       </div>
     </section>
 
-    <!-- PORTFOLIO -->
-     <!--
-    <section
-      class="relative py-24 w-full bg-background-light dark:bg-background-dark"
-      id="portfolio"
-    >
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-base text-primary font-semibold tracking-wide uppercase">
-            Be creative
-          </h2>
-          <p
-            class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl font-display"
-          >
-            Fresh Ideas, Blooming Results
-          </p>
-        </div>
-      </div>
-    </section> -->
-
     <!-- CONTACT -->
-    <section
-      class="relative py-24 border-t border-gray-200 dark:border-gray-800"
-      id="contact"
-    >
-      <!-- Spring background moved here -->
+    <section class="relative py-24 border-t border-gray-200 dark:border-gray-800" id="contact">
       <div class="absolute inset-0 z-0 pointer-events-none">
         <img
           src="assets/images/spring.webp"
           alt="Fresh spring landscape with blooming flowers"
           class="w-full h-full object-cover"
         />
-        <!-- Overlay for readability -->
-      <div class="bg-overlay"></div>
+        <div class="bg-overlay"></div>
       </div>
 
       <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12">
           <div class="text-center mb-10">
-            <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white">
-              Let's Build Something Great
-            </h2>
-            <p class="mt-4 text-gray-600 dark:text-gray-300">
-              Drop us a line and we'll get back to you shortly.
-            </p>
+            <h2 class="text-3xl font-display font-bold text-gray-900 dark:text-white">Let's Build Something Great</h2>
+            <p class="mt-4 text-gray-600 dark:text-gray-300">Drop us a line and we'll get back to you shortly.</p>
           </div>
 
-          <form
-            class="space-y-6"
-            action="https://formcarry.com/s/arQi40sZeJz"
-            method="POST"
-            accept-charset="UTF-8"
-          >
-            <!-- Honeypot (bots fill this, humans don't) -->
-          <input
-            type="text"
-            name="company"
-            tabindex="-1"
-            autocomplete="off"
-            class="hidden"
-            />
+          <form class="space-y-6" action="https://formcarry.com/s/arQi40sZeJz" method="POST" accept-charset="UTF-8">
+            <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" />
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                  for="name"
-                  >Name</label
-                >
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="name">Name</label>
                 <input
                   id="name"
                   name="name"
@@ -478,11 +563,7 @@
               </div>
 
               <div>
-                <label
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                  for="email"
-                  >Email</label
-                >
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">Email</label>
                 <input
                   id="email"
                   name="email"
@@ -495,11 +576,7 @@
             </div>
 
             <div>
-              <label
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                for="subject"
-                >Subject</label
-              >
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="subject">Subject</label>
               <select
                 id="subject"
                 name="subject"
@@ -512,11 +589,7 @@
             </div>
 
             <div>
-              <label
-                class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-                for="message"
-                >Message</label
-              >
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="message">Message</label>
               <textarea
                 id="message"
                 name="message"
@@ -544,35 +617,20 @@
     <footer class="bg-surface-dark text-white py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-8">
-          <!-- Left -->
           <div class="flex items-center gap-2 justify-center md:justify-start">
             <span class="material-icons text-primary text-2xl">code</span>
             <span class="font-display font-bold text-xl">Kapsdevelopment</span>
           </div>
 
-          <!-- Center -->
           <div class="flex justify-center">
             <ul class="grid grid-cols-4 gap-8 text-center">
-              <li>
-                <a class="text-gray-400 hover:text-white transition-colors" href="#home">Home</a>
-              </li>
-              <li>
-                <a class="text-gray-400 hover:text-white transition-colors" href="#services">Services</a>
-              </li>
-              <li>
-                <a class="text-gray-400 hover:text-white transition-colors" href="#about">About Us</a>
-              </li>
-              <!--
-              <li>
-                <a class="text-gray-400 hover:text-white transition-colors" href="#portfolio">Portfolio</a>
-              </li> -->
+              <li><a class="text-gray-400 hover:text-white transition-colors" href="#home">Home</a></li>
+              <li><a class="text-gray-400 hover:text-white transition-colors" href="#services">Services</a></li>
+              <li><a class="text-gray-400 hover:text-white transition-colors" href="#about">About Us</a></li>
             </ul>
           </div>
 
-          <!-- Right -->
-          <div class="text-center md:text-right text-gray-400 text-sm">
-            © 2026 Kapsdevelopment. All rights reserved.
-          </div>
+          <div class="text-center md:text-right text-gray-400 text-sm">© 2026 Kapsdevelopment. All rights reserved.</div>
         </div>
       </div>
     </footer>
