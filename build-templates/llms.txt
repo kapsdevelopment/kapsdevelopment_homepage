@@ -1,0 +1,22 @@
+# Kapsdevelopment
+
+> Kapsdevelopment builds practical digital products, AI-enabled software, and hands-on transformation work.
+
+## Primary URLs
+
+- Home: {{ site_url }}/
+- Blog: {{ site_url }}/blog/
+- Blog feed: {{ site_url }}/blog/feed.xml
+- Sathu support: {{ site_url }}/sathu/support/
+- Sathu privacy: {{ site_url }}/sathu/privacy/
+- Sathu terms: {{ site_url }}/sathu/terms/
+
+## Recent blog posts
+
+{% if posts %}
+{% for post in posts %}
+- {{ post.title }}: {{ post.canonical_url }}
+{% endfor %}
+{% else %}
+- No blog posts published yet.
+{% endif %}

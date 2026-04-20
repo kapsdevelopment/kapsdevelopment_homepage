@@ -38,6 +38,7 @@ http://127.0.0.1:8787
 - Source images: `content/blog/assets/<post_id>/`
 - Generated blog pages: `blog/`
 - Generated public images: `assets/blog/`
+- Generated discovery files: `blog/feed.xml`, `sitemap.xml`, `robots.txt`, `llms.txt`
 
 ## Manual deploy
 

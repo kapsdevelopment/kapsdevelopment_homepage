@@ -1,0 +1,8 @@
+# Allow search and AI search discovery while opting out of foundation-model training crawls.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://kapsdevelopment.com/sitemap.xml

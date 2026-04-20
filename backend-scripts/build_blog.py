@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -13,6 +14,7 @@ from blog_common import (
     BLOG_PUBLISHED_DIR,
     BLOG_SOURCE_ASSETS_DIR,
     BLOG_TEMPLATES_DIR,
+    ROOT,
     SITE_URL,
     clean_dir,
     display_date_value,
@@ -28,13 +30,88 @@ from blog_common import (
     strip_leading_markdown_h1,
     sync_tree,
     truncate_text,
+    utc_now_iso,
     utc_today_iso,
+)
+
+
+STATIC_SITE_PAGES: tuple[tuple[str, Path], ...] = (
+    ("/", ROOT / "index.html"),
+    ("/sathu/support/", ROOT / "sathu" / "support" / "index.html"),
+    ("/sathu/privacy/", ROOT / "sathu" / "privacy" / "index.html"),
+    ("/sathu/terms/", ROOT / "sathu" / "terms" / "index.html"),
 )
 
 
 def sortable_date(value: Any) -> str:
     normalized = normalize_date_value(value)
     return normalized or ""
+
+
+def sitemap_lastmod(value: Any) -> str | None:
+    normalized = normalize_date_value(value)
+    if not normalized:
+        return None
+    return normalized.split("T", 1)[0]
+
+
+def iso_datetime(value: Any, fallback: str) -> str:
+    normalized = normalize_date_value(value)
+    if not normalized:
+        return fallback
+    if "T" in normalized:
+        return normalized
+    return f"{normalized}T00:00:00Z"
+
+
+def file_lastmod(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    modified = datetime.fromtimestamp(path.stat().st_mtime, timezone.utc)
+    return modified.date().isoformat()
+
+
+def build_sitemap_entries(posts: list[dict[str, Any]]) -> list[dict[str, str]]:
+    entries: list[dict[str, str]] = []
+    seen_urls: set[str] = set()
+
+    def add_entry(url: str, lastmod: str | None) -> None:
+        if url in seen_urls:
+            return
+        seen_urls.add(url)
+        entries.append({"loc": url, "lastmod": lastmod or utc_today_iso()})
+
+    add_entry(f"{SITE_URL}/", file_lastmod(ROOT / "index.html"))
+    add_entry(f"{SITE_URL}/blog/", file_lastmod(BLOG_OUTPUT_DIR / "index.html"))
+
+    for route, source_path in STATIC_SITE_PAGES[1:]:
+        add_entry(f"{SITE_URL}{route}", file_lastmod(source_path))
+
+    for post in posts:
+        post_path = BLOG_OUTPUT_DIR / post["slug"] / "index.html"
+        add_entry(
+            post["canonical_url"],
+            sitemap_lastmod(post.get("updated_at"))
+            or sitemap_lastmod(post.get("published_at"))
+            or sitemap_lastmod(post.get("created_at"))
+            or file_lastmod(post_path),
+        )
+
+    return entries
+
+
+def most_recent_post_datetime(posts: list[dict[str, Any]]) -> str:
+    if not posts:
+        return iso_datetime(None, fallback=utc_now_iso())
+
+    newest = max(
+        posts,
+        key=lambda item: sortable_date(item.get("updated_at") or item.get("published_at") or item.get("created_at")),
+    )
+    return iso_datetime(
+        newest.get("updated_at") or newest.get("published_at") or newest.get("created_at"),
+        fallback=utc_now_iso(),
+    )
 
 
 def load_post(path: Path) -> dict[str, Any] | None:
@@ -139,6 +216,8 @@ def build_blog() -> list[dict[str, Any]]:
         posts=posts,
         canonical_url=f"{SITE_URL}/blog/",
         build_date=utc_today_iso(),
+        page_language="en",
+        site_url=SITE_URL,
     )
     write_text(BLOG_OUTPUT_DIR / "index.html", index_html)
 
@@ -146,10 +225,29 @@ def build_blog() -> list[dict[str, Any]]:
         html = env.get_template("blog-post.html").render(
             **post,
             build_date=utc_today_iso(),
+            page_language=post.get("language") or "en",
+            site_url=SITE_URL,
         )
         write_text(BLOG_OUTPUT_DIR / post["slug"] / "index.html", html)
 
     sync_tree(BLOG_SOURCE_ASSETS_DIR, BLOG_PUBLIC_ASSETS_DIR)
+
+    feed_xml = env.get_template("blog-feed.xml").render(
+        posts=posts,
+        site_url=SITE_URL,
+        feed_updated=most_recent_post_datetime(posts),
+    )
+    write_text(BLOG_OUTPUT_DIR / "feed.xml", feed_xml)
+
+    sitemap_xml = env.get_template("sitemap.xml").render(entries=build_sitemap_entries(posts))
+    write_text(ROOT / "sitemap.xml", sitemap_xml)
+
+    robots_txt = env.get_template("robots.txt").render(site_url=SITE_URL)
+    write_text(ROOT / "robots.txt", robots_txt)
+
+    llms_txt = env.get_template("llms.txt").render(site_url=SITE_URL, posts=posts[:10])
+    write_text(ROOT / "llms.txt", llms_txt)
+
     return posts
 
 

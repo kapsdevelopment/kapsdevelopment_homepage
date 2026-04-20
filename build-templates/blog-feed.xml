@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>{{ site_url }}/blog/</id>
+  <title>Kapsdevelopment Blog</title>
+  <updated>{{ feed_updated }}</updated>
+  <link href="{{ site_url }}/blog/feed.xml" rel="self" />
+  <link href="{{ site_url }}/blog/" rel="alternate" />
+  <subtitle>Insights on building software, shipping products, AI, and digital transformation from Kapsdevelopment.</subtitle>
+  {% for post in posts %}
+  <entry>
+    <id>{{ post.canonical_url }}</id>
+    <title>{{ post.title }}</title>
+    <link href="{{ post.canonical_url }}" rel="alternate" />
+    <updated>{{ post.updated_at or post.published_at or post.created_at }}{% if "T" not in (post.updated_at or post.published_at or post.created_at or "") %}T00:00:00Z{% endif %}</updated>
+    {% if post.published_at %}
+    <published>{{ post.published_at }}{% if "T" not in post.published_at %}T00:00:00Z{% endif %}</published>
+    {% endif %}
+    <summary>{{ post.meta_description or post.summary }}</summary>
+  </entry>
+  {% endfor %}
+</feed>

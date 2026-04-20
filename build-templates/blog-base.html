@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page_language | default('en') }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +8,11 @@
       name="description"
       content="{% block meta_description %}Notes on delivery, product building, AI, and practical digital transformation from Kapsdevelopment.{% endblock %}"
     />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
     {% if canonical_url %}
     <link rel="canonical" href="{{ canonical_url }}" />
     {% endif %}
+    <link rel="alternate" type="application/atom+xml" title="Kapsdevelopment Blog Feed" href="{{ site_url }}/blog/feed.xml" />
     <meta property="og:site_name" content="Kapsdevelopment" />
     <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
     <meta property="og:title" content="{% block og_title %}{{ self.title() | striptags }}{% endblock %}" />

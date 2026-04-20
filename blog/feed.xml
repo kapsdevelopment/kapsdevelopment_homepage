@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://kapsdevelopment.com/blog/</id>
+  <title>Kapsdevelopment Blog</title>
+  <updated>2026-04-20T11:52:42Z</updated>
+  <link href="https://kapsdevelopment.com/blog/feed.xml" rel="self" />
+  <link href="https://kapsdevelopment.com/blog/" rel="alternate" />
+  <subtitle>Insights on building software, shipping products, AI, and digital transformation from Kapsdevelopment.</subtitle>
+  
+  <entry>
+    <id>https://kapsdevelopment.com/blog/when-images-can-no-longer-be-trusted/</id>
+    <title>When Images Can No Longer Be Trusted</title>
+    <link href="https://kapsdevelopment.com/blog/when-images-can-no-longer-be-trusted/" rel="alternate" />
+    <updated>2026-04-20T11:52:42Z</updated>
+    
+    <published>2026-04-20T11:52:42Z</published>
+    
+    <summary>Trust and fake images.</summary>
+  </entry>
+  
+</feed>

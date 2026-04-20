@@ -1,0 +1,19 @@
+# Kapsdevelopment
+
+> Kapsdevelopment builds practical digital products, AI-enabled software, and hands-on transformation work.
+
+## Primary URLs
+
+- Home: https://kapsdevelopment.com/
+- Blog: https://kapsdevelopment.com/blog/
+- Blog feed: https://kapsdevelopment.com/blog/feed.xml
+- Sathu support: https://kapsdevelopment.com/sathu/support/
+- Sathu privacy: https://kapsdevelopment.com/sathu/privacy/
+- Sathu terms: https://kapsdevelopment.com/sathu/terms/
+
+## Recent blog posts
+
+
+
+- When Images Can No Longer Be Trusted: https://kapsdevelopment.com/blog/when-images-can-no-longer-be-trusted/
+
