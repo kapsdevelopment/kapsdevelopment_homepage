@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Edit {{ draft.title }}{% endblock %}
+
+{% block content %}
+<section class="hero hero-compact">
+  <div class="container hero-compact-grid">
+    <div>
+      <a class="back-link" href="{{ url_for('drafts_index') }}">Back to drafts</a>
+      <span class="eyebrow">Draft editor</span>
+      <h1>{{ draft.title }}</h1>
+      <p class="hero-copy">
+        Upload images, place them directly in the Markdown body, save while drafting, and publish when you want the
+        static blog rebuilt.
+      </p>
+    </div>
+
+    <aside class="hero-panel">
+      <div class="meta-stack">
+        <div><strong>Post ID:</strong> {{ draft.post_id }}</div>
+        <div><strong>Status:</strong> {{ draft.status }}</div>
+        <div><strong>Created:</strong> {{ draft.created_at }}</div>
+        <div><strong>Updated:</strong> {{ draft.updated_at }}</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container editor-grid">
+    <form class="editor-panel editor-form" method="post" action="{{ url_for('save_draft', post_id=draft.post_id) }}">
+      <div class="field-grid">
+        <label class="field">
+          <span>Title</span>
+          <input type="text" name="title" value="{{ draft.title }}" required />
+        </label>
+
+        <label class="field">
+          <span>Slug</span>
+          <input type="text" name="slug" value="{{ draft.slug }}" required />
+        </label>
+      </div>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Author name</span>
+          <input type="text" name="author_name" value="{{ draft.author_name }}" />
+        </label>
+
+        <label class="field">
+          <span>Summary</span>
+          <input type="text" name="summary" value="{{ draft.summary }}" />
+        </label>
+      </div>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Meta title</span>
+          <input type="text" name="meta_title" value="{{ draft.meta_title }}" />
+        </label>
+
+        <label class="field">
+          <span>Meta description</span>
+          <input type="text" name="meta_description" value="{{ draft.meta_description }}" />
+        </label>
+      </div>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Cover image URL</span>
+          <input type="text" name="cover_image" value="{{ draft.cover_image }}" placeholder="/assets/blog/..." />
+        </label>
+
+        <label class="field">
+          <span>Cover image alt</span>
+          <input type="text" name="cover_image_alt" value="{{ draft.cover_image_alt }}" />
+        </label>
+      </div>
+
+      <section class="upload-panel" data-upload-url="{{ url_for('upload_image', post_id=draft.post_id) }}">
+        <div class="panel-heading">
+          <div>
+            <h2>Images</h2>
+            <p>Upload an image and the editor inserts Markdown at the current cursor position.</p>
+          </div>
+        </div>
+
+        <div class="upload-row">
+          <input
+            class="input-file"
+            id="image-file"
+            type="file"
+            accept=".png,.jpg,.jpeg,.webp,.gif,.avif"
+          />
+          <button class="button button-secondary" id="upload-image-button" type="button">Upload image into body</button>
+        </div>
+
+        <p class="helper-copy" id="upload-status">
+          Uploaded files are stored in <code>content/blog/assets/{{ draft.post_id }}/</code> and published to
+          <code>/assets/blog/{{ draft.post_id }}/</code>.
+        </p>
+
+        {% if draft.assets %}
+        <div class="asset-grid">
+          {% for asset in draft.assets %}
+          <article class="asset-card">
+            <img src="{{ asset.url }}" alt="{{ asset.alt }}" />
+            <div class="asset-card-body">
+              <strong>{{ asset.name }}</strong>
+              <code>{{ asset.url }}</code>
+              <button
+                class="button button-tertiary"
+                type="button"
+                data-insert-markdown="![{{ asset.alt }}]({{ asset.url }})"
+              >
+                Insert into body
+              </button>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+
+      <label class="field">
+        <span>Body</span>
+        <textarea class="editor-body" id="body" name="body" rows="28" required>{{ draft.body }}</textarea>
+      </label>
+
+      <div class="editor-actions">
+        <button class="button button-secondary" type="submit">Save draft</button>
+        <button
+          class="button button-primary"
+          type="submit"
+          formaction="{{ url_for('publish_draft', post_id=draft.post_id) }}"
+          formmethod="post"
+        >
+          Publish and rebuild blog
+        </button>
+      </div>
+    </form>
+
+    <aside class="editor-sidebar">
+      <section class="editor-panel preview-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Preview</h2>
+            <p>Reflects the latest saved version of the draft.</p>
+          </div>
+        </div>
+        <div class="preview-prose">{{ draft.preview_html | safe }}</div>
+      </section>
+    </aside>
+  </div>
+</section>
+{% endblock %}

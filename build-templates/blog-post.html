@@ -1,0 +1,75 @@
+{% extends "blog-base.html" %}
+
+{% set site_url = "https://kapsdevelopment.com" %}
+
+{% block title %}{{ meta_title or title }}{% endblock %}
+
+{% block meta_description %}
+{{ meta_description or summary or "Notes from Kapsdevelopment on software, AI, and digital product work." }}
+{% endblock %}
+
+{% block og_type %}article{% endblock %}
+
+{% block head_extra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ (meta_title or title)|tojson }},
+  "description": {{ (meta_description or summary or "Notes from Kapsdevelopment on software, AI, and digital product work.")|tojson }},
+  "url": {{ canonical_url|tojson }},
+  "author": {
+    "@type": "Person",
+    "name": {{ author.name|tojson }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kapsdevelopment",
+    "url": "https://kapsdevelopment.com"
+  }
+  {% if published_at %},
+  "datePublished": {{ published_at|tojson }}
+  {% endif %}
+  {% if updated_at %},
+  "dateModified": {{ updated_at|tojson }}
+  {% endif %}
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<article class="article-page">
+  <section class="article-hero">
+    <div class="container article-hero-grid">
+      <div>
+        <a class="back-link" href="/blog/">Back to blog</a>
+        <span class="eyebrow">Article</span>
+        <h1>{{ title }}</h1>
+        {% if summary %}
+        <p class="hero-copy">{{ summary }}</p>
+        {% endif %}
+
+        <div class="article-meta">
+          <span>{{ published_at_display or created_at or "Unknown date" }}</span>
+          <span>{{ reading_time_minutes }} min read</span>
+          <span>{{ author.name }}</span>
+        </div>
+      </div>
+
+      {% if cover_image %}
+      <aside class="article-hero-media">
+        <img src="{{ cover_image }}" alt="{{ cover_image_alt }}" />
+      </aside>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-layout">
+      <div class="article-body">
+        {{ content_html | safe }}
+      </div>
+    </div>
+  </section>
+</article>
+{% endblock %}

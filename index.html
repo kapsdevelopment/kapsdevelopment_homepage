@@ -95,6 +95,11 @@
               href="#about"
               >About Us</a
             >
+            <a
+              class="text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              href="/blog/"
+              >Blog</a
+            >
 
             <a
               class="bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -185,6 +190,7 @@
               >Services</a
             >
             <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="#about">About Us</a>
+            <a class="block px-3 py-2 rounded-md text-base font-medium hover:text-primary" href="/blog/">Blog</a>
 
             <a
               class="inline-flex mt-2 bg-primary hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all shadow-lg"
@@ -297,7 +303,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <article
-            data-href="https://kapsdevelopment.com/sathu/support/"
+            data-href="https://sathuapp.com"
             class="app-card bg-white/80 dark:bg-gray-800/80 backdrop-blur-md rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all border border-gray-100 dark:border-gray-700 group hover:-translate-y-2 h-full"
           >
             <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 h-full">
@@ -584,6 +590,96 @@
       </div>
     </section>
 
+    <!-- BLOG -->
+    <section class="relative py-24 border-t border-gray-200 dark:border-gray-800 overflow-hidden" id="blog">
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <img alt="Soft spring landscape" class="w-full h-full object-cover" src="assets/images/spring.webp" />
+        <div class="absolute inset-0 bg-white/80 dark:bg-gray-950/75 backdrop-blur-[2px]"></div>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1.1fr,0.9fr] items-start">
+          <div class="bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-10">
+            <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Latest writing</h2>
+            <p class="mt-3 text-3xl font-display font-bold text-gray-900 dark:text-white">
+              Practical notes from delivery, product work, and AI projects.
+            </p>
+            <p class="mt-5 text-gray-600 dark:text-gray-300 leading-relaxed">
+              The Kapsdevelopment blog is where I write a bit more openly about how things are actually built:
+              product decisions, digital transformation work, AI assistants, mobile apps, and what tends to help
+              teams move from ideas to shipped results.
+            </p>
+            <p class="mt-4 text-gray-600 dark:text-gray-300 leading-relaxed">
+              It starts simple on purpose: an English-only blog with longer-form writing and room for screenshots,
+              architecture sketches, and implementation notes.
+            </p>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a
+                class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary hover:bg-blue-700 text-white font-semibold rounded-full shadow-lg transition-all transform hover:-translate-y-0.5"
+                href="/blog/"
+              >
+                Open Blog <span class="material-icons text-sm">arrow_forward</span>
+              </a>
+              <a
+                class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 text-gray-900 dark:text-white font-semibold hover:bg-white dark:hover:bg-gray-800 transition-all"
+                href="#contact"
+              >
+                Ask About a Project
+              </a>
+            </div>
+          </div>
+
+          <div class="grid gap-4">
+            <article class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/70 dark:border-gray-800/70 p-6">
+              <div class="flex items-start gap-4">
+                <div class="shrink-0 w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                  <span class="material-icons text-primary">edit_note</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">What you’ll find there</h3>
+                  <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Reflections on product delivery, practical AI usage, digital transformation, and lessons from
+                    building software that has to work in real life.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/70 dark:border-gray-800/70 p-6">
+              <div class="flex items-start gap-4">
+                <div class="shrink-0 w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900 flex items-center justify-center">
+                  <span class="material-icons text-green-600 dark:text-green-300">image</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Built for richer posts</h3>
+                  <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Posts can now include inline images, so walkthroughs, screenshots, and visual explanations can live
+                    right inside the writing instead of being squeezed into short updates.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-gray-200/70 dark:border-gray-800/70 p-6">
+              <div class="flex items-start gap-4">
+                <div class="shrink-0 w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900 flex items-center justify-center">
+                  <span class="material-icons text-purple-600 dark:text-purple-300">rocket_launch</span>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Simple publishing flow</h3>
+                  <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    The blog is managed locally in this repo, then deployed manually through GitHub Pages when a post is
+                    ready to go live.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section class="relative py-24 border-t border-gray-200 dark:border-gray-800" id="contact">
       <div class="absolute inset-0 z-0 pointer-events-none">
@@ -683,6 +779,7 @@
               <li><a class="text-gray-400 hover:text-white transition-colors" href="#home">Home</a></li>
               <li><a class="text-gray-400 hover:text-white transition-colors" href="#services">Services</a></li>
               <li><a class="text-gray-400 hover:text-white transition-colors" href="#about">About Us</a></li>
+              <li><a class="text-gray-400 hover:text-white transition-colors" href="/blog/">Blog</a></li>
             </ul>
           </div>
 

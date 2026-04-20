@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Kapsdevelopment Editorial{% endblock %}</title>
+    <meta
+      name="description"
+      content="{% block meta_description %}Local editorial workspace for the Kapsdevelopment blog.{% endblock %}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='editorial.css') }}" />
+    <script src="{{ url_for('static', filename='editorial.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="editor-shell">
+      <header class="site-header">
+        <div class="container topbar">
+          <a class="brand" href="{{ url_for('drafts_index') }}">
+            <span class="brand-mark">KD</span>
+            <span class="brand-wordmark">Kapsdevelopment Editorial</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Editorial navigation">
+            <a href="{{ url_for('drafts_index') }}">Drafts</a>
+            <a href="/blog/" target="_blank" rel="noreferrer">Live Blog</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="container">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <div class="flash-stack">
+                {% for category, message in messages %}
+                  <div class="flash flash-{{ category|replace('_', '-') }}">{{ message }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          {% endwith %}
+        </div>
+
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>

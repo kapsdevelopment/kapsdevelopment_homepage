@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Kapsdevelopment Blog{% endblock %}</title>
+    <meta
+      name="description"
+      content="{% block meta_description %}Notes on delivery, product building, AI, and practical digital transformation from Kapsdevelopment.{% endblock %}"
+    />
+    {% if canonical_url %}
+    <link rel="canonical" href="{{ canonical_url }}" />
+    {% endif %}
+    <meta property="og:site_name" content="Kapsdevelopment" />
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+    <meta property="og:title" content="{% block og_title %}{{ self.title() | striptags }}{% endblock %}" />
+    <meta property="og:description" content="{% block og_description %}{{ self.meta_description() | striptags }}{% endblock %}" />
+    {% if canonical_url %}
+    <meta property="og:url" content="{{ canonical_url }}" />
+    {% endif %}
+    {% if cover_image %}
+    <meta property="og:image" content="{{ site_url }}{{ cover_image }}" />
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ self.title() | striptags }}" />
+    <meta name="twitter:description" content="{{ self.meta_description() | striptags }}" />
+    {% if cover_image %}
+    <meta name="twitter:image" content="{{ site_url }}{{ cover_image }}" />
+    {% endif %}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/blog.css" />
+    {% block head_extra %}{% endblock %}
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container topbar">
+          <a class="brand" href="/">
+            <span class="brand-mark">KD</span>
+            <span class="brand-wordmark">Kapsdevelopment</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>Kapsdevelopment</strong>
+            <p>Practical notes on technology, delivery, AI, and building digital products.</p>
+          </div>
+          <a class="footer-link" href="/blog/">Browse the archive</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -7,6 +7,8 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+.venv/
+__pycache__/
 
 # Local environment and secrets
 .env
