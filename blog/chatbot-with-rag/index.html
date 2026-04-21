@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatbot with RAG?</title>
+    <meta
+      name="description"
+      content="
+An example of when RAG is interesting
+"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    
+    <link rel="canonical" href="https://kapsdevelopment.com/blog/chatbot-with-rag/" />
+    
+    <link rel="alternate" type="application/atom+xml" title="Kapsdevelopment Blog Feed" href="https://kapsdevelopment.com/blog/feed.xml" />
+    <meta property="og:site_name" content="Kapsdevelopment" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Chatbot with RAG?" />
+    <meta property="og:description" content="An example of when RAG is interesting" />
+    
+    <meta property="og:url" content="https://kapsdevelopment.com/blog/chatbot-with-rag/" />
+    
+    
+    <meta property="og:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_04_21_215607_1a0a47/000102-boon-thank-you.png" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chatbot with RAG?" />
+    <meta name="twitter:description" content="An example of when RAG is interesting" />
+    
+    <meta name="twitter:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_04_21_215607_1a0a47/000102-boon-thank-you.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/blog.css" />
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Chatbot with RAG?",
+  "description": "An example of when RAG is interesting",
+  "url": "https://kapsdevelopment.com/blog/chatbot-with-rag/",
+  "mainEntityOfPage": "https://kapsdevelopment.com/blog/chatbot-with-rag/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Ken Andersen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kapsdevelopment",
+    "url": "https://kapsdevelopment.com"
+  }
+  ,
+  "image": "https://kapsdevelopment.com/assets/blog/blog_2026_04_21_215607_1a0a47/000102-boon-thank-you.png"
+  
+  ,
+  "datePublished": "2026-04-21T22:21:46Z"
+  
+  ,
+  "dateModified": "2026-04-21T22:21:46Z"
+  
+}
+</script>
+
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container topbar">
+          <a class="brand" href="/">
+            <span class="brand-mark">KD</span>
+            <span class="brand-wordmark">Kapsdevelopment</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        
+<article class="article-page">
+  <section class="article-hero">
+    <div class="container article-hero-grid">
+      <div>
+        <a class="back-link" href="/blog/">Back to blog</a>
+        <span class="eyebrow">Article</span>
+        <h1>Chatbot with RAG?</h1>
+        
+        <p class="hero-copy">An example of when RAG is interesting</p>
+        
+
+        <div class="article-meta">
+          <span>2026-04-21</span>
+          <span>6 min read</span>
+          <span>Ken Andersen</span>
+        </div>
+      </div>
+
+      
+      <aside class="article-hero-media">
+        <img src="/assets/blog/blog_2026_04_21_215607_1a0a47/000102-boon-thank-you.png" alt="Chatbot with RAG?" />
+      </aside>
+      
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-layout">
+      <div class="article-body">
+        <p>When should you consider using RAG, and When Is a Plain LLM Call Enough?
+One of the easiest mistakes in AI app development is adding too much complexity too early.</p>
+<p>You have an idea for a chatbot. You read about embeddings, vector databases, retrieval pipelines, chunking strategies, reranking, evals, and suddenly the “simple chatbot” has turned into an information retrieval system with a personality bolted on top.</p>
+<p>Sometimes that is exactly the right architecture.</p>
+<p>Often, it is not.</p>
+<p>In a hobby project or a small app, the right first question is usually not “How do I add RAG?” but “What does my chatbot actually need to know that the base model does not already know?”</p>
+<p>That distinction matters more than most people think.</p>
+<h2>Why build your own chatbot at all?</h2>
+<p>Because it is one of the most educational and creatively rewarding things you can build.</p>
+<p>A custom chatbot sits at a very interesting intersection: product design, systems engineering, UX writing, and applied AI. It is not just about getting a model to respond. It is about shaping an experience.</p>
+<p>You get to decide what the assistant feels like, how it speaks, what it should never say, how much context it remembers, when it should be humble, when it should ask a question, and what kind of product it becomes in someone’s hands.</p>
+<p>That is the fun part.</p>
+<p>The useful part is that a custom chatbot teaches you where the real complexity lives. It is rarely in calling the model API. It is in everything around it: tone, constraints, retrieval, grounding, failure modes, cost, and latency.</p>
+<p>With Boon - the mascot we developed for the app Sathu, the goal was not to build simply “a chatbot.” It was to build a very specific presence: a warm, humble, young monk-in-training who could speak about Thai Buddhist culture and practice without sounding like a search engine or an academic textbook.</p>
+<p><img alt="000102 boon thank you" src="/assets/blog/blog_2026_04_21_215607_1a0a47/000102-boon-thank-you.png" /></p>
+<p>That immediately made one thing clear:</p>
+<p>Personality and retrieval are different systems.</p>
+<p>The model voice comes from prompt design.
+The factual grounding comes from retrieval, if needed.</p>
+<p>Those should not be confused.</p>
+<h2>Start with plain LLM</h2>
+<p>If your app mostly needs:</p>
+<ul>
+<li>good conversation</li>
+<li>a strong tone or personality</li>
+<li>basic reasoning</li>
+<li>summarization</li>
+<li>rewriting</li>
+<li>lightweight coaching</li>
+<li>structured output from the user’s own latest message
+then you often do not need RAG yet.</li>
+</ul>
+<p>A plain model call is dramatically simpler to build, debug, and tune. You can move faster, learn faster, and see whether the product is even interesting before you build a retrieval layer.</p>
+<p>This is especially true if the value of the app is not “having proprietary facts,” but rather “how the assistant behaves.”</p>
+<p>That was true for Boon too. A lot of the product feeling came from the system prompt, not from retrieval. The prompt defined language behavior, politeness, humility, answer length, and even what kinds of internal mechanics should never be exposed to the user.</p>
+<p>That alone gets you surprisingly far.</p>
+<p>Add RAG when the model needs external knowledge
+RAG becomes worth it when the assistant must reliably answer with knowledge that is not safely resident in the base model. For us, the special flavor of buddhism and thai culture combined could hardly be relient on pure LLM responses alone.</p>
+<p>We had to go a layer deeper in how to design a suitable chatbot for this product.</p>
+<p>These are general things to evaluate for your own product when facing the same question:</p>
+<p>First, you have private or domain-specific content. Maybe product docs, internal notes, or structured knowledge that is yours.</p>
+<p>Second, you need freshness or specificity. The model may know about your field in general, but not your exact temple text, your exact wording, or your curated source material.</p>
+<p>Third, you want consistency around a bounded knowledge set. Not just plausible answers. Answers that are anchored in material you selected.</p>
+<p>That is where retrieval starts to earn its keep.</p>
+<p>The wrong reason to add RAG is that it feels “more advanced.” RAG is not a status upgrade. It is a memory and knowledge mechanism. If you do not have a real knowledge problem, it quickly becomes just extra moving parts.</p>
+<p><img alt="002047 simulator screenshot iphone 17 pro max 2026 03 30 at 15 04 50" src="/assets/blog/blog_2026_04_21_215607_1a0a47/002047-simulator-screenshot-iphone-17-pro-max-2026-03-30-at-15-04-50.png" /></p>
+<h2>What a lightweight RAG implementation can look like</h2>
+<p>The nice thing is that “RAG” does not have to mean “huge architecture.”</p>
+<p>In Boon, the retrieval path was intentionally lightweight.</p>
+<p>We used:</p>
+<ul>
+<li>gpt-5-mini for chat</li>
+<li>text-embedding-3-small for embeddings</li>
+<li>Supabase plus pgvector for vector storage</li>
+<li>a simple SQL RPC for matching chunks</li>
+<li>cosine similarity with a small gating rule before retrieval context was used</li>
+</ul>
+<p>The rag.chunks table looked something like:
+- chunk text
+- token count
+- a vector(1536) embedding
+- language
+- topic
+- optional temple id</p>
+<p>On lookup, we embedded the user message, queried the nearest chunks, filtered by fields like lang, topic, and temple_id, and pulled back the top matches. In our case, the default was topK = 6, capped at 8.</p>
+<p>Then came the important part: we did not blindly stuff retrieved text into every answer.</p>
+<p>We only used RAG if two conditions were true:</p>
+<ol>
+<li>the message was long enough to be worth embedding</li>
+<li>the best retrieved match crossed a minimum similarity threshold</li>
+</ol>
+<p>In the Boon function, those gates were very simple:
+- minimum message length for RAG: 8 characters
+- minimum max similarity to use RAG: 0.40</p>
+<p>That is not magic. It is just a pragmatic first version.</p>
+<h2>When should you embed the user’s message?</h2>
+<p>This is where hobby projects often overcomplicate things.</p>
+<p>You do not need a perfect classifier on day one. You need a decent heuristic.</p>
+<p>A good first rule is: do not retrieve for messages that are obviously too short or too generic.</p>
+<p>“Hi.”
+“Thanks.”
+“How are you?”
+“Tell me more.”</p>
+<p>These rarely justify an embedding lookup.</p>
+<p>In Boon, the first gate was simply message length. If the message was under 8 characters, skip RAG entirely. That alone removes a lot of waste.</p>
+<p>After that, I would think in terms of intent.</p>
+<p>Messages that probably deserve retrieval:</p>
+<ul>
+<li>specific factual questions</li>
+<li>references to named places, entities, or concepts in your dataset</li>
+<li>“what is the history of&hellip;”</li>
+<li>“what does this temple mean&hellip;”</li>
+<li>domain-specific follow-ups</li>
+</ul>
+<p>Messages that often do not:
+- pure social back-and-forth
+- emotional support turns
+- broad philosophical reflection
+- generic conversational filler</p>
+<p>At hobby scale, embedding every eligible message is often fine. The bigger question is not whether you can afford it. It is whether retrieval is helping answer quality.</p>
+<p>That is why debug metrics matter. In Boon, our function tracked things like:
+- chunksUsed
+- avgScore
+- maxScore
+- whether useRag was actually triggered
+That is the beginning of an eval loop.</p>
+<p>If low-score retrieval keeps firing, your threshold is too low.
+If good factual questions never get grounded, your threshold is too high.
+If short conversational turns keep getting embedded, your gating is too loose.</p>
+<h2>How to bake retrieved knowledge into the final answer</h2>
+<p>This part is subtle.</p>
+<p>The goal is not to make the model quote chunks. The goal is to let the model absorb them and then answer naturally in character.</p>
+<p>RAG should improve recall, not leak implementation.</p>
+<p>A useful mental model is this:</p>
+<p>The system prompt defines who the assistant is.
+The retrieved chunks define what the assistant can privately draw from.
+The final answer should sound like one coherent mind.</p>
+<p>If those layers are not aligned, the result feels stitched together. You get responses that suddenly sound like pasted documentation, or worse, responses that mention “the source material says&hellip;” and break the illusion completely.</p>
+<p>The practical rule
+A chatbot is not better because it uses embeddings.
+It is better when it knows the right thing, says it in the right voice, and does so with the least amount of machinery needed.</p>
+<p>Iterate on your personality.md and your system_prompt.md</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>Kapsdevelopment</strong>
+            <p>Practical notes on technology, delivery, AI, and building digital products.</p>
+          </div>
+          <a class="footer-link" href="/blog/">Browse the archive</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

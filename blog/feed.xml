@@ -2,10 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://kapsdevelopment.com/blog/</id>
   <title>Kapsdevelopment Blog</title>
-  <updated>2026-04-20T11:52:42Z</updated>
+  <updated>2026-04-21T22:21:46Z</updated>
   <link href="https://kapsdevelopment.com/blog/feed.xml" rel="self" />
   <link href="https://kapsdevelopment.com/blog/" rel="alternate" />
   <subtitle>Insights on building software, shipping products, AI, and digital transformation from Kapsdevelopment.</subtitle>
+  
+  <entry>
+    <id>https://kapsdevelopment.com/blog/chatbot-with-rag/</id>
+    <title>Chatbot with RAG?</title>
+    <link href="https://kapsdevelopment.com/blog/chatbot-with-rag/" rel="alternate" />
+    <updated>2026-04-21T22:21:46Z</updated>
+    
+    <published>2026-04-21T22:21:46Z</published>
+    
+    <summary>An example of when RAG is interesting</summary>
+  </entry>
   
   <entry>
     <id>https://kapsdevelopment.com/blog/when-images-can-no-longer-be-trusted/</id>

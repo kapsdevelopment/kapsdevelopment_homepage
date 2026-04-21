@@ -15,5 +15,7 @@
 
 
 
+- Chatbot with RAG?: https://kapsdevelopment.com/blog/chatbot-with-rag/
+
 - When Images Can No Longer Be Trusted: https://kapsdevelopment.com/blog/when-images-can-no-longer-be-trusted/
 
