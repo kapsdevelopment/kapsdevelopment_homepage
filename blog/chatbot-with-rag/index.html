@@ -117,7 +117,7 @@ An example of when RAG is interesting
   <section class="section">
     <div class="container article-layout">
       <div class="article-body">
-        <p>When should you consider using RAG, and When Is a Plain LLM Call Enough?
+        <p>When should you consider using RAG, and When Is a plain LLM call enough?
 One of the easiest mistakes in AI app development is adding too much complexity too early.</p>
 <p>You have an idea for a chatbot. You read about embeddings, vector databases, retrieval pipelines, chunking strategies, reranking, evals, and suddenly the “simple chatbot” has turned into an information retrieval system with a personality bolted on top.</p>
 <p>Sometimes that is exactly the right architecture.</p>
@@ -127,10 +127,10 @@ One of the easiest mistakes in AI app development is adding too much complexity 
 <h2>Why build your own chatbot at all?</h2>
 <p>Because it is one of the most educational and creatively rewarding things you can build.</p>
 <p>A custom chatbot sits at a very interesting intersection: product design, systems engineering, UX writing, and applied AI. It is not just about getting a model to respond. It is about shaping an experience.</p>
-<p>You get to decide what the assistant feels like, how it speaks, what it should never say, how much context it remembers, when it should be humble, when it should ask a question, and what kind of product it becomes in someone’s hands.</p>
+<p>You get to decide what the assistant feels like, how it speaks, what it should never say, how much context it remembers, when it should be humble (or whatever other personality traits you want it to manifest), when it should ask a question, and what kind of product it becomes in someone’s hands.</p>
 <p>That is the fun part.</p>
 <p>The useful part is that a custom chatbot teaches you where the real complexity lives. It is rarely in calling the model API. It is in everything around it: tone, constraints, retrieval, grounding, failure modes, cost, and latency.</p>
-<p>With Boon - the mascot we developed for the app Sathu, the goal was not to build simply “a chatbot.” It was to build a very specific presence: a warm, humble, young monk-in-training who could speak about Thai Buddhist culture and practice without sounding like a search engine or an academic textbook.</p>
+<p>With Boon - the mascot developed for the app Sathu, the goal was not to build simply “a chatbot.” It was to build a very specific presence: a warm, humble, young monk-in-training who could speak about Thai Buddhist culture and practice without sounding like a search engine or an academic textbook.</p>
 <p><img alt="000102 boon thank you" src="/assets/blog/blog_2026_04_21_215607_1a0a47/000102-boon-thank-you.png" /></p>
 <p>That immediately made one thing clear:</p>
 <p>Personality and retrieval are different systems.</p>
@@ -151,10 +151,10 @@ then you often do not need RAG yet.</li>
 </ul>
 <p>A plain model call is dramatically simpler to build, debug, and tune. You can move faster, learn faster, and see whether the product is even interesting before you build a retrieval layer.</p>
 <p>This is especially true if the value of the app is not “having proprietary facts,” but rather “how the assistant behaves.”</p>
-<p>That was true for Boon too. A lot of the product feeling came from the system prompt, not from retrieval. The prompt defined language behavior, politeness, humility, answer length, and even what kinds of internal mechanics should never be exposed to the user.</p>
+<p>That was true for Boon too. A lot of the product feeling came from the system prompt, not only from retrieval. The prompt defined language behavior, politeness, humility, answer length, and even what kinds of internal mechanics should never be exposed to the user.</p>
 <p>That alone gets you surprisingly far.</p>
 <p>Add RAG when the model needs external knowledge
-RAG becomes worth it when the assistant must reliably answer with knowledge that is not safely resident in the base model. For us, the special flavor of buddhism and thai culture combined could hardly be relient on pure LLM responses alone.</p>
+RAG becomes worth it when the assistant must reliably answer with knowledge that is not safely resident in the base model. For the Sathu app with Boon, the special flavor of buddhism and thai culture combined could hardly be relient on pure LLM responses alone.</p>
 <p>We had to go a layer deeper in how to design a suitable chatbot for this product.</p>
 <p>These are general things to evaluate for your own product when facing the same question:</p>
 <p>First, you have private or domain-specific content. Maybe product docs, internal notes, or structured knowledge that is yours.</p>
@@ -182,7 +182,7 @@ RAG becomes worth it when the assistant must reliably answer with knowledge that
 - topic
 - optional temple id</p>
 <p>On lookup, we embedded the user message, queried the nearest chunks, filtered by fields like lang, topic, and temple_id, and pulled back the top matches. In our case, the default was topK = 6, capped at 8.</p>
-<p>Then came the important part: we did not blindly stuff retrieved text into every answer.</p>
+<p>Then came the important part: not to blindly stuff retrieved text into every answer.</p>
 <p>We only used RAG if two conditions were true:</p>
 <ol>
 <li>the message was long enough to be worth embedding</li>
@@ -208,14 +208,12 @@ RAG becomes worth it when the assistant must reliably answer with knowledge that
 <li>specific factual questions</li>
 <li>references to named places, entities, or concepts in your dataset</li>
 <li>“what is the history of&hellip;”</li>
-<li>“what does this temple mean&hellip;”</li>
 <li>domain-specific follow-ups</li>
 </ul>
 <p>Messages that often do not:
 - pure social back-and-forth
-- emotional support turns
-- broad philosophical reflection
-- generic conversational filler</p>
+- generic conversational filler
+- questions about &ldquo;general information&rdquo;</p>
 <p>At hobby scale, embedding every eligible message is often fine. The bigger question is not whether you can afford it. It is whether retrieval is helping answer quality.</p>
 <p>That is why debug metrics matter. In Boon, our function tracked things like:
 - chunksUsed
@@ -239,6 +237,7 @@ The final answer should sound like one coherent mind.</p>
 A chatbot is not better because it uses embeddings.
 It is better when it knows the right thing, says it in the right voice, and does so with the least amount of machinery needed.</p>
 <p>Iterate on your personality.md and your system_prompt.md</p>
+<p>Have fun!</p>
       </div>
     </div>
   </section>
