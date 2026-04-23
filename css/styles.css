@@ -80,19 +80,20 @@ section {
 }
 
 .phone--slim {
-  border-radius: 32px;
-  padding: 3px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 30px;
+  padding: 1px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dark .phone--slim {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .phone--slim .screen {
   border-radius: 29px;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Optional subtle hover */
