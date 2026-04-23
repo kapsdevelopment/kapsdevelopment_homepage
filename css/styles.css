@@ -123,6 +123,20 @@ section {
   opacity: 1;
 }
 
+/* Full screenshots already contain device UI, so avoid extra cropping */
+.screen--fullshot {
+  background: #0b1018;
+}
+
+.screen--fullshot .notch {
+  display: none;
+}
+
+.screen--fullshot .screens img {
+  object-fit: contain;
+  transform: none;
+}
+
 /* Responsive: if cards are narrow, center the phone a bit */
 @media (max-width: 768px) {
   .phonewrap {
