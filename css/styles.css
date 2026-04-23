@@ -168,7 +168,8 @@ section {
 }
 
 .screen--fullshot .screens img {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center top;
   transform: none;
 }
 
