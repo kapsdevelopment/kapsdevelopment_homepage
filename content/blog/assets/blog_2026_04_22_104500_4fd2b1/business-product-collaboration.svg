@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Business and product collaboration</title>
+  <desc id="desc">A collaboration map where business and product teams meet around shared framing, validation, and rollout.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#ecfeff" />
+    </linearGradient>
+    <linearGradient id="teal" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ccfbf1" />
+      <stop offset="100%" stop-color="#ecfeff" />
+    </linearGradient>
+    <linearGradient id="blue" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe" />
+      <stop offset="100%" stop-color="#eef2ff" />
+    </linearGradient>
+    <linearGradient id="shared" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.12" />
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <text x="96" y="96" font-size="42" font-weight="800" font-family="Inter, Arial, sans-serif" fill="#0f172a">Business and product should meet around the same problem</text>
+  <text x="96" y="138" font-size="24" font-family="Inter, Arial, sans-serif" fill="#475569">Better delivery happens when strategy, operations, design, and engineering all see the same user need.</text>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="132" y="218" width="444" height="502" rx="40" fill="url(#teal)" stroke="#99f6e4" stroke-width="2" />
+    <rect x="1024" y="218" width="444" height="502" rx="40" fill="url(#blue)" stroke="#bfdbfe" stroke-width="2" />
+    <rect x="534" y="278" width="532" height="382" rx="42" fill="url(#shared)" />
+
+    <text x="194" y="294" font-size="38" font-weight="800" fill="#0f172a">Business team</text>
+    <text x="1088" y="294" font-size="38" font-weight="800" fill="#0f172a">Product team</text>
+
+    <rect x="184" y="346" width="340" height="84" rx="24" fill="#ffffff" opacity="0.92" />
+    <rect x="184" y="454" width="340" height="84" rx="24" fill="#ffffff" opacity="0.92" />
+    <rect x="184" y="562" width="340" height="84" rx="24" fill="#ffffff" opacity="0.92" />
+
+    <text x="224" y="398" font-size="28" font-weight="800" fill="#0f172a">Policy and rules</text>
+    <text x="224" y="506" font-size="28" font-weight="800" fill="#0f172a">Operations and frontline</text>
+    <text x="224" y="614" font-size="28" font-weight="800" fill="#0f172a">Commercial priorities</text>
+
+    <rect x="1074" y="346" width="340" height="84" rx="24" fill="#ffffff" opacity="0.92" />
+    <rect x="1074" y="454" width="340" height="84" rx="24" fill="#ffffff" opacity="0.92" />
+    <rect x="1074" y="562" width="340" height="84" rx="24" fill="#ffffff" opacity="0.92" />
+
+    <text x="1114" y="398" font-size="28" font-weight="800" fill="#0f172a">Product management</text>
+    <text x="1114" y="506" font-size="28" font-weight="800" fill="#0f172a">Design and research</text>
+    <text x="1114" y="614" font-size="28" font-weight="800" fill="#0f172a">Engineering and data</text>
+
+    <text x="620" y="360" font-size="38" font-weight="800" fill="#ffffff">Shared operating space</text>
+    <text x="620" y="412" font-size="24" fill="#dbeafe">Problem framing</text>
+    <text x="620" y="454" font-size="24" fill="#dbeafe">Joint prioritization</text>
+    <text x="620" y="496" font-size="24" fill="#dbeafe">Validation of assumptions</text>
+    <text x="620" y="538" font-size="24" fill="#dbeafe">Rollout and adoption</text>
+    <text x="620" y="580" font-size="24" fill="#dbeafe">Learning from real-world usage</text>
+  </g>
+
+  <g stroke="#2563eb" stroke-width="8" stroke-linecap="round" fill="none">
+    <path d="M524 388 H534" marker-end="url(#arrow)" />
+    <path d="M524 496 H534" marker-end="url(#arrow)" />
+    <path d="M524 604 H534" marker-end="url(#arrow)" />
+    <path d="M1066 388 H1074" marker-end="url(#arrow)" />
+    <path d="M1066 496 H1074" marker-end="url(#arrow)" />
+    <path d="M1066 604 H1074" marker-end="url(#arrow)" />
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="564" y="706" width="472" height="88" rx="28" fill="#0f172a" opacity="0.94" />
+    <text x="628" y="760" font-size="27" font-weight="800" fill="#ffffff">Best results come from shared ownership of outcome</text>
+  </g>
+</svg>

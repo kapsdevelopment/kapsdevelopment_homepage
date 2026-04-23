@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Waterfall delivery model</title>
+  <desc id="desc">A one-way waterfall flow from requirements to release with late feedback looping back to the beginning.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#eef2ff" />
+    </linearGradient>
+    <linearGradient id="blue" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="red" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.12" />
+    </filter>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-red" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#ef4444" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <text x="96" y="96" font-size="42" font-weight="800" font-family="Inter, Arial, sans-serif" fill="#0f172a">Waterfall organized work as a sequence of handoffs</text>
+  <text x="96" y="138" font-size="24" font-family="Inter, Arial, sans-serif" fill="#475569">Useful for control and planning, but weak at absorbing change once work has moved downstream.</text>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="108" y="312" width="230" height="124" rx="30" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" />
+    <rect x="390" y="312" width="230" height="124" rx="30" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" />
+    <rect x="672" y="312" width="230" height="124" rx="30" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" />
+    <rect x="954" y="312" width="230" height="124" rx="30" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" />
+    <rect x="1236" y="312" width="230" height="124" rx="30" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" />
+
+    <text x="152" y="365" font-size="30" font-weight="800" fill="#0f172a">Requirements</text>
+    <text x="448" y="365" font-size="30" font-weight="800" fill="#0f172a">Design</text>
+    <text x="746" y="365" font-size="30" font-weight="800" fill="#0f172a">Build</text>
+    <text x="1030" y="365" font-size="30" font-weight="800" fill="#0f172a">Test</text>
+    <text x="1304" y="365" font-size="30" font-weight="800" fill="#0f172a">Release</text>
+
+    <text x="152" y="402" font-size="21" fill="#475569">Define scope up front</text>
+    <text x="448" y="402" font-size="21" fill="#475569">Translate into solution</text>
+    <text x="746" y="402" font-size="21" fill="#475569">Implement at scale</text>
+    <text x="1030" y="402" font-size="21" fill="#475569">Validate near the end</text>
+    <text x="1304" y="402" font-size="21" fill="#475569">Ship after the sequence</text>
+  </g>
+
+  <g stroke="url(#blue)" stroke-width="10" stroke-linecap="round" fill="none">
+    <path d="M338 374 H390" marker-end="url(#arrow-blue)" />
+    <path d="M620 374 H672" marker-end="url(#arrow-blue)" />
+    <path d="M902 374 H954" marker-end="url(#arrow-blue)" />
+    <path d="M1184 374 H1236" marker-end="url(#arrow-blue)" />
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <path d="M1350 446 C1340 620 1080 718 806 718 C470 718 222 622 222 458" fill="none" stroke="url(#red)" stroke-width="10" stroke-linecap="round" stroke-dasharray="24 16" marker-end="url(#arrow-red)" />
+    <text x="992" y="646" font-size="28" font-weight="800" fill="#dc2626">Late feedback loop</text>
+    <text x="992" y="684" font-size="22" fill="#7f1d1d">When change is discovered after testing or release,</text>
+    <text x="992" y="714" font-size="22" fill="#7f1d1d">the expensive path often leads back to the beginning.</text>
+
+    <rect x="108" y="196" width="452" height="82" rx="26" fill="#0f172a" opacity="0.95" />
+    <text x="154" y="246" font-size="26" font-weight="800" fill="#ffffff">Strength: predictability and sequencing</text>
+
+    <rect x="1040" y="196" width="426" height="82" rx="26" fill="#7f1d1d" opacity="0.95" />
+    <text x="1086" y="246" font-size="26" font-weight="800" fill="#ffffff">Weakness: feedback arrives too late</text>
+  </g>
+</svg>

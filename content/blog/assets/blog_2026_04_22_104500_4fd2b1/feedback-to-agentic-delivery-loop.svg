@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Feedback to agentic delivery loop</title>
+  <desc id="desc">A user interacts with an application, sends feedback that an LLM tags, a backlog prioritizes, agentic coding implements, and the improved application returns value to the user.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eef4ff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <linearGradient id="flow" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="surface" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#0f172a" flood-opacity="0.12" />
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-green" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#14b8a6" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <text x="96" y="96" font-size="42" font-weight="800" font-family="Inter, Arial, sans-serif" fill="#0f172a">From product feedback to implemented change</text>
+  <text x="96" y="138" font-size="24" font-family="Inter, Arial, sans-serif" fill="#475569">A future-state loop where signals are interpreted, prioritized, implemented, validated, and returned to the user fast.</text>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <circle cx="180" cy="458" r="78" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <circle cx="180" cy="392" r="26" fill="#93c5fd" />
+    <path d="M132 500 C132 454 228 454 228 500 L228 538 L132 538 Z" fill="#dbeafe" />
+    <text x="116" y="594" font-size="28" font-weight="800" fill="#0f172a">End user</text>
+
+    <rect x="300" y="318" width="258" height="220" rx="34" fill="url(#surface)" stroke="#bfdbfe" stroke-width="2" />
+    <rect x="334" y="352" width="190" height="126" rx="18" fill="#0f172a" />
+    <rect x="356" y="374" width="146" height="14" rx="7" fill="#60a5fa" />
+    <rect x="356" y="402" width="112" height="14" rx="7" fill="#93c5fd" />
+    <rect x="356" y="430" width="86" height="14" rx="7" fill="#93c5fd" />
+    <rect x="370" y="488" width="118" height="30" rx="15" fill="#2563eb" />
+    <text x="399" y="509" font-size="18" font-weight="700" fill="#ffffff">Send feedback</text>
+    <text x="370" y="572" font-size="30" font-weight="800" fill="#0f172a">Application</text>
+
+    <rect x="654" y="364" width="192" height="108" rx="24" fill="#ffffff" stroke="#93c5fd" stroke-width="2" />
+    <path d="M690 394 H810 L750 440 Z" fill="#dbeafe" stroke="#60a5fa" stroke-width="2" />
+    <text x="682" y="506" font-size="24" font-weight="700" fill="#1d4ed8">Feedback packet</text>
+
+    <rect x="912" y="286" width="262" height="240" rx="34" fill="#2563eb" />
+    <text x="952" y="350" font-size="32" font-weight="800" fill="#ffffff">LLM tagging</text>
+    <text x="952" y="390" font-size="22" fill="#dbeafe">Cluster similar issues,</text>
+    <text x="952" y="420" font-size="22" fill="#dbeafe">infer root cause,</text>
+    <text x="952" y="450" font-size="22" fill="#dbeafe">propose scope.</text>
+    <rect x="952" y="474" width="178" height="34" rx="17" fill="#eff6ff" opacity="0.95" />
+    <text x="988" y="497" font-size="18" font-weight="700" fill="#2563eb">tag: onboarding friction</text>
+
+    <rect x="1250" y="248" width="258" height="142" rx="30" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <text x="1288" y="304" font-size="30" font-weight="800" fill="#0f172a">Live backlog</text>
+    <text x="1288" y="342" font-size="21" fill="#475569">Frequency x risk x value</text>
+
+    <rect x="1250" y="446" width="258" height="178" rx="30" fill="#0f172a" />
+    <text x="1288" y="504" font-size="30" font-weight="800" fill="#ffffff">Agentic coding</text>
+    <text x="1288" y="542" font-size="21" fill="#cbd5e1">Design system, tests,</text>
+    <text x="1288" y="570" font-size="21" fill="#cbd5e1">security and architecture</text>
+    <text x="1288" y="598" font-size="21" fill="#cbd5e1">guide each change.</text>
+
+    <rect x="920" y="630" width="304" height="116" rx="30" fill="#ecfeff" stroke="#5eead4" stroke-width="2" />
+    <text x="958" y="684" font-size="30" font-weight="800" fill="#0f766e">Human validation</text>
+    <text x="958" y="720" font-size="21" fill="#0f766e">Mandatory for high-risk changes</text>
+
+    <circle cx="1376" cy="730" r="78" fill="#ecfdf5" stroke="#86efac" stroke-width="2" />
+    <circle cx="1376" cy="664" r="26" fill="#86efac" />
+    <path d="M1328 772 C1328 726 1424 726 1424 772 L1424 810 L1328 810 Z" fill="#dcfce7" />
+    <path d="M1346 737 L1368 758 L1406 716" fill="none" stroke="#16a34a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="1299" y="858" font-size="26" font-weight="800" fill="#166534">Satisfied user</text>
+  </g>
+
+  <g fill="none" stroke-width="10" stroke-linecap="round">
+    <path d="M258 458 H300" stroke="#2563eb" marker-end="url(#arrow)" />
+    <path d="M558 428 H654" stroke="#2563eb" marker-end="url(#arrow)" />
+    <path d="M846 418 H912" stroke="#2563eb" marker-end="url(#arrow)" />
+    <path d="M1174 356 H1250" stroke="#2563eb" marker-end="url(#arrow)" />
+    <path d="M1378 390 V446" stroke="#2563eb" marker-end="url(#arrow)" />
+    <path d="M1250 624 H1174 C1110 624 1080 624 1072 630" stroke="#14b8a6" marker-end="url(#arrow-green)" />
+    <path d="M920 688 C760 760 558 784 420 670 C330 596 334 548 334 548" stroke="#14b8a6" marker-end="url(#arrow-green)" />
+    <path d="M1224 688 H1298" stroke="#14b8a6" marker-end="url(#arrow-green)" />
+  </g>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="620" y="194" width="314" height="74" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <text x="654" y="240" font-size="24" font-weight="800" fill="#0f172a">Secondary input: analytics</text>
+
+    <path d="M780 268 V318" fill="none" stroke="#94a3b8" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 14" marker-end="url(#arrow)" />
+  </g>
+</svg>

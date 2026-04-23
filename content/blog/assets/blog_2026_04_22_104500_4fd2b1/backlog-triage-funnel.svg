@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Backlog triage funnel</title>
+  <desc id="desc">Signals from users, analytics, support, and business requests flow into model tagging and then into a prioritized backlog.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eef4ff" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f8fbff" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0ea5e9" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#1e293b" flood-opacity="0.12" />
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto">
+      <path d="M0,0 L14,7 L0,14 z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <text x="96" y="100" font-size="42" font-weight="800" font-family="Inter, Arial, sans-serif" fill="#0f172a">Backlog as a live prioritization layer</text>
+  <text x="96" y="142" font-size="24" font-family="Inter, Arial, sans-serif" fill="#475569">Signal intake, model scoring, and a constantly refreshed view of what to do now, next, and later.</text>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="96" y="210" width="250" height="118" rx="28" fill="url(#card)" stroke="#bfdbfe" stroke-width="2" />
+    <circle cx="150" cy="269" r="26" fill="#dbeafe" />
+    <text x="138" y="277" font-size="24" font-weight="700" fill="#2563eb">1</text>
+    <text x="196" y="254" font-size="25" font-weight="700" fill="#0f172a">User feedback</text>
+    <text x="196" y="286" font-size="20" fill="#475569">Comments, ratings,</text>
+    <text x="196" y="312" font-size="20" fill="#475569">feature requests</text>
+
+    <rect x="96" y="360" width="250" height="118" rx="28" fill="url(#card)" stroke="#bfdbfe" stroke-width="2" />
+    <circle cx="150" cy="419" r="26" fill="#dbeafe" />
+    <text x="138" y="427" font-size="24" font-weight="700" fill="#2563eb">2</text>
+    <text x="196" y="404" font-size="25" font-weight="700" fill="#0f172a">Analytics</text>
+    <text x="196" y="436" font-size="20" fill="#475569">Drop-offs, loops,</text>
+    <text x="196" y="462" font-size="20" fill="#475569">stalled behavior</text>
+
+    <rect x="96" y="510" width="250" height="118" rx="28" fill="url(#card)" stroke="#bfdbfe" stroke-width="2" />
+    <circle cx="150" cy="569" r="26" fill="#dbeafe" />
+    <text x="138" y="577" font-size="24" font-weight="700" fill="#2563eb">3</text>
+    <text x="196" y="554" font-size="25" font-weight="700" fill="#0f172a">Support tickets</text>
+    <text x="196" y="586" font-size="20" fill="#475569">Recurring incidents</text>
+    <text x="196" y="612" font-size="20" fill="#475569">and FAQs</text>
+
+    <rect x="96" y="660" width="250" height="118" rx="28" fill="url(#card)" stroke="#bfdbfe" stroke-width="2" />
+    <circle cx="150" cy="719" r="26" fill="#dbeafe" />
+    <text x="138" y="727" font-size="24" font-weight="700" fill="#2563eb">4</text>
+    <text x="196" y="704" font-size="25" font-weight="700" fill="#0f172a">Business input</text>
+    <text x="196" y="736" font-size="20" fill="#475569">Strategy, revenue,</text>
+    <text x="196" y="762" font-size="20" fill="#475569">policy pressure</text>
+  </g>
+
+  <g>
+    <path d="M346 269 C460 269 470 260 590 318" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)" />
+    <path d="M346 419 C460 419 470 400 590 390" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)" />
+    <path d="M346 569 C460 569 470 560 590 462" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)" />
+    <path d="M346 719 C460 719 470 700 590 534" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round" marker-end="url(#arrow)" />
+  </g>
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="604" y="256" width="392" height="476" rx="38" fill="url(#accent)" />
+    <text x="650" y="322" font-size="38" font-weight="800" fill="#ffffff">Model tagging and scoring</text>
+    <text x="650" y="364" font-size="22" fill="#dbeafe">Incoming signals are clustered, labeled, and ranked.</text>
+
+    <rect x="650" y="416" width="136" height="60" rx="18" fill="#eff6ff" opacity="0.94" />
+    <rect x="806" y="416" width="136" height="60" rx="18" fill="#eff6ff" opacity="0.94" />
+    <rect x="650" y="496" width="136" height="60" rx="18" fill="#eff6ff" opacity="0.94" />
+    <rect x="806" y="496" width="136" height="60" rx="18" fill="#eff6ff" opacity="0.94" />
+    <rect x="728" y="576" width="136" height="60" rx="18" fill="#eff6ff" opacity="0.94" />
+
+    <text x="685" y="454" font-size="22" font-weight="700" fill="#2563eb">Frequency</text>
+    <text x="847" y="454" font-size="22" font-weight="700" fill="#2563eb">Friction</text>
+    <text x="688" y="534" font-size="22" font-weight="700" fill="#2563eb">Revenue</text>
+    <text x="854" y="534" font-size="22" font-weight="700" fill="#2563eb">Risk</text>
+    <text x="757" y="614" font-size="22" font-weight="700" fill="#2563eb">Strategy</text>
+
+    <text x="650" y="680" font-size="22" fill="#dbeafe">Output:</text>
+    <text x="726" y="680" font-size="22" fill="#ffffff">problem statement, likely impact, proposed next action</text>
+  </g>
+
+  <path d="M1004 492 H1092" fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round" marker-end="url(#arrow)" />
+
+  <g filter="url(#shadow)" font-family="Inter, Arial, sans-serif">
+    <rect x="1096" y="210" width="408" height="580" rx="38" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+    <text x="1138" y="272" font-size="38" font-weight="800" fill="#0f172a">Prioritized backlog</text>
+    <text x="1138" y="310" font-size="22" fill="#475569">A living queue with clear trade-offs.</text>
+
+    <rect x="1138" y="350" width="328" height="118" rx="24" fill="#ecfdf5" stroke="#10b981" stroke-width="2" />
+    <text x="1174" y="394" font-size="28" font-weight="800" fill="#047857">Now</text>
+    <text x="1174" y="430" font-size="22" fill="#065f46">Critical friction and high-value improvements</text>
+
+    <rect x="1138" y="498" width="328" height="118" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" />
+    <text x="1174" y="542" font-size="28" font-weight="800" fill="#1d4ed8">Next</text>
+    <text x="1174" y="578" font-size="22" fill="#1e3a8a">Important opportunities with bounded risk</text>
+
+    <rect x="1138" y="646" width="328" height="118" rx="24" fill="#fff7ed" stroke="#f59e0b" stroke-width="2" />
+    <text x="1174" y="690" font-size="28" font-weight="800" fill="#b45309">Later</text>
+    <text x="1174" y="726" font-size="22" fill="#9a3412">Valid signals waiting for capacity or proof</text>
+  </g>
+</svg>
