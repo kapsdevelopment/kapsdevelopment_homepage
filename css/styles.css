@@ -52,11 +52,11 @@ section {
 .phone {
   width: 180px; /* card-friendly */
   aspect-ratio: 9 / 19.5;
-  border-radius: 36px;
-  padding: 6px;
+  border-radius: 30px;
+  padding: 1px;
 
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 
   position: relative;
@@ -64,36 +64,19 @@ section {
 
 /* Make phone frame a bit darker in dark mode */
 .dark .phone {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* Screen area */
 .screen {
   height: 100%;
-  border-radius: 28px;
+  border-radius: 29px;
   overflow: hidden;
   background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
   cursor: pointer;
-}
-
-.phone--slim {
-  border-radius: 30px;
-  padding: 1px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.dark .phone--slim {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.phone--slim .screen {
-  border-radius: 29px;
-  border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* Optional subtle hover */
