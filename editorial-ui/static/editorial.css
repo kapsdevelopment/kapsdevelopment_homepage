@@ -403,6 +403,41 @@ h3 {
   background: rgba(9, 17, 31, 0.4);
 }
 
+.drop-zone {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  min-height: 118px;
+  padding: 20px;
+  border: 1px dashed rgba(96, 165, 250, 0.44);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 38%),
+    rgba(9, 17, 31, 0.44);
+  color: #dbeafe;
+  text-align: center;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.drop-zone strong {
+  font-size: 1.05rem;
+}
+
+.drop-zone span {
+  color: var(--muted);
+}
+
+.drop-zone.is-dragging {
+  border-color: rgba(52, 211, 153, 0.76);
+  background:
+    radial-gradient(circle at top left, rgba(52, 211, 153, 0.2), transparent 42%),
+    rgba(15, 118, 110, 0.16);
+  transform: translateY(-1px);
+}
+
 .panel-heading {
   display: flex;
   justify-content: space-between;

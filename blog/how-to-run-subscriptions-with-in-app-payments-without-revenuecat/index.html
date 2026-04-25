@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running App Subscriptions Directly with Apple and Google</title>
+    <meta
+      name="description"
+      content="
+A technical guide to direct in-app subscription architecture: purchase observers, backend verification, entitlements, App Store Server Notifications, Google RTDN, and operational repair flows.
+"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    
+    <link rel="canonical" href="https://kapsdevelopment.com/blog/how-to-run-subscriptions-with-in-app-payments-without-revenuecat/" />
+    
+    <link rel="alternate" type="application/atom+xml" title="Kapsdevelopment Blog Feed" href="https://kapsdevelopment.com/blog/feed.xml" />
+    <meta property="og:site_name" content="Kapsdevelopment" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Running App Subscriptions Directly with Apple and Google" />
+    <meta property="og:description" content="A technical guide to direct in-app subscription architecture: purchase observers, backend verification, entitlements, App Store Server Notifications, Google RTDN, and operational repair flows." />
+    
+    <meta property="og:url" content="https://kapsdevelopment.com/blog/how-to-run-subscriptions-with-in-app-payments-without-revenuecat/" />
+    
+    
+    <meta property="og:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_04_24_215140_iap/subscription-architecture-flow-generated.png" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Running App Subscriptions Directly with Apple and Google" />
+    <meta name="twitter:description" content="A technical guide to direct in-app subscription architecture: purchase observers, backend verification, entitlements, App Store Server Notifications, Google RTDN, and operational repair flows." />
+    
+    <meta name="twitter:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_04_24_215140_iap/subscription-architecture-flow-generated.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/blog.css" />
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Running App Subscriptions Directly with Apple and Google",
+  "description": "A technical guide to direct in-app subscription architecture: purchase observers, backend verification, entitlements, App Store Server Notifications, Google RTDN, and operational repair flows.",
+  "url": "https://kapsdevelopment.com/blog/how-to-run-subscriptions-with-in-app-payments-without-revenuecat/",
+  "mainEntityOfPage": "https://kapsdevelopment.com/blog/how-to-run-subscriptions-with-in-app-payments-without-revenuecat/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Ken Andersen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kapsdevelopment",
+    "url": "https://kapsdevelopment.com"
+  }
+  ,
+  "image": "https://kapsdevelopment.com/assets/blog/blog_2026_04_24_215140_iap/subscription-architecture-flow-generated.png"
+  
+  ,
+  "datePublished": "2026-04-25T15:14:21Z"
+  
+  ,
+  "dateModified": "2026-04-25T15:14:21Z"
+  
+}
+</script>
+
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container topbar">
+          <a class="brand" href="/">
+            <span class="brand-mark">KD</span>
+            <span class="brand-wordmark">Kapsdevelopment</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        
+<article class="article-page">
+  <section class="article-hero">
+    <div class="container article-hero-grid">
+      <div>
+        <a class="back-link" href="/blog/">Back to blog</a>
+        <span class="eyebrow">Article</span>
+        <h1>How to Run Subscriptions with In-App Payments Without RevenueCat</h1>
+        
+        <p class="hero-copy">A technical architecture for running mobile app subscriptions directly with Apple and Google, including entitlements, store verification, notifications, refresh jobs, and console setup.</p>
+        
+
+        <div class="article-meta">
+          <span>2026-04-25</span>
+          <span>13 min read</span>
+          <span>Ken Andersen</span>
+        </div>
+      </div>
+
+      
+      <aside class="article-hero-media">
+        <img src="/assets/blog/blog_2026_04_24_215140_iap/subscription-architecture-flow-generated.png" alt="Generated architecture reference for a direct in-app subscription system showing the mobile app, backend control plane, Apple and Google store APIs, notifications, entitlements, and repair jobs." />
+      </aside>
+      
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-layout">
+      <div class="article-body">
+        <p>This is not a comparison post about whether you should use a subscription platform or build the subscription stack yourself.</p>
+<p>This is the technical shape of a direct implementation. This blog post is not exhaustive in all implementation details, but tries to cover the biggest learning we have had by implementing this in several mobile applications.</p>
+<p>To do in app purchases of subscriptions your app will use StoreKit or Google Play Billing to start purchases. The backend have to verify those purchases with Apple or Google. And the backend owns the normalized subscription state. The app only asks one question:</p>
+<blockquote>
+<p>What does this account currently have access to?</p>
+</blockquote>
+<p>Everything else is plumbing, and there is quite a lot of it.</p>
+<p><img alt="Direct subscription system architecture reference" src="/assets/blog/blog_2026_04_24_215140_iap/subscription-architecture-flow-generated.png" /></p>
+<p><em>A high-level reference for the moving parts: the app starts the purchase, the backend verifies and normalizes store state, Apple and Google send follow-up notifications, and the product reads entitlements from your own backend.</em></p>
+<h2>The Core Rule</h2>
+<p>The app should never be the final source of truth for access.</p>
+<p>The app can show products, open the store sheet, receive purchase updates, and submit store proof to the backend. But the backend should be the only place that decides whether an entitlement is active.</p>
+<p>A good purchase flow looks like this:</p>
+<ol>
+<li>The app starts an app-lifetime purchase observer.</li>
+<li>The app loads product metadata from Apple or Google.</li>
+<li>The user starts a purchase.</li>
+<li>The app receives a purchase update from the store.</li>
+<li>The app sends a transaction identifier, signed payload, receipt, or purchase token to the backend.</li>
+<li>The backend verifies the purchase with the store.</li>
+<li>The backend updates its subscription snapshot, provider ledger, and audit log.</li>
+<li>The app fetches entitlements from the backend.</li>
+<li>The app unlocks features based on those entitlements.</li>
+</ol>
+<p>That final entitlement fetch is not just a UI refresh. It is the boundary between &ldquo;the store says something happened&rdquo; and &ldquo;our backend has accepted this as access for this account.&rdquo;</p>
+<h2>The Purchase Observer Should Outlive the Paywall</h2>
+<p>One of the easy mistakes is to let the paywall screen own the purchase stream.</p>
+<p>It feels natural at first: the paywall starts the purchase, so the paywall listens for the result. But store updates are not guaranteed to arrive only while that screen is mounted. A user can dismiss a sheet, background the app, restore on another screen, return from subscription settings, or receive a delayed StoreKit update.</p>
+<p>The purchase service should be an app-lifetime singleton:</p>
+<pre><code class="language-text">app startup
+  initialize auth/backend client
+  start purchase observer once
+  run the app
+</code></pre>
+<p>Paywall and profile screens can attach UI callbacks while they are mounted. They should detach those callbacks when disposed. They should not cancel the purchase stream just because the paywall closed.</p>
+<p>This is a boring detail when everything works. It can be a very expensive detail when a user paid and your app missed the update.</p>
+<h2>Entitlements, Not Subscriptions</h2>
+<p>The first useful abstraction is not &ldquo;subscription&rdquo;. It is &ldquo;entitlement&rdquo;.</p>
+<p>Treat a subscription as how the user pays. Treat an entitlement is what the user can use.</p>
+<p>The simple version can look like this:</p>
+<ul>
+<li>subscription product: <code>pro_monthly</code></li>
+<li>subscription product: <code>pro_yearly</code></li>
+<li>entitlement: <code>pro_access</code></li>
+</ul>
+<p>In this case both products grant the same entitlement. Most of the app does not need to care whether the user bought the monthly product or the yearly product. It only needs to know whether <code>pro_access</code> is active.</p>
+<p>But the entitlement model can also be more specific than that.</p>
+<p>For one of our apps, Realz, the subscription does not simply unlock the whole app. Users can still open the gallery, detail views, and profile without an active subscription. The paid access is tied to specific capabilities:</p>
+<ul>
+<li><code>gallery</code></li>
+<li><code>detail</code></li>
+<li><code>profile</code></li>
+<li><code>capture</code></li>
+<li><code>share</code></li>
+</ul>
+<p>The same entitlement response also includes monthly free quotas. For example, a user might have five free captures and five free public shares per month. In that model, <code>capture.active</code> can be true because the user has an active subscription, or because the monthly free quota has remaining usage.</p>
+<p>That distinction matters. Subscription state is payment state. Entitlement state is product access state.</p>
+<p>This architecture supports most types of entitlement guarding, so this can be adapted to your own needs with some work.</p>
+<h2>A Layered Backend Model</h2>
+<p>We would recommend you to keep four separate layers of billing truth:</p>
+<ul>
+<li><code>subscriptions</code></li>
+<li><code>store_subscription_state</code></li>
+<li><code>subscription_events</code></li>
+<li>raw notification ingress tables</li>
+</ul>
+<p>The <code>subscriptions</code> table is the app-facing snapshot. It should be easy for the backend to read and easy for an entitlement endpoint to turn into access decisions.One setup would be to let it contain fields like <code>user_id</code>, <code>provider</code>, <code>product_id</code>, <code>status</code>, <code>current_period_start</code>, <code>current_period_end</code>, <code>cancel_at</code>, <code>purchase_token</code>, <code>original_transaction_id</code>, <code>base_plan_id</code>, and <code>updated_at</code>.</p>
+<p>The <code>store_subscription_state</code> table is provider-specific memory. It can keep Apple and Google details that are useful for reconciliation, but is too noisy for the app-facing snapshot. This is where I would want raw provider states, linked purchase tokens, latest order IDs, auto-renew flags, and the last provider response I used.</p>
+<p>The <code>subscription_events</code> table is an append-only audit log. Every verification, renewal, cancellation, refund, stale notification, skipped update, support repair, and failed ownership check should leave a trace. This is the table that saves you when someone writes: &ldquo;I paid, but the app says I am not subscribed.&rdquo;</p>
+<p>The raw ingress tables store what Apple or Google actually sent before the business logic mutates anything. For example:</p>
+<ul>
+<li><code>app_store_notifications</code></li>
+<li><code>google_play_notifications</code></li>
+</ul>
+<p>That separation lets the app stay simple while the backend keeps enough memory to survive restores, renewals, cancellations, delayed notifications, app reinstalls, cross-device changes, and support cases.</p>
+<h2>Guard Every State Update</h2>
+<p>The backend should not blindly overwrite subscription state whenever a new store signal arrives.</p>
+<p>Store events as notifications can arrive more than once. They can arrive out of order. A client restore can race with a server notification. A scheduled refresh can discover newer state than an older notification. Google purchase tokens can be linked across plan changes. Apple has a subscription chain represented by <code>original_transaction_id</code>.</p>
+<p>Every incoming signal should become one of three decisions:</p>
+<ul>
+<li><code>apply</code>: update the app-facing snapshot because the incoming state is newer or more authoritative</li>
+<li><code>merge_only</code>: keep the current snapshot, but update the provider ledger with useful details</li>
+<li><code>skip</code>: ignore the incoming signal for snapshot purposes because it is stale, conflicting, or unsupported</li>
+</ul>
+<p>The guard can compare period end times, source event times, terminal states, purchase tokens, original transaction IDs, and the current snapshot. A later period end should usually win. A stale expiration should not revoke a newer renewal. A repeated notification from the same chain should be safe to process again.</p>
+<p>This is where direct subscription systems become real backend systems. You are not just saving a boolean named <code>isSubscribed</code>.</p>
+<h2>Account Ownership Is Part of Billing</h2>
+<p>Purchase ownership should belong to your domain account, not just the raw auth session and not just whatever account happens to be signed in when a restore is attempted.</p>
+<p>For Apple, pass your domain account UUID as <code>applicationUserName</code> when starting purchases and restores. StoreKit 2 can forward that value as <code>appAccountToken</code> in signed transaction data. On the backend, reject verification if the signed <code>appAccountToken</code> points to a different account than the signed-in user.</p>
+<p>Also treat Apple&rsquo;s <code>original_transaction_id</code> as the stable subscription-chain key. If that chain already belongs to another account, do not silently move it. Log the conflict and return a clear ownership error.</p>
+<p>For Google, the purchase token is the main key you receive from the device and from Real-time Developer Notifications. Where your client library and flow support it, attach a stable account identifier as an obfuscated account ID. In the backend, keep both the active purchase token and linked purchase tokens in the provider ledger so plan changes and replacements can be reconciled.</p>
+<p>Ownership bugs are not cosmetic. They decide whether one person&rsquo;s purchase can unlock another person&rsquo;s account.</p>
+<h2>Apple and Google Should Stay at the Edges</h2>
+<p>Apple and Google solve the same product problem, but their billing shapes are different.</p>
+<p>Apple gives you StoreKit transactions, signed JWS payloads, App Store Server API, App Store Server Notifications, <code>transactionId</code>, <code>originalTransactionId</code>, and <code>appAccountToken</code>.</p>
+<p>Google gives you Play Billing purchase tokens, the Google Play Developer API, subscription products, base plans, offers, linked purchase tokens, acknowledgement state, and Real-time Developer Notifications through Pub/Sub.</p>
+<p>Do not push all of that into the app&rsquo;s domain model.</p>
+<p>The app should not be full of Apple-vs-Google branching. Let the app load products, start the billing flow, and submit store proof. Keep the provider-specific parsing, verification, state derivation, and edge cases in backend modules.</p>
+<p>Then normalize the result into your own model:</p>
+<ul>
+<li>provider</li>
+<li>product ID</li>
+<li>plan</li>
+<li>status</li>
+<li>current period start</li>
+<li>current period end</li>
+<li>cancel date</li>
+<li>entitlement</li>
+<li>stable store chain key</li>
+<li>latest raw store response</li>
+</ul>
+<p>That normalized layer is what your product should use.</p>
+<h2>Server Notifications Are Inputs, Not Truth</h2>
+<p>The initial purchase is only the first event in a subscription&rsquo;s life.</p>
+<p>After that, the subscription can change because of:</p>
+<ul>
+<li>renewal</li>
+<li>cancellation</li>
+<li>expiration</li>
+<li>refund</li>
+<li>billing retry</li>
+<li>grace period</li>
+<li>product change</li>
+<li>upgrade or downgrade</li>
+<li>restore on a new device</li>
+</ul>
+<p>Server-to-server notifications are how the stores tell your backend that something changed when the user is not actively using the app.</p>
+<p>But notifications should not directly mutate entitlements.</p>
+<p>Use a staged pipeline:</p>
+<ol>
+<li>Receive the provider notification.</li>
+<li>Validate enough to trust where it came from.</li>
+<li>Store the raw notification in an ingress table.</li>
+<li>Run a business-ingest function for that row.</li>
+<li>Fetch the full current store state if needed.</li>
+<li>Run the guarded update model.</li>
+<li>Update snapshot, provider ledger, and event log.</li>
+<li>Mark the raw row as processed, ignored, or failed.</li>
+</ol>
+<p>For Apple, I prefer a Node-capable notification ingress because Apple&rsquo;s signed payload validation fits naturally with Apple&rsquo;s server libraries and root certificate handling. That ingress should store the raw notification first. A separate Supabase or backend function can then perform the business ingest.
+After hitting my head in the &ldquo;lets try to force this to run in a Supabase edge function&rdquo; to many times, I´ve learned that it is much easier to set up a separate node running end point somewhere that supports that more &ldquo;natively&rdquo;. Just keep security tight between Supabase and whatever other service you choose for this task.</p>
+<p>For Google, Real-time Developer Notifications arrive through Cloud Pub/Sub. The RTDN payload is intentionally not the full subscription truth. It tells you that something changed and includes a purchase token. Your backend should call the Google Play Developer API after receiving the notification, then update your own state from the current store response.</p>
+<p>This staging gives you replay. If an ingest function has a bug, you can fix it and reprocess the stored notification. If a test notification arrives, you can mark it ignored. If a one-time product notification arrives in a subscription pipeline, you can route it elsewhere instead of corrupting subscription state.</p>
+<h2>Refresh Is a Product Feature</h2>
+<p>Notifications are important, but they are not enough.</p>
+<p>Add explicit refresh paths:</p>
+<ul>
+<li><code>subscription-refresh</code></li>
+<li><code>subscription-refresh-expired</code></li>
+</ul>
+<p>The first one is user or app initiated. Call it after restore, after returning from native subscription management, after app resume, or when the user taps &ldquo;Refresh subscription status.&rdquo;</p>
+<p>The second one is scheduled. It reconciles subscriptions whose current period may have ended. This matters because a missed notification should not leave a user active forever, and a delayed renewal should be repairable without the user opening the app at the perfect time.</p>
+<p>Running cron jobs and background services for refreshing subscriptions with queries towards Apple and Google is what will &ldquo;keep you running&rdquo; if notifications stops coming in.</p>
+<h2>App Store Connect Setup</h2>
+<p>On the Apple side, start with the product catalog.</p>
+<p>Create an auto-renewable subscription group in App Store Connect, then add your subscription products inside that group. Most apps should use one group for the same entitlement, with separate products for durations such as monthly and yearly. Choose product IDs that you are happy to keep. Treat those IDs as API identifiers, not marketing copy.</p>
+<p><img alt="App Store Connect auto-renewable subscription groups setup" src="/assets/blog/blog_2026_04_24_215140_iap/app-store-connect-subscription-groups.png" /></p>
+<p><em>App Store Connect starts with an auto-renewable subscription group. Products inside the same group should normally represent mutually exclusive ways to buy the same underlying entitlement.</em></p>
+<p>Your app and backend should both have an explicit allowlist of Apple product IDs. For example:</p>
+<pre><code class="language-text">com.example.app.premium.monthly
+com.example.app.premium.yearly
+</code></pre>
+<p>The backend should derive your internal plan from those IDs. If Apple returns a product ID that is not in your allowlist, verification should fail closed. This is especially important if your app handles both subscriptions and one-time products.</p>
+<p>You also need server credentials for App Store Server API. In App Store Connect, generate an In-App Purchase key under Users and Access, then store the key ID, issuer ID, private key, bundle ID, and environment as backend secrets. The private key belongs only on the server. Never ship it in the app.</p>
+<p>For App Store Server Notifications, configure HTTPS server URLs in App Store Connect for production and, ideally, sandbox. Use App Store Server Notifications V2 for new implementations. Your endpoint must support TLS, and your backend should return clear HTTP success or failure codes so Apple knows whether delivery succeeded.</p>
+<p>Finally, test the loop before trusting it:</p>
+<ul>
+<li>sandbox purchase</li>
+<li>backend verification</li>
+<li>entitlement refresh</li>
+<li>restore purchase</li>
+<li>App Store Server Notification test</li>
+<li>cancellation or expiration scenario in sandbox</li>
+<li>ownership mismatch, if you use <code>appAccountToken</code></li>
+</ul>
+<p>A tip here is to respect Apples documentation carefully. Apples storekit becomes quite messy if you test with a testflight build and a real apple account instead of a sandbox account. <em>Been there, done that</em></p>
+<h2>Google Play Console and Google Cloud Setup</h2>
+<p>Google splits more of the setup across Play Console and Google Cloud.</p>
+<p>In Play Console, create a subscription product first. Then create one or more base plans under that subscription. A common setup is one subscription product, such as <code>premium</code>, with base plans like <code>premium-monthly</code> and <code>premium-yearly</code>. Offers are optional and sit under base plans.</p>
+<p>This means your catalog model should understand both product IDs and base plan IDs:</p>
+<pre><code class="language-text">product_id: premium
+base_plan_id: premium-monthly
+base_plan_id: premium-yearly
+</code></pre>
+<p>The app queries the subscription product. The backend derives your internal plan from the base plan ID returned by Google Play. As with Apple, keep a strict allowlist. Unknown product or base plan IDs should not grant access.</p>
+<p>For server verification, create or choose a Google Cloud project, enable the Google Play Developer API, and create a service account for server-to-server access. Invite that service account in Play Console and grant the billing permissions your backend needs, including access to financial/order/subscription data and order/subscription management. Store the service account JSON securely as a backend secret.</p>
+<p>For Real-time Developer Notifications, create a Cloud Pub/Sub topic. Grant <code>google-play-developer-notifications@system.gserviceaccount.com</code> the Pub/Sub Publisher role on that topic. Then enable real-time notifications for the app in Play Console under monetization setup and enter the full topic name:</p>
+<pre><code class="language-text">projects/YOUR_PROJECT_ID/topics/YOUR_TOPIC_NAME
+</code></pre>
+<p><img alt="Google Cloud Shell shortcut" src="/assets/blog/blog_2026_04_24_215140_iap/google-cloud-shell-icon.png" /></p>
+<p><em>Cloud Shell can be extremely useful if you struggle with the GUI. I often use this for setting the right permissions for the pub/sub topic/service role.</em></p>
+<p>Use a push subscription if you want Google Cloud to deliver messages directly to your webhook. I like to verify the push request identity, store the raw message first, and let a separate ingest function call the Google Play Developer API for the complete subscription state.</p>
+<p>Use the Play Console &ldquo;Send Test Message&rdquo; button early. It is much better to debug Pub/Sub permissions, topic names, and webhook authentication before you are also debugging a real purchase.</p>
+<h2>The Backend Functions I Want</h2>
+<p>A direct implementation does not need a huge admin system on day one, but it should have clear backend entry points.</p>
+<p>For subscriptions, I want these functions or equivalents:</p>
+<ul>
+<li><code>entitlements</code></li>
+<li><code>purchase handler for Google and Apple separately</code></li>
+<li><code>Refresh services that can be called from the app</code></li>
+<li><code>Background refresh services that can be run by cron jobs</code></li>
+<li><code>Logic for ingesting notifications from Google and Apple the right way</code></li>
+<li><code>Edge functions for receiving notifications from Google and Apple</code></li>
+<li><code>cleanup-services</code></li>
+</ul>
+<p>The names do not matter as much as the boundaries.</p>
+<p>Client verification should be separate from notification ingest. Raw notification ingress should be separate from business mutation. User refresh should be separate from scheduled expired reconciliation. Cleanup should be explicit, not something you remember to do manually later.</p>
+<h2>A Practical Build Order</h2>
+<p>If I were building this from scratch, I would build it in this order:</p>
+<ol>
+<li>Product catalog constants in app and backend.</li>
+<li>App-lifetime purchase observer.</li>
+<li><code>entitlements</code> endpoint, even before real purchases work.</li>
+<li>App UI that gates from backend entitlements.</li>
+<li>Apple verification.</li>
+<li>Google verification.</li>
+<li>Subscription snapshot, provider ledger, and event log.</li>
+<li>Restore flow.</li>
+<li>Manual refresh flow.</li>
+<li>Apple notification ingress and ingest.</li>
+<li>Google RTDN webhook and ingest.</li>
+<li>Scheduled auto-ingest and expired refresh.</li>
+<li>Cleanup jobs.</li>
+<li>A tiny admin/support timeline.</li>
+</ol>
+<p>This order keeps the app honest from the beginning. The UI never learns to trust local purchase success directly. It always learns to ask the backend for entitlements.</p>
+<h2>Conclusion</h2>
+<p>Running subscriptions directly with Apple and Google is not just a purchase button.</p>
+<p>It is a small financial state machine.</p>
+<p>The app starts purchases and listens for updates. The backend verifies store proof, owns account access, keeps a layered billing model, processes notifications, reconciles expired rows, and exposes entitlements back to the product.</p>
+<p>The shape I trust is:</p>
+<ul>
+<li>app-lifetime purchase observer</li>
+<li>backend verification</li>
+<li>domain-account ownership (very important)</li>
+<li>entitlement endpoint</li>
+<li>app-facing subscription snapshot</li>
+<li>provider-specific ledger</li>
+<li>append-only event log</li>
+<li>raw notification ingress</li>
+<li>guarded state updates</li>
+<li>refresh and repair jobs</li>
+<li>enough support tooling to explain what happened</li>
+</ul>
+<p>If you want to try this yourself, I am convinced that it will be a process with alot of lessons learned. I am convinced that you will be able to do it, just try :) If you want to discuss this with me, please reach out.</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>Kapsdevelopment</strong>
+            <p>Practical notes on technology, delivery, AI, and building digital products.</p>
+          </div>
+          <a class="footer-link" href="/blog/">Browse the archive</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -81,8 +81,13 @@
         <div class="panel-heading">
           <div>
             <h2>Images</h2>
-            <p>Upload an image and the editor inserts Markdown at the current cursor position.</p>
+            <p>Upload, paste, or drag images here. The editor inserts Markdown at the current cursor position.</p>
           </div>
+        </div>
+
+        <div class="drop-zone" id="image-drop-zone">
+          <strong>Drop images here</strong>
+          <span>or paste a screenshot/image while the body field is active.</span>
         </div>
 
         <div class="upload-row">
@@ -91,6 +96,7 @@
             id="image-file"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.gif,.avif"
+            multiple
           />
           <button class="button button-secondary" id="upload-image-button" type="button">Upload image into body</button>
         </div>

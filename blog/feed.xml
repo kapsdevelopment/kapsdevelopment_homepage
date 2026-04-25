@@ -2,10 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://kapsdevelopment.com/blog/</id>
   <title>Kapsdevelopment Blog</title>
-  <updated>2026-04-21T22:21:46Z</updated>
+  <updated>2026-04-25T15:14:21Z</updated>
   <link href="https://kapsdevelopment.com/blog/feed.xml" rel="self" />
   <link href="https://kapsdevelopment.com/blog/" rel="alternate" />
   <subtitle>Insights on building software, shipping products, AI, and digital transformation from Kapsdevelopment.</subtitle>
+  
+  <entry>
+    <id>https://kapsdevelopment.com/blog/how-to-run-subscriptions-with-in-app-payments-without-revenuecat/</id>
+    <title>How to Run Subscriptions with In-App Payments Without RevenueCat</title>
+    <link href="https://kapsdevelopment.com/blog/how-to-run-subscriptions-with-in-app-payments-without-revenuecat/" rel="alternate" />
+    <updated>2026-04-25T15:14:21Z</updated>
+    
+    <published>2026-04-25T15:14:21Z</published>
+    
+    <summary>A technical guide to direct in-app subscription architecture: purchase observers, backend verification, entitlements, App Store Server Notifications, Google RTDN, and operational repair flows.</summary>
+  </entry>
   
   <entry>
     <id>https://kapsdevelopment.com/blog/chatbot-with-rag/</id>
