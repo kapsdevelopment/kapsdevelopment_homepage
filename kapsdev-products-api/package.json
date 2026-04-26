@@ -1,0 +1,16 @@
+{
+  "name": "kapsdev-products-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vercel API for Kapsdevelopment digital products checkout and downloads.",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "check": "node --check api/products.js && node --check api/checkout/session.js && node --check api/stripe/webhook.js && node --check api/order/session-access.js && node --check api/order/access.js && node --check lib/config.js && node --check lib/fulfillment.js && node --check lib/http.js && node --check lib/supabase.js && node --check lib/tokens.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "stripe": "^17.7.0"
+  }
+}

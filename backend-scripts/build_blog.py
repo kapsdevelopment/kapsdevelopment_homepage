@@ -37,6 +37,7 @@ from blog_common import (
 
 STATIC_SITE_PAGES: tuple[tuple[str, Path], ...] = (
     ("/", ROOT / "index.html"),
+    ("/products/", ROOT / "products" / "index.html"),
     ("/sathu/support/", ROOT / "sathu" / "support" / "index.html"),
     ("/sathu/privacy/", ROOT / "sathu" / "privacy" / "index.html"),
     ("/sathu/terms/", ROOT / "sathu" / "terms" / "index.html"),
