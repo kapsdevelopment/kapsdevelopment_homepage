@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How Reference Repos Help Me Build Apps Faster</title>
+    <meta
+      name="description"
+      content="
+A practical guide to using reference repositories, AGENTS.md files, and reusable app patterns to make agentic coding faster and less wasteful.
+"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    
+    <link rel="canonical" href="https://kapsdevelopment.com/blog/how-reference-repos-help-me-build-apps-faster/" />
+    
+    <link rel="alternate" type="application/atom+xml" title="Kapsdevelopment Blog Feed" href="https://kapsdevelopment.com/blog/feed.xml" />
+    <meta property="og:site_name" content="Kapsdevelopment" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How Reference Repos Help Me Build Apps Faster" />
+    <meta property="og:description" content="A practical guide to using reference repositories, AGENTS.md files, and reusable app patterns to make agentic coding faster and less wasteful." />
+    
+    <meta property="og:url" content="https://kapsdevelopment.com/blog/how-reference-repos-help-me-build-apps-faster/" />
+    
+    
+    <meta property="og:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_04_29_234112_reference_repos/reference-repos-save-tokens.png" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="How Reference Repos Help Me Build Apps Faster" />
+    <meta name="twitter:description" content="A practical guide to using reference repositories, AGENTS.md files, and reusable app patterns to make agentic coding faster and less wasteful." />
+    
+    <meta name="twitter:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_04_29_234112_reference_repos/reference-repos-save-tokens.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/blog.css" />
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How Reference Repos Help Me Build Apps Faster",
+  "description": "A practical guide to using reference repositories, AGENTS.md files, and reusable app patterns to make agentic coding faster and less wasteful.",
+  "url": "https://kapsdevelopment.com/blog/how-reference-repos-help-me-build-apps-faster/",
+  "mainEntityOfPage": "https://kapsdevelopment.com/blog/how-reference-repos-help-me-build-apps-faster/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Ken Andersen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kapsdevelopment",
+    "url": "https://kapsdevelopment.com"
+  }
+  ,
+  "image": "https://kapsdevelopment.com/assets/blog/blog_2026_04_29_234112_reference_repos/reference-repos-save-tokens.png"
+  
+  ,
+  "datePublished": "2026-04-29T22:13:53Z"
+  
+  ,
+  "dateModified": "2026-04-29T22:13:53Z"
+  
+}
+</script>
+
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container topbar">
+          <a class="brand" href="/">
+            <span class="brand-mark">KD</span>
+            <span class="brand-wordmark">Kapsdevelopment</span>
+          </a>
+
+          <nav class="site-nav" aria-label="Primary">
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        
+<article class="article-page">
+  <section class="article-hero">
+    <div class="container article-hero-grid">
+      <div>
+        <a class="back-link" href="/blog/">Back to blog</a>
+        <span class="eyebrow">Article</span>
+        <h1>How Reference Repos Help Me Build Apps Faster</h1>
+        
+        <p class="hero-copy">A practical look at why I keep building new apps, how reference repos and AGENTS.md files speed up agentic coding, and why reusing proven patterns beats rebuilding the same app foundation from scratch.</p>
+        
+
+        <div class="article-meta">
+          <span>2026-04-29</span>
+          <span>10 min read</span>
+          <span>Ken Andersen</span>
+        </div>
+      </div>
+
+      
+      <aside class="article-hero-media">
+        <img src="/assets/blog/blog_2026_04_29_234112_reference_repos/reference-repos-save-tokens.png" alt="Diagram showing reference repos and AGENTS.md files helping an AI coding agent build new apps faster with lower token spend." />
+      </aside>
+      
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-layout">
+      <div class="article-body">
+        <p>I do not think every app idea will succeed.</p>
+<p>But I do think app ideas deserve to be built and properly tested in the market.</p>
+<p>That sounds a little contradictory at first. Why build more than one app if one good idea is supposed to be enough? Why not wait until the perfect idea arrives, commit to it fully, and avoid spreading attention across experiments?</p>
+<p>The honest answer is that its really hard to guess beforehand.</p>
+<p>Some products look promising as notes in a document, but feel flat when they become an actual app. Some ideas look small, but become much more interesting once the first real interaction is working. Some ideas are mostly practice. Some are technical stepping stones. Some teach us about distribution, pricing, onboarding, paywalls, subscriptions, support, analytics, or why a feature that sounds obvious on paper feels annoying in a real product.</p>
+<p>So I like to experiment by building more than one app.</p>
+<p>Not because I want chaos, but because repetition is one of the best teachers I know.</p>
+<h2>Why Build More Than One App?</h2>
+<p>There are at least three reasons.</p>
+<p>The first reason is discovery.</p>
+<p>Most people do not hit their best product idea on the first attempt. A good idea is not just a sentence. It is a combination of timing, user need, execution, positioning, pricing, distribution, design taste, and personal motivation. You can think your way into parts of that, but at some point the idea has to become software.</p>
+<p>Building several small apps gives you more shots on goal.</p>
+<p>The second reason is learning and getting better at it.</p>
+<p>Mobile app development is full of details that only become visible when you tackle it straight on and repeat. Authentication. In app purchases. Local state. Push notifications. In-app purchases. Deep links. App Store assets. Build pipelines. Privacy pages. Error reporting. Release notes. Support flows. The first time through, everything is a project. The fifth time through, some of it becomes muscle memory.</p>
+<p>That is valuable.</p>
+<p>The third reason is taste.</p>
+<p>You develop product taste by seeing what happens when a feature leaves your head and meets reality. Does the onboarding feel calm? Does the paywall appear at the right moment? Is the app asking the backend the right questions? Is the empty state useful? Is the app small enough to understand? Is it too clever? Too vague?</p>
+<p>You do not learn those things by only planning.</p>
+<p>You learn them by shipping enough to notice repeating patterns.</p>
+<h2>The Problem With Starting From Scratch</h2>
+<p>The downside is obvious: every new app has a lot of repeated setup.</p>
+<p>You need a project structure. You need dependencies. You need app configuration. You need auth. A backend. Maybe database migrations. Maybe storage. Maybe push notifications. Maybe subscriptions. Maybe a design system. Maybe analytics. Privacy pages. App icons, screenshots, and release scripts.</p>
+<p>The danger is not just that this takes time.</p>
+<p>The danger is that repeated setup consumes attention.</p>
+<p>If every app starts with days of wiring, then your product idea has to survive a lot of boring work before it becomes testable. That can kill momentum. It can also tempt you into skipping important parts because you are tired of doing the same thing over again.</p>
+<p>Agentic coding makes this more interesting, but not automatically easier.</p>
+<p>With a coding agent, it is tempting to say:</p>
+<blockquote>
+<p>Build me a new app with auth, subscriptions, push notifications, clean architecture, tests, nice UI, and deployment.</p>
+</blockquote>
+<p>Sometimes that works surprisingly well.</p>
+<p>But if you ask the agent to rediscover your preferred app structure from nothing every time, you are spending tokens on archaeology. The agent has to infer your taste, rebuild your conventions, choose libraries, decide folder structure, invent naming, and guess where all the seams should be.</p>
+<p>That is alot quicker than doing everything manually.</p>
+<p>But it still has its costs in time and tokens.</p>
+<p><img alt="A tired developer looking at an empty token meter" src="/assets/blog/blog_2026_04_29_234112_reference_repos/crying-developer-out-of-tokens.png" /></p>
+<p><em>The dramatic reenactment of asking an agent to recreate the same app foundation for the fourth time in a month.</em></p>
+<h2>Rewriting, Regenerating, Or Reusing?</h2>
+<p>When I start a new app, I usually see three possible paths.</p>
+<p>The first path is to write the code again by hand.</p>
+<p>That can be good practice. It gives you control. But if the code is mostly infrastructure you have solved before, writing it again is not always noble. Sometimes it is just expensive nostalgia.</p>
+<p>The second path is to ask a coding agent to generate the same foundation again.</p>
+<p>This is faster than typing it all yourself, but it has a hidden cost. The agent may solve the same problem in a slightly different way every time. The auth service gets a different shape. The billing integration gets a new naming convention. The folder structure drifts. The error handling changes. The edge cases you learned from the last project may not come along for the ride.</p>
+<p>Maybe you switch between Claude and Codex and get slightly different approaches each time.</p>
+<p>You can prompt harder, of course.</p>
+<p>But now the prompt becomes a novel.</p>
+<p>The third path is to keep reference repos.</p>
+<p>That is the path I increasingly like.</p>
+<p>A reference repo is not a perfect library to import, or a hard template to fill out. I do not always copy it directly. I do not want every app to become the same app with a different color palette. A reference repo is more like a memory bank for solved decisions.</p>
+<p>It says:</p>
+<ul>
+<li>Here is how I like auth to be structured.</li>
+<li>Here is how I handled subscriptions last time.</li>
+<li>Here is the shape of a good entitlement endpoint.</li>
+<li>Here is the release checklist that actually worked.</li>
+<li>Here is how push notifications were wired.</li>
+<li>Here are the edge cases I already paid for with time.</li>
+</ul>
+<p>That gives both me and the agent something concrete to work from.</p>
+<h2>Tokens Are Not Just Money</h2>
+<p>When people talk about tokens, they often talk about cost.</p>
+<p>That matters, but it is not the whole story.</p>
+<p>Tokens are also attention. They are context budget. They are time spent explaining. They are the agent reading irrelevant files because it does not know where the important patterns live. They are long prompts repeating the same preferences. They are correction loops when the agent guessed wrong.</p>
+<p>If a coding agent has no references, it has to spend tokens discovering what &ldquo;good&rdquo; means in your world.</p>
+<p>If a coding agent has strong references, it can spend more of its context on the new problem.</p>
+<p><img alt="High token burn when every new app starts from an empty folder" src="/assets/blog/blog_2026_04_29_234112_reference_repos/high-token-burn-from-scratch.png" /></p>
+<p><em>When every app starts from an empty folder, the agent spends context rebuilding foundation instead of solving the product problem.</em></p>
+<h2>What I Put In Reference Repos</h2>
+<p>The best reference repos are not giant museums.</p>
+<p>They are curated examples of things I expect to do again.</p>
+<p>For mobile apps, that can include:</p>
+<ul>
+<li>app startup and dependency wiring</li>
+<li>auth and user flow</li>
+<li>backend client setup</li>
+<li>environment configuration</li>
+<li>database migration style</li>
+<li>push notification setup</li>
+<li>in-app purchase and billing setup</li>
+<li>subscription entitlement model</li>
+<li>privacy, terms, and support page structure</li>
+</ul>
+<p>The goal is not to preserve every line of code forever.</p>
+<p>The goal is to preserve decisions.</p>
+<p>For example, if I have already learned that a purchase observer should live for the app lifetime and not just inside the paywall screen, that lesson should not be trapped in my memory. It should be visible in a reference implementation. If I have already learned how I want backend entitlements shaped, I want that available. If I have already learned where Google Play subscription setup gets weird, I want notes and code close enough that I do not rediscover the same mess from scratch.</p>
+<p>That is the real value.</p>
+<h2>AGENTS.md Is Part Of The Reference System</h2>
+<p>A good reference repo is even better with a good <code>AGENTS.md</code>.</p>
+<p>The code shows what exists.</p>
+<p>The <code>AGENTS.md</code> explains how to work with it.</p>
+<p>I like these files because they make expectations explicit. They can tell the agent where the important patterns are, what not to touch, how tests are run, which scripts matter, how environment variables are handled, and what architectural habits the repo uses.</p>
+<p>For example:</p>
+<pre><code class="language-text">When adding a new backend function, follow the pattern in supabase/functions/example-function.
+Keep raw provider payloads separate from app-facing state.
+Do not put store credentials in the mobile app.
+Prefer small migrations with explicit rollback notes.
+</code></pre>
+<p>That kind of guidance is boring in the best possible way.</p>
+<p>It prevents the agent from improvising where I want consistency.</p>
+<p>It also prevents me from writing the same instruction in chat every time.</p>
+<h2>Reference Repos Change The Conversation</h2>
+<p>Without references, a prompt often sounds like this:</p>
+<blockquote>
+<p>Build the app foundation. Use auth. Add billing. Make it clean.  You know, the good way.</p>
+</blockquote>
+<p>The agent does not actually know &ldquo;the good way&rdquo;.</p>
+<p>It might infer something reasonable. It might even do a great job. But it is still guessing.</p>
+<p>With references, the prompt becomes more useful:</p>
+<blockquote>
+<p>Use all the business logic so far in OUR CURRENT PROJECT. Use <code>iap_and_billing_reference</code> repo for the subscription functionality. Use the AGENTS.md files in both repos. Keep consistent with what we have built so far, do not alter business logic, only add iap and billing.</p>
+</blockquote>
+<p>Now the agent has something to read.</p>
+<p>It can compare. It can extract patterns. It can reuse decisions without copying product-specific details blindly. It can ask better questions. It can also be corrected more precisely:</p>
+<blockquote>
+<p>This should follow the billing reference, not invent a second entitlement model.</p>
+</blockquote>
+<p>That is a much better collaboration.</p>
+<p><img alt="Reference repos and AGENTS.md files reduce repeated token spend" src="/assets/blog/blog_2026_04_29_234112_reference_repos/reference-repos-save-tokens.png" /></p>
+<p><em>A reference repo turns prior learning into reusable context. The agent spends less time rebuilding the same foundation and more time on the new app.</em></p>
+<h2>The Reference Repo Should Not Become A Prison</h2>
+<p>There is one trap.</p>
+<p>Reference repos can become too powerful.</p>
+<p>If every new app must inherit every decision from the previous app, you stop learning. You create a private framework without admitting it. You carry old assumptions forward. You make small experiments heavy.</p>
+<p>So I try to treat reference repos as strong suggestions, not law.</p>
+<p>The point is not to copy everything.</p>
+<p>The point is to avoid forgetting what you´ve already learned.</p>
+<p>Sometimes the new app should use the same pattern almost exactly. Sometimes it should deliberately diverge. Sometimes the reference repo is useful because it shows what not to do anymore.</p>
+<p>That is fine.</p>
+<p>A good reference repo should speed up thinking, not replace thinking.</p>
+<h2>When A Reference Repo Is Worth Creating</h2>
+<p>I do not think every experiment needs one.</p>
+<p>If the code is throwaway, keep it throwaway.</p>
+<p>But if you find yourself saying &ldquo;I will need this again&rdquo;, that is a signal.</p>
+<p>Good candidates are:</p>
+<ul>
+<li>anything involving platform setup</li>
+<li>anything involving store or payment edge cases</li>
+<li>anything involving backend security</li>
+<li>anything involving repeated release workflow</li>
+<li>anything where mistakes are expensive</li>
+<li>anything where the implementation has several moving parts</li>
+</ul>
+<p>Subscriptions are a perfect example.</p>
+<p>It is not enough to remember &ldquo;verify the purchase&rdquo;. You need app purchase observers, backend verification, store notifications, entitlement state, repair jobs, ownership checks, sandbox testing, and support tooling. That is exactly the kind of work that should become reference material.</p>
+<p>The same is true for auth, push notifications, onboarding, analytics, screenshots, CI, and release checklists.</p>
+<h2>How I Want To Use This Going Forward</h2>
+<p>My ideal flow is simple.</p>
+<p>When I build something painful or useful, I should ask:</p>
+<blockquote>
+<p>Is this a one-time implementation, or did I just create a future reference?</p>
+</blockquote>
+<p>If it is a future reference, I want to clean it up enough that a coding agent can learn from it and utilize it later.</p>
+<p>That does not mean making it perfect.</p>
+<p>It means:</p>
+<ul>
+<li>give it a clear README</li>
+<li>add or improve <code>AGENTS.md</code></li>
+<li>name the important folders well</li>
+<li>leave notes near the weird parts</li>
+<li>document required secrets and scripts</li>
+<li>keep example flows small enough to understand</li>
+<li>remove product-specific clutter if the pattern is meant to travel</li>
+</ul>
+<p>This is less glamorous than launching a new app.</p>
+<p>But it compounds.</p>
+<p>Every good reference makes the next app cheaper to start. Every clear <code>AGENTS.md</code> saves future explanation. Every reusable implementation moves the agent from &ldquo;please invent my architecture&rdquo; toward &ldquo;please apply this known pattern to a new product&rdquo;.</p>
+<p>That is a much better use of both human energy and machine context.</p>
+<h2>Conclusion</h2>
+<p>Build more than one app because repetition teaches.</p>
+<p>Build faster because momentum matters.</p>
+<p>Do not spend your best energy recreating the same foundation every time.</p>
+<p>Reference repos can be the answer to that.</p>
+<p>They are not magic. They do not remove product thinking. They do not guarantee that an idea is good.</p>
+<p>But they preserve hard-won decisions. They make agentic coding more grounded. They reduce wasted tokens. They help me turn previous work into future leverage.</p>
+<p>If you are building several apps, especially with coding agents, I think this is worth trying.</p>
+<p>Do not just build apps.</p>
+<p>Build your own reusable memory for building apps.</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>Kapsdevelopment</strong>
+            <p>Practical notes on technology, delivery, AI, and building digital products.</p>
+          </div>
+          <a class="footer-link" href="/blog/">Browse the archive</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
