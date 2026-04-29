@@ -65,19 +65,7 @@ Insights on building software, shipping products, AI, and digital transformation
 	            <a class="nav-cta" href="/#contact">Contact</a>
 	          </nav>
 
-	          <button class="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="blog-mobile-menu">
-	            <span class="material-icons" aria-hidden="true">menu</span>
-	          </button>
 	        </div>
-
-	        <nav class="container mobile-menu" id="blog-mobile-menu" aria-label="Mobile primary" hidden>
-	          <a href="/">Home</a>
-	          <a href="/#services">Services</a>
-	          <a href="/#about">About Us</a>
-	          <a href="/blog/">Blog</a>
-	          <a href="/products/">Products</a>
-	          <a class="nav-cta" href="/#contact">Contact</a>
-	        </nav>
 	      </header>
 
       <main>
@@ -209,25 +197,5 @@ Insights on building software, shipping products, AI, and digital transformation
         </div>
       </footer>
 	    </div>
-	    <script>
-	      (() => {
-	        const button = document.querySelector(".mobile-menu-button");
-	        const menu = document.getElementById("blog-mobile-menu");
-	        if (!button || !menu) return;
-
-	        button.addEventListener("click", () => {
-	          const isOpen = button.getAttribute("aria-expanded") === "true";
-	          button.setAttribute("aria-expanded", String(!isOpen));
-	          menu.hidden = isOpen;
-	        });
-
-	        menu.querySelectorAll("a").forEach((link) => {
-	          link.addEventListener("click", () => {
-	            button.setAttribute("aria-expanded", "false");
-	            menu.hidden = true;
-	          });
-	        });
-	      })();
-	    </script>
 	  </body>
 	</html>
