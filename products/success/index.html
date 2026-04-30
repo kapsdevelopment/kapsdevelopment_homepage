@@ -15,19 +15,26 @@
     />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="/css/products.css" />
+    <script src="/js/products-nav.js" defer></script>
     <script src="/js/products-success.js" defer></script>
   </head>
   <body class="success-page">
     <header class="site-header">
       <div class="container topbar">
         <a class="brand" href="/">
-          <span class="brand-mark">KD</span>
-          <span class="brand-wordmark">Kapsdevelopment</span>
+          <span class="material-icons brand-icon" aria-hidden="true">code</span>
+          <span class="brand-wordmark">Kaps<span>development</span></span>
         </a>
-        <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" data-nav-toggle>
+          <span class="material-icons" aria-hidden="true">menu</span>
+        </button>
+        <nav class="site-nav" aria-label="Primary" data-site-nav>
           <a href="/">Home</a>
-          <a href="/products/">Products</a>
+          <a href="/#services">Services</a>
+          <a href="/#about">About Us</a>
           <a href="/blog/">Blog</a>
+          <a aria-current="page" href="/products/">Products</a>
+          <a class="nav-cta" href="/#contact">Contact</a>
         </nav>
       </div>
     </header>

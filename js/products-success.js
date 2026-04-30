@@ -29,7 +29,7 @@
     if (!sessionId) {
       setText(
         "Missing checkout session",
-        "The success page did not receive a Stripe session ID. Please use the link from your checkout redirect or contact Kapsdevelopment.",
+        "This page did not receive a Stripe session ID. Please use the link from your checkout redirect or contact us with your Stripe receipt.",
       );
       return;
     }
@@ -51,7 +51,7 @@
       if (data.downloadUrl || data.accessUrl) {
         setText(
           "Your download is ready",
-          "Payment is confirmed. You can download the ZIP package now, and the same access can also be sent by email.",
+          "Payment is confirmed. You can download the ZIP package now. If anything goes wrong, contact us with your Stripe receipt.",
         );
       } else {
         setText(
@@ -63,7 +63,7 @@
       setText(
         "Download access is not ready yet",
         error.message ||
-          "The checkout completed, but the download API is not available yet. Please contact Kapsdevelopment with your Stripe receipt.",
+          "The checkout completed, but the download service is not available yet. Please contact us with your Stripe receipt.",
       );
     }
   };

@@ -78,7 +78,7 @@
 
   const checkout = async (slug, button) => {
     if (!checkoutEnabled) {
-      setStatus("Checkout is temporarily disabled while these packages are being prepared.", "info");
+      setStatus("Checkout is temporarily unavailable. Please try again later.", "info");
       return;
     }
 
@@ -108,7 +108,7 @@
       window.location.assign(data.checkoutUrl);
     } catch (error) {
       setStatus(
-        error.message || "Checkout is not available yet. Please try again later or contact Kapsdevelopment.",
+        error.message || "Checkout is not available yet. Please try again later or contact us.",
         "error",
       );
       button.disabled = false;
@@ -119,8 +119,8 @@
   document.querySelectorAll("[data-checkout]").forEach((button) => {
     if (!checkoutEnabled) {
       button.disabled = true;
-      button.textContent = "Coming soon";
-      button.setAttribute("aria-label", "Checkout disabled while this product is under construction");
+      button.textContent = "Temporarily unavailable";
+      button.setAttribute("aria-label", "Checkout is temporarily unavailable for this product");
     }
 
     button.addEventListener("click", () => checkout(button.dataset.checkout, button));

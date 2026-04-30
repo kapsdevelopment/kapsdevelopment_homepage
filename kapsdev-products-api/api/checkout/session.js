@@ -13,7 +13,7 @@ module.exports = async function handler(req, res) {
 
   try {
     if (!checkoutEnabled()) {
-      sendJson(res, 503, { message: "Checkout is temporarily disabled while these products are being prepared." });
+      sendJson(res, 503, { message: "Checkout is temporarily unavailable. Please try again later." });
       return;
     }
 
