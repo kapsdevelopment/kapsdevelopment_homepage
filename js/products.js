@@ -1,6 +1,6 @@
 (function () {
   const apiBaseUrl = "https://kapsdev-products-api.vercel.app";
-  const checkoutEnabled = false;
+  const checkoutEnabled = true;
   const products = [
     {
       slug: "user-and-auth-reference",
@@ -121,6 +121,10 @@
       button.disabled = true;
       button.textContent = "Temporarily unavailable";
       button.setAttribute("aria-label", "Checkout is temporarily unavailable for this product");
+    } else {
+      button.disabled = false;
+      button.textContent = "Buy now";
+      button.removeAttribute("aria-label");
     }
 
     button.addEventListener("click", () => checkout(button.dataset.checkout, button));
