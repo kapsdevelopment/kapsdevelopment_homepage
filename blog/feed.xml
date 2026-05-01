@@ -2,10 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://kapsdevelopment.com/blog/</id>
   <title>Kapsdevelopment Blog</title>
-  <updated>2026-04-29T22:13:53Z</updated>
+  <updated>2026-05-01T16:24:28Z</updated>
   <link href="https://kapsdevelopment.com/blog/feed.xml" rel="self" />
   <link href="https://kapsdevelopment.com/blog/" rel="alternate" />
   <subtitle>Insights on building software, shipping products, AI, and digital transformation from Kapsdevelopment.</subtitle>
+  
+  <entry>
+    <id>https://kapsdevelopment.com/blog/digital-transformation-living-products/</id>
+    <title>From Digital Transformation to Living Products</title>
+    <link href="https://kapsdevelopment.com/blog/digital-transformation-living-products/" rel="alternate" />
+    <updated>2026-05-01T16:24:28Z</updated>
+    
+    <published>2026-05-01T16:24:28Z</published>
+    
+    <summary>AI and agentic coding are changing digital transformation from periodic delivery work into living product evolution guided by feedback, guardrails, and human oversight.</summary>
+  </entry>
   
   <entry>
     <id>https://kapsdevelopment.com/blog/how-reference-repos-help-me-build-apps-faster/</id>
