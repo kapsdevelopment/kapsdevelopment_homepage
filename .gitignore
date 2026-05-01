@@ -26,6 +26,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 blogg-to-do.md
+backend-scripts/build_kapsdev_product_zips.sh
+backend-scripts/upload_kapsdev_product_zips_to_supabase.sh
 
 # Common local build artifacts
 node_modules/
