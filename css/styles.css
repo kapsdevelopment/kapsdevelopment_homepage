@@ -163,16 +163,25 @@ section {
 }
 
 .tablet {
-  width: min(100%, 620px);
-  aspect-ratio: 4 / 3;
+  width: 100%;
+  max-width: 620px;
   border-radius: 30px;
-  padding: 8px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.32);
+  position: relative;
+}
+
+.tablet::before {
+  content: "";
+  display: block;
+  padding-top: 75%;
 }
 
 .tablet .screen {
+  position: absolute;
+  inset: 8px;
+  height: auto;
   border-radius: 23px;
 }
 
@@ -194,10 +203,10 @@ section {
     width: 200px;
   }
   .tablet {
-    padding: 5px;
     border-radius: 22px;
   }
   .tablet .screen {
+    inset: 5px;
     border-radius: 17px;
   }
 }
