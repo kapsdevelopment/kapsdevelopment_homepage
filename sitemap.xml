@@ -3,12 +3,12 @@
   
   <url>
     <loc>https://kapsdevelopment.com/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
   </url>
   
   <url>
     <loc>https://kapsdevelopment.com/blog/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
   </url>
   
   <url>
@@ -29,6 +29,11 @@
   <url>
     <loc>https://kapsdevelopment.com/sathu/terms/</loc>
     <lastmod>2026-04-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://kapsdevelopment.com/blog/why-i-separate-auth-identity-from-domain-identity-from-day-one/</loc>
+    <lastmod>2026-05-07</lastmod>
   </url>
   
   <url>

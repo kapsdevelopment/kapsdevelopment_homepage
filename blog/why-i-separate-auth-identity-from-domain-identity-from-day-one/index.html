@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why I Separate Auth Identity From Domain Identity From Day One</title>
+    <meta
+      name="description"
+      content="
+A practical architecture pattern for separating auth provider IDs from durable app user IDs, with examples from billing, profiles, entitlements, and future auth changes.
+"
+    />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    
+    <link rel="canonical" href="https://kapsdevelopment.com/blog/why-i-separate-auth-identity-from-domain-identity-from-day-one/" />
+    
+    <link rel="alternate" type="application/atom+xml" title="Kapsdevelopment Blog Feed" href="https://kapsdevelopment.com/blog/feed.xml" />
+    <meta property="og:site_name" content="Kapsdevelopment" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Why I Separate Auth Identity From Domain Identity From Day One" />
+    <meta property="og:description" content="A practical architecture pattern for separating auth provider IDs from durable app user IDs, with examples from billing, profiles, entitlements, and future auth changes." />
+    
+    <meta property="og:url" content="https://kapsdevelopment.com/blog/why-i-separate-auth-identity-from-domain-identity-from-day-one/" />
+    
+    
+    <meta property="og:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_05_07_225140_auth_identity/231812-auth-user-nightmare-copyrighted.png" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Why I Separate Auth Identity From Domain Identity From Day One" />
+    <meta name="twitter:description" content="A practical architecture pattern for separating auth provider IDs from durable app user IDs, with examples from billing, profiles, entitlements, and future auth changes." />
+    
+    <meta name="twitter:image" content="https://kapsdevelopment.com/assets/blog/blog_2026_05_07_225140_auth_identity/231812-auth-user-nightmare-copyrighted.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	    <link
+	      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+	      rel="stylesheet"
+	    />
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	    <link rel="stylesheet" href="/css/blog.css" />
+	    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why I Separate Auth Identity From Domain Identity From Day One",
+  "description": "A practical architecture pattern for separating auth provider IDs from durable app user IDs, with examples from billing, profiles, entitlements, and future auth changes.",
+  "url": "https://kapsdevelopment.com/blog/why-i-separate-auth-identity-from-domain-identity-from-day-one/",
+  "mainEntityOfPage": "https://kapsdevelopment.com/blog/why-i-separate-auth-identity-from-domain-identity-from-day-one/",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Ken Andersen"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kapsdevelopment",
+    "url": "https://kapsdevelopment.com"
+  }
+  ,
+  "image": "https://kapsdevelopment.com/assets/blog/blog_2026_05_07_225140_auth_identity/231812-auth-user-nightmare-copyrighted.png"
+  
+  ,
+  "datePublished": "2026-05-07T21:19:57Z"
+  
+  ,
+  "dateModified": "2026-05-07T21:19:57Z"
+  
+}
+</script>
+
+	  </head>
+	  <body>
+	    <div class="page-shell">
+	      <header class="site-header">
+	        <div class="container topbar">
+	          <a class="brand" href="/">
+	            <span class="material-icons brand-icon" aria-hidden="true">code</span>
+	            <span class="brand-wordmark">Kaps<span>development</span></span>
+	          </a>
+
+	          <nav class="site-nav" aria-label="Primary">
+	            <a href="/">Home</a>
+	            <a href="/#services">Services</a>
+	            <a href="/#about">About Us</a>
+	            <a href="/blog/">Blog</a>
+	            <a href="/products/">Products</a>
+	            <a class="nav-cta" href="/#contact">Contact</a>
+	          </nav>
+
+	        </div>
+	      </header>
+
+      <main>
+        
+<article class="article-page">
+  <section class="article-hero">
+    <div class="container article-hero-grid">
+      <div>
+        <a class="back-link" href="/blog/">Back to blog</a>
+        <span class="eyebrow">Article</span>
+        <h1>Why I Separate Auth Identity From Domain Identity From Day One</h1>
+        
+        <p class="hero-copy">A practical architecture note on keeping login identity separate from the app&#39;s own user, account, billing, and entitlement model from the start.</p>
+        
+
+        <div class="article-meta">
+          <span>2026-05-07</span>
+          <span>9 min read</span>
+          <span>Ken Andersen</span>
+        </div>
+      </div>
+
+      
+      <aside class="article-hero-media">
+        <img src="/assets/blog/blog_2026_05_07_225140_auth_identity/231812-auth-user-nightmare-copyrighted.png" alt="Why I Separate Auth Identity From Domain Identity From Day One" />
+      </aside>
+      
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container article-layout">
+      <div class="article-body">
+        <p>Authentication feels like plumbing when a project is new.</p>
+<p>Maybe you just run with Firebase Auth or Supbase Auth &ldquo;right out of the box&rdquo; to get a quick setup.
+You get a user id back. You need to save some rows. So the obvious first version is:</p>
+<blockquote>
+<p>This auth user id is my user id.</p>
+</blockquote>
+<p>For a weekend prototype, that is fine.</p>
+<p>For an app that may keep users, purchases, photos, profiles, subscriptions, support cases, or private data for a long time, things get messy pretty fast.</p>
+<p>Good practice is to separate the login/auth identity from the domain identity from day one.</p>
+<p>In practice, that means the auth provider has one id, and my product has another id. The auth id proves who is currently signed in. The domain id is the stable identity my app owns.</p>
+<p>That small separation adds a little friction at the start. It adds a table, a bootstrap function, a few joins, and a naming convention the whole codebase needs to respect.</p>
+<p>But it is much cheaper than discovering later that your billing system, storage rules, profile model, audit history, and product data all accidentally depend on one auth provider&rsquo;s internal user id.</p>
+<h2>Auth Identity Is Not The User</h2>
+<p>The most useful mental model for me is this:</p>
+<pre><code class="language-text">auth identity = how this person logs in right now
+domain identity = who this person is inside the product
+</code></pre>
+<p>Those are related, but they are not the same thing.</p>
+<p>An auth identity might be:</p>
+<ul>
+<li>a Supabase <code>auth.users.id</code></li>
+<li>an Apple Sign In subject</li>
+<li>a Google subject</li>
+<li>an email login</li>
+<li>an anonymous session</li>
+<li>a future provider you have not added yet</li>
+</ul>
+<p>A domain identity is the app-owned principal that product data belongs to.</p>
+<p>That is the id I want on rows like:</p>
+<ul>
+<li><code>profiles.id</code></li>
+<li><code>accounts.id</code></li>
+<li><code>photos.user_id</code></li>
+<li><code>subscriptions.user_id</code></li>
+<li><code>user_settings.user_id</code></li>
+<li>entitlement and billing snapshots</li>
+<li>support labels and moderation state</li>
+</ul>
+<p>The domain id should mean: this is the account as the product understands it.</p>
+<p>The auth id should mean: this is the current credential identity used to access that account.</p>
+<p>When those two meanings collapse into one field, the model becomes simple in the wrong place.</p>
+<h2>The Shortcut That Feels Cheap</h2>
+<p>The shortcut usually looks clean at first:</p>
+<pre><code class="language-sql">create table profiles (
+  id uuid primary key references auth.users(id),
+  display_name text
+);
+
+create table subscriptions (
+  user_id uuid primary key references auth.users(id),
+  status text
+);
+</code></pre>
+<p>It is fast. Row level security is easy. Every query can compare <code>user_id = auth.uid()</code>. The app does not need a bootstrap step. The first demo works.</p>
+<p>Then the product grows a little.</p>
+<p>You add Apple Sign In. Then Google. Then anonymous trial users. Then in-app purchases. Then support needs to repair a subscription. Then you want to move auth providers. Then you discover that &ldquo;user&rdquo; now means at least four different things:</p>
+<ul>
+<li>the provider subject</li>
+<li>the auth session user</li>
+<li>the app account</li>
+<li>the billing owner</li>
+</ul>
+<p>That is when the original shortcut starts charging interest.</p>
+<p>Every table that points directly at the auth provider becomes part of the migration. Every storage path that includes the auth id becomes part of the migration. Every function that assumes <code>auth.uid()</code> is the product owner becomes part of the migration.</p>
+<p>The problem is not that auth providers are bad. The problem is that a provider id is not a domain model.</p>
+<p><img alt="231812 auth user nightmare copyrighted" src="/assets/blog/blog_2026_05_07_225140_auth_identity/231812-auth-user-nightmare-copyrighted.png" /></p>
+<h2>This Is Not Just Theory</h2>
+<p>This pattern is something I have now reused across several of my own app projects.</p>
+<p>For Realz, the product data is not modeled as &ldquo;rows owned by a Supabase auth user&rdquo;. The useful product concept is the Realz domain user. Photos, profiles, subscriptions, private storage paths, proof creation, quotas, and app gating all become easier to reason about when <code>user_id</code> means the domain user and not the raw auth provider id.</p>
+<p>In my Sathu app and the related billing work, the same distinction shows up around entitlements. The app can authenticate with Supabase, but billing and access checks still want an app account id. Purchase verification and subscription refresh should resolve the domain account before they update entitlement state.</p>
+<p>In Famlo, I made this a foundation decision before the product needed all of it. The first database foundation includes <code>app_users</code>, <code>account_auth_users</code>, <code>accounts</code>, <code>profiles</code>, <code>user_identities</code>, <code>user_settings</code>, and <code>subscriptions</code>. That may look heavy for an early app shell, but it means future billing, AI usage, profile data, family settings, and auth changes can all point at one app-owned account concept.</p>
+<p>That is the real reason I care about this.</p>
+<p>New apps gets so much easier to setup if you follow these thoughts or use a reference repo (template repo) for bootstrapping.</p>
+<h2>The Model I Prefer</h2>
+<p>The shape I keep coming back to is a small identity bridge:</p>
+<pre><code class="language-text">auth provider session
+        |
+        v
+account_auth_users / user_identities
+        |
+        v
+app_users.user_id
+        |
+        v
+profiles, accounts, billing, storage, product data
+</code></pre>
+<p>In SQL-ish form, the foundation can be as small as this:</p>
+<pre><code class="language-sql">create table app_users (
+  user_id uuid primary key,
+  created_at timestamptz not null default now()
+);
+
+create table account_auth_users (
+  auth_user_id uuid primary key,
+  account_id uuid not null references app_users(user_id),
+  created_at timestamptz not null default now()
+);
+
+create table user_identities (
+  id uuid primary key,
+  user_id uuid not null references app_users(user_id),
+  auth_user_id uuid,
+  provider text not null,
+  subject text not null,
+  email text,
+  linked_at timestamptz not null default now(),
+  last_seen_at timestamptz not null default now(),
+  unique (provider, subject)
+);
+</code></pre>
+<p>Then product tables point at <code>app_users.user_id</code>, not directly at the auth provider:</p>
+<pre><code class="language-sql">create table profiles (
+  id uuid primary key references app_users(user_id),
+  display_name text,
+  contact_email text
+);
+
+create table subscriptions (
+  user_id uuid primary key references app_users(user_id),
+  provider text not null,
+  status text not null,
+  product_id text,
+  original_transaction_id text,
+  purchase_token text
+);
+</code></pre>
+<p>The naming matters more than it may seem.</p>
+<p>If <code>user_id</code> means &ldquo;domain user id&rdquo; in your codebase, then protect that meaning aggressively. Do not casually pass a raw auth id into billing, storage, proofs, profile updates, or product ownership functions and call it a user id.</p>
+<p>That naming discipline is boring. It is also the difference between a system that can evolve and a system that slowly turns into archaeology.</p>
+<h2>The Bootstrap Step</h2>
+<p>The extra moving part is the bootstrap step.</p>
+<p>After login, the app asks the backend:</p>
+<blockquote>
+<p>Which domain account does this auth session map to?</p>
+</blockquote>
+<p>If there is already a mapping, the backend returns the existing account id. If not, it creates the domain account, profile row, settings row, and any other minimum rows the app needs.</p>
+<p>The important property is idempotence.</p>
+<p>The app should be able to call this on startup, after login, after token refresh, or before a protected action without creating duplicate accounts.</p>
+<h2>Why This Matters For Billing</h2>
+<p>Billing is where this separation becomes obviously worth it.</p>
+<p>A subscription is not really owned by &ldquo;the auth provider row&rdquo;. It is owned by the customer&rsquo;s account in your product.</p>
+<p>That distinction matters for mobile in-app purchases because the store has its own identity model too.</p>
+<p>Apple has transaction chains, original transaction ids, signed transactions, and <code>appAccountToken</code> / <code>applicationUserName</code> style account hints. Google has purchase tokens, subscription products, base plans, and Real-time Developer Notifications.</p>
+<p>Your backend has to normalize all of that into a product decision:</p>
+<blockquote>
+<p>Does this domain account have access right now?</p>
+</blockquote>
+<p>That is a cleaner question than:</p>
+<blockquote>
+<p>Does the auth user currently logged into this device match whatever id happened to be stored when the purchase was first seen?</p>
+</blockquote>
+<p>The account id gives the billing system a durable owner.</p>
+<p>For subscriptions, I want the stable store keys and the app account to meet in the backend:</p>
+<pre><code class="language-text">domain account id
+  + Apple original_transaction_id / appAccountToken
+  + Google purchase_token
+  + backend subscription snapshot
+  + entitlement response
+</code></pre>
+<p>Then the app can ask a simple entitlement question:</p>
+<pre><code class="language-text">is premium access active for this account?
+</code></pre>
+<p>This also makes repair flows less scary.</p>
+<p>If a user changes login method, reinstalls the app, restores purchases, opens the native manage-subscriptions screen, or contacts support, the backend still has one product account to reason about.</p>
+<p>The auth session proves the current request. The domain account owns the purchase history.</p>
+<h2>Why This Matters For Product Data</h2>
+<p>Billing is only one example.</p>
+<p>The same pattern helps with every table where &ldquo;ownership&rdquo; has product meaning.</p>
+<p>In Realz, for example, media ownership should not be described as &ldquo;this row belongs to a Supabase auth user&rdquo;. The useful product statement is closer to:</p>
+<blockquote>
+<p>This photo belongs to this Realz domain user.</p>
+</blockquote>
+<p>The same is true for private storage paths, public proof records, profile data, app settings, quotas, usage events, account status, and support labels.</p>
+<p>Auth still matters for access control. It just sits at the edge.</p>
+<p>The request comes in with an auth session. The backend resolves the domain account. Row level security or backend logic checks product ownership through that domain account.</p>
+<p>That gives the data model a consistent center.</p>
+<pre><code class="language-text">auth.uid()
+  -&gt; current_account_id()
+  -&gt; product ownership checks
+</code></pre>
+<p>The only table that should really care directly about the raw auth id is the bridge table.</p>
+<p>Everywhere else, I want the product language.</p>
+<p><img alt="231627 auth user and domain user copyrighted" src="/assets/blog/blog_2026_05_07_225140_auth_identity/231627-auth-user-and-domain-user-copyrighted.png" /></p>
+<h2>The Extra Complexity Is Real</h2>
+<p>This pattern is not free.</p>
+<p>You have to design the account foundation before the app feels like it needs it. You need clear names. You need a bootstrap call. You need to decide what happens when the same provider identity appears twice. You need to make sure the app does not start using <code>auth.currentUser.id</code> as a convenient shortcut.</p>
+<p>There are also real edge cases:</p>
+<ul>
+<li>anonymous users upgrading to permanent accounts</li>
+<li>Apple private relay emails</li>
+<li>users changing email addresses</li>
+<li>multiple login providers for one account</li>
+<li>account deletion</li>
+<li>support-driven account repair</li>
+<li>provider metadata changing over time</li>
+<li>billing signals arriving after the user has logged out</li>
+</ul>
+<p>These are not imaginary enterprise problems. They appear surprisingly early in small apps once you add purchases, mobile auth, or cross-device behavior.</p>
+<p>The key is not to solve every edge case on day one.</p>
+<p>The key is to put the seam in the right place on day one.</p>
+<p>You can start with one auth provider and one domain account per auth user. That is fine. But if the bridge exists, the rest of the app does not need to know or care that the first version is simple.</p>
+<h2>A Rule I Like</h2>
+<p>The rule I try to follow is:</p>
+<blockquote>
+<p>Provider identifiers do not cross the auth boundary as product ownership ids.</p>
+</blockquote>
+<p>That means:</p>
+<ul>
+<li>The app can use auth provider ids for login state.</li>
+<li>The bridge can store provider ids.</li>
+<li>The backend can use <code>auth.uid()</code> to resolve the current account.</li>
+<li>Product tables should point to the domain account.</li>
+<li>Billing should point to the domain account.</li>
+<li>Entitlements should be returned for the domain account.</li>
+<li>Storage ownership should be based on the domain account.</li>
+</ul>
+<p>This one rule prevents a lot of accidental coupling.</p>
+<p>It also makes it easier for coding agents to help safely.</p>
+<p>If an <code>AGENTS.md</code> file says &ldquo;<code>auth.users.id</code> is auth identity, <code>user_id</code> is domain identity&rdquo;, then every future code change has a useful invariant to preserve.</p>
+<p>That matters when the codebase grows, when another person joins, or when an AI coding agent is making changes across frontend, backend, and database migrations.</p>
+<h2>What This Buys Later</h2>
+<p>The payoff is optionality.</p>
+<p>You can change auth providers without rewriting every product table.</p>
+<p>You can support multiple login methods for the same account.</p>
+<p>You can make billing point to an account that survives provider details changing.</p>
+<p>You can make profile and support data represent the person in your product, not whatever the auth provider returned this week.</p>
+<p>You can keep row ownership consistent across storage, billing, entitlements, and domain data.</p>
+<p>And maybe most importantly, you can keep your own language precise.</p>
+<p>That is underrated.</p>
+<h2>My Current Default</h2>
+<p>With good reference repos in place, I start with this separation from day one.</p>
+<p>If you are stuck, or want to save some tokens while setting up apps with a similar architecture, I have started collecting some of this work here: https://kapsdevelopment.com/products/.</p>
+      </div>
+    </div>
+  </section>
+</article>
+
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div>
+            <strong>Kapsdevelopment</strong>
+            <p>Practical notes on technology, delivery, AI, and building digital products.</p>
+          </div>
+          <a class="footer-link" href="/blog/">Browse the archive</a>
+        </div>
+      </footer>
+	    </div>
+	  </body>
+	</html>
