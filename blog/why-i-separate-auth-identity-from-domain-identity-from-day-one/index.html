@@ -65,7 +65,7 @@ A practical architecture pattern for separating auth provider IDs from durable a
   "datePublished": "2026-05-07T21:19:57Z"
   
   ,
-  "dateModified": "2026-05-07T21:19:57Z"
+  "dateModified": "2026-05-07T21:49:29Z"
   
 }
 </script>
@@ -124,7 +124,7 @@ A practical architecture pattern for separating auth provider IDs from durable a
     <div class="container article-layout">
       <div class="article-body">
         <p>Authentication feels like plumbing when a project is new.</p>
-<p>Maybe you just run with Firebase Auth or Supbase Auth &ldquo;right out of the box&rdquo; to get a quick setup.
+<p>Maybe you just run with Firebase Auth, Supabase Auth, or another hosted auth provider &ldquo;right out of the box&rdquo; to get a quick setup.
 You get a user id back. You need to save some rows. So the obvious first version is:</p>
 <blockquote>
 <p>This auth user id is my user id.</p>
@@ -143,7 +143,7 @@ domain identity = who this person is inside the product
 <p>Those are related, but they are not the same thing.</p>
 <p>An auth identity might be:</p>
 <ul>
-<li>a Supabase <code>auth.users.id</code></li>
+<li>a hosted auth provider&rsquo;s user id</li>
 <li>an Apple Sign In subject</li>
 <li>a Google subject</li>
 <li>an email login</li>
@@ -151,13 +151,13 @@ domain identity = who this person is inside the product
 <li>a future provider you have not added yet</li>
 </ul>
 <p>A domain identity is the app-owned principal that product data belongs to.</p>
-<p>That is the id I want on rows like:</p>
+<p>That is the id I want behind product concepts like:</p>
 <ul>
-<li><code>profiles.id</code></li>
-<li><code>accounts.id</code></li>
-<li><code>photos.user_id</code></li>
-<li><code>subscriptions.user_id</code></li>
-<li><code>user_settings.user_id</code></li>
+<li>profile ownership</li>
+<li>account status</li>
+<li>content ownership</li>
+<li>subscription ownership</li>
+<li>user settings</li>
 <li>entitlement and billing snapshots</li>
 <li>support labels and moderation state</li>
 </ul>
@@ -167,16 +167,16 @@ domain identity = who this person is inside the product
 <h2>The Shortcut That Feels Cheap</h2>
 <p>The shortcut usually looks clean at first:</p>
 <pre><code class="language-sql">create table profiles (
-  id uuid primary key references auth.users(id),
+  id uuid primary key references auth_provider_users(id),
   display_name text
 );
 
 create table subscriptions (
-  user_id uuid primary key references auth.users(id),
+  user_id uuid primary key references auth_provider_users(id),
   status text
 );
 </code></pre>
-<p>It is fast. Row level security is easy. Every query can compare <code>user_id = auth.uid()</code>. The app does not need a bootstrap step. The first demo works.</p>
+<p>It is fast. Access checks feel easy. Every query can compare the row owner to the current auth session. The app does not need a bootstrap step. The first demo works.</p>
 <p>Then the product grows a little.</p>
 <p>You add Apple Sign In. Then Google. Then anonymous trial users. Then in-app purchases. Then support needs to repair a subscription. Then you want to move auth providers. Then you discover that &ldquo;user&rdquo; now means at least four different things:</p>
 <ul>
@@ -186,44 +186,44 @@ create table subscriptions (
 <li>the billing owner</li>
 </ul>
 <p>That is when the original shortcut starts charging interest.</p>
-<p>Every table that points directly at the auth provider becomes part of the migration. Every storage path that includes the auth id becomes part of the migration. Every function that assumes <code>auth.uid()</code> is the product owner becomes part of the migration.</p>
+<p>Every table that points directly at the auth provider becomes part of the migration. Every storage path that includes the auth id becomes part of the migration. Every function that assumes &ldquo;the current auth id is the product owner&rdquo; becomes part of the migration.</p>
 <p>The problem is not that auth providers are bad. The problem is that a provider id is not a domain model.</p>
 <p><img alt="231812 auth user nightmare copyrighted" src="/assets/blog/blog_2026_05_07_225140_auth_identity/231812-auth-user-nightmare-copyrighted.png" /></p>
 <h2>This Is Not Just Theory</h2>
 <p>This pattern is something I have now reused across several of my own app projects.</p>
-<p>For Realz, the product data is not modeled as &ldquo;rows owned by a Supabase auth user&rdquo;. The useful product concept is the Realz domain user. Photos, profiles, subscriptions, private storage paths, proof creation, quotas, and app gating all become easier to reason about when <code>user_id</code> means the domain user and not the raw auth provider id.</p>
-<p>In my Sathu app and the related billing work, the same distinction shows up around entitlements. The app can authenticate with Supabase, but billing and access checks still want an app account id. Purchase verification and subscription refresh should resolve the domain account before they update entitlement state.</p>
-<p>In Famlo, I made this a foundation decision before the product needed all of it. The first database foundation includes <code>app_users</code>, <code>account_auth_users</code>, <code>accounts</code>, <code>profiles</code>, <code>user_identities</code>, <code>user_settings</code>, and <code>subscriptions</code>. That may look heavy for an early app shell, but it means future billing, AI usage, profile data, family settings, and auth changes can all point at one app-owned account concept.</p>
+<p>In a photo/proof product, the useful product concept is not &ldquo;rows owned by whatever auth provider user exists today&rdquo;. It is the domain user inside the product. Photos, profiles, subscriptions, private storage paths, proof creation, quotas, and app gating all become easier to reason about when ownership means the domain user and not the raw auth provider id.</p>
+<p>In a mobile billing flow, the same distinction shows up around entitlements. The app can authenticate with one provider, but billing and access checks still want an app account id. Purchase verification and subscription refresh should resolve the domain account before they update entitlement state.</p>
+<p>In another app shell, I made this a foundation decision before the product needed all of it. The first database foundation includes a domain account, an auth-to-account bridge, profile state, identity metadata, settings, and subscription state. That may look heavy for an early app shell, but it means future billing, AI usage, profile data, family settings, and auth changes can all point at one app-owned account concept.</p>
 <p>That is the real reason I care about this.</p>
-<p>New apps gets so much easier to setup if you follow these thoughts or use a reference repo (template repo) for bootstrapping.</p>
+<p>Bootstrapping new apps gets much easier when you follow these patterns or start from a reference repo.</p>
 <h2>The Model I Prefer</h2>
 <p>The shape I keep coming back to is a small identity bridge:</p>
 <pre><code class="language-text">auth provider session
         |
         v
-account_auth_users / user_identities
+auth_identity_links / identity_metadata
         |
         v
-app_users.user_id
+domain_accounts.account_id
         |
         v
-profiles, accounts, billing, storage, product data
+profiles, billing, storage, entitlements, product data
 </code></pre>
 <p>In SQL-ish form, the foundation can be as small as this:</p>
-<pre><code class="language-sql">create table app_users (
-  user_id uuid primary key,
+<pre><code class="language-sql">create table domain_accounts (
+  account_id uuid primary key,
   created_at timestamptz not null default now()
 );
 
-create table account_auth_users (
+create table auth_identity_links (
   auth_user_id uuid primary key,
-  account_id uuid not null references app_users(user_id),
+  account_id uuid not null references domain_accounts(account_id),
   created_at timestamptz not null default now()
 );
 
-create table user_identities (
+create table identity_metadata (
   id uuid primary key,
-  user_id uuid not null references app_users(user_id),
+  account_id uuid not null references domain_accounts(account_id),
   auth_user_id uuid,
   provider text not null,
   subject text not null,
@@ -233,15 +233,15 @@ create table user_identities (
   unique (provider, subject)
 );
 </code></pre>
-<p>Then product tables point at <code>app_users.user_id</code>, not directly at the auth provider:</p>
+<p>Then product tables point at <code>domain_accounts.account_id</code>, not directly at the auth provider:</p>
 <pre><code class="language-sql">create table profiles (
-  id uuid primary key references app_users(user_id),
+  account_id uuid primary key references domain_accounts(account_id),
   display_name text,
   contact_email text
 );
 
 create table subscriptions (
-  user_id uuid primary key references app_users(user_id),
+  account_id uuid primary key references domain_accounts(account_id),
   provider text not null,
   status text not null,
   product_id text,
@@ -250,7 +250,7 @@ create table subscriptions (
 );
 </code></pre>
 <p>The naming matters more than it may seem.</p>
-<p>If <code>user_id</code> means &ldquo;domain user id&rdquo; in your codebase, then protect that meaning aggressively. Do not casually pass a raw auth id into billing, storage, proofs, profile updates, or product ownership functions and call it a user id.</p>
+<p>If <code>account_id</code> means &ldquo;domain account id&rdquo; in your codebase, then protect that meaning aggressively. Do not casually pass a raw auth id into billing, storage, proofs, profile updates, or product ownership functions and call it an account id.</p>
 <p>That naming discipline is boring. It is also the difference between a system that can evolve and a system that slowly turns into archaeology.</p>
 <h2>The Bootstrap Step</h2>
 <p>The extra moving part is the bootstrap step.</p>
@@ -291,24 +291,24 @@ create table subscriptions (
 <h2>Why This Matters For Product Data</h2>
 <p>Billing is only one example.</p>
 <p>The same pattern helps with every table where &ldquo;ownership&rdquo; has product meaning.</p>
-<p>In Realz, for example, media ownership should not be described as &ldquo;this row belongs to a Supabase auth user&rdquo;. The useful product statement is closer to:</p>
+<p>In a media product, for example, ownership should not be described as &ldquo;this row belongs to the current auth provider user&rdquo;. The useful product statement is closer to:</p>
 <blockquote>
-<p>This photo belongs to this Realz domain user.</p>
+<p>This photo belongs to this product account.</p>
 </blockquote>
 <p>The same is true for private storage paths, public proof records, profile data, app settings, quotas, usage events, account status, and support labels.</p>
 <p>Auth still matters for access control. It just sits at the edge.</p>
 <p>The request comes in with an auth session. The backend resolves the domain account. Row level security or backend logic checks product ownership through that domain account.</p>
 <p>That gives the data model a consistent center.</p>
-<pre><code class="language-text">auth.uid()
-  -&gt; current_account_id()
+<pre><code class="language-text">current auth session
+  -&gt; resolve domain account
   -&gt; product ownership checks
 </code></pre>
-<p>The only table that should really care directly about the raw auth id is the bridge table.</p>
+<p>The only table that should really care directly about the raw auth id is the identity bridge.</p>
 <p>Everywhere else, I want the product language.</p>
 <p><img alt="231627 auth user and domain user copyrighted" src="/assets/blog/blog_2026_05_07_225140_auth_identity/231627-auth-user-and-domain-user-copyrighted.png" /></p>
 <h2>The Extra Complexity Is Real</h2>
 <p>This pattern is not free.</p>
-<p>You have to design the account foundation before the app feels like it needs it. You need clear names. You need a bootstrap call. You need to decide what happens when the same provider identity appears twice. You need to make sure the app does not start using <code>auth.currentUser.id</code> as a convenient shortcut.</p>
+<p>You have to design the account foundation before the app feels like it needs it. You need clear names. You need a bootstrap call. You need to decide what happens when the same provider identity appears twice. You need to make sure the app does not start using the auth provider&rsquo;s current user id as a convenient shortcut.</p>
 <p>There are also real edge cases:</p>
 <ul>
 <li>anonymous users upgrading to permanent accounts</li>
@@ -333,7 +333,7 @@ create table subscriptions (
 <ul>
 <li>The app can use auth provider ids for login state.</li>
 <li>The bridge can store provider ids.</li>
-<li>The backend can use <code>auth.uid()</code> to resolve the current account.</li>
+<li>The backend can use the current auth session to resolve the current account.</li>
 <li>Product tables should point to the domain account.</li>
 <li>Billing should point to the domain account.</li>
 <li>Entitlements should be returned for the domain account.</li>
@@ -341,7 +341,7 @@ create table subscriptions (
 </ul>
 <p>This one rule prevents a lot of accidental coupling.</p>
 <p>It also makes it easier for coding agents to help safely.</p>
-<p>If an <code>AGENTS.md</code> file says &ldquo;<code>auth.users.id</code> is auth identity, <code>user_id</code> is domain identity&rdquo;, then every future code change has a useful invariant to preserve.</p>
+<p>If an <code>AGENTS.md</code> file says &ldquo;auth provider id is login identity, account id is domain identity&rdquo;, then every future code change has a useful invariant to preserve.</p>
 <p>That matters when the codebase grows, when another person joins, or when an AI coding agent is making changes across frontend, backend, and database migrations.</p>
 <h2>What This Buys Later</h2>
 <p>The payoff is optionality.</p>
