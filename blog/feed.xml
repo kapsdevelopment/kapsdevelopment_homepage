@@ -2,10 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://kapsdevelopment.com/blog/</id>
   <title>Kapsdevelopment Blog</title>
-  <updated>2026-05-07T21:49:29Z</updated>
+  <updated>2026-05-21T18:54:41Z</updated>
   <link href="https://kapsdevelopment.com/blog/feed.xml" rel="self" />
   <link href="https://kapsdevelopment.com/blog/" rel="alternate" />
   <subtitle>Insights on building software, shipping products, AI, and digital transformation from Kapsdevelopment.</subtitle>
+  
+  <entry>
+    <id>https://kapsdevelopment.com/blog/what-happens-to-digital-transformation-when-software-gets-cheap-to-build/</id>
+    <title>What Happens to Digital Transformation When Software Gets Cheap to Build?</title>
+    <link href="https://kapsdevelopment.com/blog/what-happens-to-digital-transformation-when-software-gets-cheap-to-build/" rel="alternate" />
+    <updated>2026-05-21T18:54:41Z</updated>
+    
+    <published>2026-05-21T18:54:41Z</published>
+    
+    <summary>A strategic essay on SaaS pricing pressure, agentic coding, internal digital capability, and what changes when companies can build more of their own workflow software.</summary>
+  </entry>
   
   <entry>
     <id>https://kapsdevelopment.com/blog/why-i-separate-auth-identity-from-domain-identity-from-day-one/</id>
